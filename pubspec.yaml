@@ -1,8 +1,8 @@
 name: flutter_translate
 description: The internationalization (i18n) library for Flutter.
-version: 0.0.1
-author: Florin Bratan <florin@bratan.me>
-homepage: https://github.com/bratan/flutter_translate
+version: 0.0.2
+author: Leadcode <dev@leadcode.io>
+homepage: https://github.com/leadcode/flutter_translate
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
