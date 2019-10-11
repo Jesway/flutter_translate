@@ -1,4 +1,4 @@
-name: flutter_translate_example
+name: example
 description: Example project for the flutter_translate library
 
 # The following defines the version and build number for your application.
@@ -29,3 +29,5 @@ dev_dependencies:
 flutter:
 
   uses-material-design: true
+  assets:
+    - assets/i18n/
