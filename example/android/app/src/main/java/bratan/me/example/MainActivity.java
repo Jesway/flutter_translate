@@ -1,4 +1,4 @@
-package bratan.me.example;
+package leadcode.io.example;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

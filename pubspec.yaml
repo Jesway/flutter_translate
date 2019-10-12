@@ -1,6 +1,6 @@
 name: flutter_translate
 description: The internationalization (i18n) library for Flutter.
-version: 0.0.2
+version: 1.0.0
 author: Leadcode <dev@leadcode.io>
 homepage: https://github.com/leadcode/flutter_translate
 
@@ -9,6 +9,8 @@ environment:
 
 dependencies:
   flutter:
+    sdk: flutter
+  flutter_localizations:
     sdk: flutter
 
 dev_dependencies:
