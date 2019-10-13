@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-Locale localeFromString(String code, {bool languageCodeOnly})
+Locale localeFromString(String code, {bool languageCodeOnly = false})
 {
     if(code.contains('_'))
     {
