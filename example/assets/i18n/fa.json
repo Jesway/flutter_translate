@@ -1,10 +1,27 @@
 {
-	"app.title": "به صفحه اصلی خوش آمدید",
-	"button.cancel": "لغو",
-	"button.change_language": "تغییر زبان",
-	"language.name.english": "انگلیسی",
-	"language.name.persian": "فارسی",
-	"language.name.spanish": "اسپانیایی",
-	"language.selection.message": "لطفاً زبانی را از لیست انتخاب کنید",
-	"language.selection.title": "انتخاب زبان"
+	"app_bar": {
+		"title": "به صفحه اصلی خوش آمدید"
+	},
+	"button": {
+		"cancel": "لغو",
+		"change_language": "تغییر زبان"
+	},
+	"language": {
+		"name": {
+			"english": "انگلیسی",
+			"persian": "فارسی",
+			"spanish": "اسپانیایی"
+		},
+		"selection": {
+			"message": "لطفاً زبانی را از لیست انتخاب کنید",
+			"title": "انتخاب زبان"
+		}
+	},
+	"plural": {
+		"demo": {
+			"0": "لطفاً دکمه \"افزودن\" را فشار دهید.",
+			"1": "شما یک بار دکمه را فشار داده اید.",
+			"else": "دکمه {{value}} بار فشار آورده اید."
+		}
+	}
 }

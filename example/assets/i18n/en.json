@@ -1,10 +1,27 @@
 {
-	"app.title": "Welcome to home page",
-	"button.cancel": "Cancel",
-	"button.change_language": "Change Language",
-	"language.name.english": "English",
-	"language.name.persian": "Persian",
-	"language.name.spanish": "Spanish",
-	"language.selection.message": "Please select a language from the list",
-	"language.selection.title": "Language Selection"
+	"app_bar": {
+		"title": "Welcome to the home page"
+	},
+	"button": {
+		"cancel": "Cancel",
+		"change_language": "Change Language"
+	},
+	"language": {
+		"name": {
+			"english": "English",
+			"persian": "Persian",
+			"spanish": "Spanish"
+		},
+		"selection": {
+			"message": "Please select a language from the list",
+			"title": "Language Selection"
+		}
+	},
+	"plural": {
+		"demo": {
+			"0": "Please start pushing the 'plus' button.",
+			"1": "You have pushed the button one time.",
+			"else": "You have pushed the button {{value}} times."
+		}
+	}
 }

@@ -1,10 +1,27 @@
 {
-	"app.title": "Bienvenido a la página de inicio",
-	"button.cancel": "Cancelar",
-	"button.change_language": "Cambiar idioma",
-	"language.name.english": "Inglés",
-	"language.name.persian": "Persa",
-	"language.name.spanish": "Español",
-	"language.selection.message": "Por favor seleccione un idioma de la lista",
-	"language.selection.title": "Selección de idioma"
+	"app_bar": {
+		"title": "Bienvenido a la página de inicio"
+	},
+	"button": {
+		"cancel": "Cancelar",
+		"change_language": "Cambiar idioma"
+	},
+	"language": {
+		"name": {
+			"english": "Inglés",
+			"persian": "Persa",
+			"spanish": "Español"
+		},
+		"selection": {
+			"message": "Por favor seleccione un idioma de la lista",
+			"title": "Selección de idioma"
+		}
+	},
+	"plural": {
+		"demo": {
+			"0": "Por favor, comience a presionar el botón 'más'.",
+			"1": "Has presionado el botón una vez.",
+			"else": "Ha presionado el botón {{value}} veces."
+		}
+	}
 }
