@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
+import 'constants.dart';
 import 'translate.dart';
 import 'localization_file_service.dart';
 import 'localization_configuration.dart';
@@ -9,7 +10,7 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization>
 {
     final LocalizationConfiguration configuration;
 
-    LocalizationDelegate(this.configuration);
+    LocalizationDelegate._(this.configuration);
 
     @override
     Future<Localization> load(Locale newLocale) async
@@ -51,4 +52,13 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization>
 
     @override
     bool shouldReload(LocalizationsDelegate<Localization> old) => true;
+
+    static Future<LocalizationDelegate> create({@required String fallbackLanguage,
+                                                @required List<String> supportedLanguages,
+                                                String basePath = Constants.defaultLocalizedAssetsPath}) async
+    {
+        var configuration = await LocalizationConfiguration.create(fallbackLanguage, supportedLanguages, basePath: basePath);
+
+        return new LocalizationDelegate._(configuration);
+    }
 }
