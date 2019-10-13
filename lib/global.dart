@@ -5,7 +5,7 @@ import 'localized_app.dart';
 
 Locale localeFromString(String code, {bool languageCodeOnly = false})
 {
-	if(code.contains('_'))
+	if (code.contains('_'))
 	{
 		var parts = code.split('_');
 
@@ -29,7 +29,7 @@ String translatePlural(String key, num value, {Map<String, dynamic> args})
 
 void changeLanguage(BuildContext context, String localeCode)
 {
-	if(localeCode != null)
+	if (localeCode != null)
 	{
 		LocalizedApp.of(context).delegate.changeLanguage(localeFromString(localeCode));
 
