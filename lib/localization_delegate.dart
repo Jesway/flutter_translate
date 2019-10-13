@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'constants.dart';
-import 'translate.dart';
 import 'localization_file_service.dart';
 import 'localization_configuration.dart';
 import 'localization.dart';
@@ -19,11 +18,9 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization>
 
         var localizedContent = await _getLocalizedContent(locale);
 
-        var localization = new Localization(localizedContent);
+        Localization.instance.load(localizedContent);
 
-        Translate.onLocalizationChanged(localization);
-
-        return localization;
+        return Localization.instance;
     }
 
     Future<Map<String, dynamic>> _getLocalizedContent(Locale locale) async

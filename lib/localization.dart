@@ -1,16 +1,20 @@
-import 'package:flutter/cupertino.dart';
-
 class Localization
 {
-    final Map<String, dynamic> translations;
+    Map<String, dynamic> _translations;
 
-    Localization(this.translations);
+    Localization._();
 
-    static Localization of(BuildContext context) => Localizations.of<Localization>(context, Localization);
+    static Localization _instance;
+    static Localization get instance => _instance ?? (_instance = Localization._());
 
-    String key(String key, {Map<String, dynamic> args})
+    void load(Map<String, dynamic> translations)
     {
-        var value = _getValue(key, translations);
+        this._translations = translations;
+    }
+
+    String translate(String key, {Map<String, dynamic> args})
+    {
+        var value = _getValue(key, _translations);
 
         if (args != null)
         {

@@ -1,6 +1,6 @@
 library flutter_translate;
 
-export 'package:flutter_translate/translate.dart';
+export 'package:flutter_translate/global.dart';
 export 'package:flutter_translate/localization.dart';
 export 'package:flutter_translate/localization_configuration.dart';
 export 'package:flutter_translate/localization_delegate.dart';
