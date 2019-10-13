@@ -7,18 +7,35 @@ import 'localization.dart';
 
 class LocalizationDelegate extends LocalizationsDelegate<Localization>
 {
+    Locale _currentLocale;
+
     final LocalizationConfiguration configuration;
 
+    Locale get currentLocale => _currentLocale;
+
     LocalizationDelegate._(this.configuration);
+
+    Future changeLanguage(Locale newLocale) async
+    {
+        var locale = _findLocale(newLocale) ?? configuration.fallbackLocale;
+        
+        if(_currentLocale != locale)
+        {
+            var localizedContent = await _getLocalizedContent(locale);
+
+            Localization.load(localizedContent);
+
+            _currentLocale = locale;
+        }
+    }
 
     @override
     Future<Localization> load(Locale newLocale) async
     {
-        var locale = _findLocale(newLocale) ?? configuration.fallbackLocale;
-
-        var localizedContent = await _getLocalizedContent(locale);
-
-        Localization.instance.load(localizedContent);
+        if(currentLocale != newLocale)
+        {
+            await changeLanguage(newLocale);
+        }
 
         return Localization.instance;
     }

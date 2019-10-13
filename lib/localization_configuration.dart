@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'constants.dart';
-import 'helpers.dart';
+import 'global.dart';
 import 'localization_file_service.dart';
 
 class LocalizationConfiguration
