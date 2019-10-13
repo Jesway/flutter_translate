@@ -1,0 +1,10 @@
+{
+	"app.title": "Bienvenido a la página de inicio",
+	"button.cancel": "Cancelar",
+	"button.change_language": "Cambiar idioma",
+	"language.name.english": "Inglés",
+	"language.name.persian": "Persa",
+	"language.name.spanish": "Español",
+	"language.selection.message": "Por favor seleccione un idioma de la lista",
+	"language.selection.title": "Selección de idioma"
+}
