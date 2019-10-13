@@ -10,6 +10,9 @@ addons:
 before_script:
   - git clone https://github.com/flutter/flutter.git /tmp/flutter -b stable 
   - /tmp/flutter/bin/flutter doctor
+  - cd example
+  - /tmp/flutter/bin/flutter pub get
+  - cd ..
 script:
   - /tmp/flutter/bin/flutter analyze .
 cache:
