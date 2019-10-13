@@ -9,5 +9,5 @@ class Translate
         _localization = localization;
     }
 
-    static String key(String key, {List<String> args}) => _localization.key(key, args: args);
+    static String key(String key, { Map<String, dynamic> args}) => _localization.key(key, args: args);
 }

@@ -8,16 +8,23 @@ class Localization
 
     static Localization of(BuildContext context) => Localizations.of<Localization>(context, Localization);
 
-    String key(String key, {List<String> args})
+    String key(String key, {Map<String, dynamic> args})
     {
         var value = _getValue(key, translations);
 
         if (args != null)
         {
-            args.forEach((String str)
-            {
-                value = value.replaceFirst(RegExp(r'{}'), str);
-            });
+            value = _assignArguments(value, args);
+        }
+
+        return value;
+    }
+
+    String _assignArguments(String value, Map<String, dynamic> args)
+    {
+        for(final key in args.keys)
+        {
+            value = value.replaceAll('{$key}', '${args[key]}');
         }
 
         return value;
