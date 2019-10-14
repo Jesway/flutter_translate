@@ -4,11 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 
 void main() async {
-  var delegate = await LocalizationDelegate.create(
-          fallbackLanguage: 'en', // required - fallback language in case the device language is not supported
-          supportedLanguages: ['en', 'es_ES', 'fa'], // required - the list of supported languages, translation files are required to be present
-          basePath: 'assets/i18n'); // optional - default is 'assets/i18n'
-
+  var delegate = await LocalizationDelegate.create(fallbackLanguage: 'en', supportedLanguages: ['en', 'es_ES', 'fa'], basePath: 'assets/i18n/');
   runApp(LocalizedApp(delegate, MyApp()));
 }
 
@@ -102,7 +98,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void showDemoActionSheet({BuildContext context, Widget child}) {
-
     showCupertinoModalPopup<String>(
       context: context,
       builder: (BuildContext context) => child).then((String value)
