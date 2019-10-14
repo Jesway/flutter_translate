@@ -18,6 +18,10 @@
 
 ## [1.2.0]
 
-- Implemented pluralization
-- Fixed multiple issues
-- translate, translatePlural and changeLanguage methods are now global
+- Implemented pluralization.
+- Fixed multiple issues.
+- translate, translatePlural and changeLanguage methods are now global.
+
+## [1.2.1]
+
+- Missing localizations now return the full key path.

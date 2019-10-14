@@ -16,38 +16,41 @@ class Localization
 
     String translate(String key, {Map<String, dynamic> args})
     {
-        var value = _getValue(key, _translations);
+        var translation = _getTranslation(key, _translations);
 
-        if (args != null)
+        if (translation != null && args != null)
         {
-            value = _assignArguments(value, args);
+            translation = _assignArguments(translation, args);
         }
 
-        return value;
+        return translation ?? key;
     }
 
     String plural(String key, num value, {Map<String, dynamic> args})
     {
-        var localizationKey = _getPluralLocalizationKey(key, value);
+        var pluralKeyValue = _getPluralKeyValue(value);
+        var translation = _getPluralTranslation(key, pluralKeyValue, _translations);
 
-        var translation = _getValue(localizationKey, _translations);
-        translation = translation.replaceAll(Constants.pluralValueArg, value.toString());
-
-        if (args != null)
+        if(translation != null)
         {
-            translation = _assignArguments(translation, args);
+            translation = translation.replaceAll(Constants.pluralValueArg, value.toString());
+
+            if (args != null)
+            {
+                translation = _assignArguments(translation, args);
+            }
         }
-        
-        return translation;
+
+        return translation ?? '$key.$pluralKeyValue';
     }
 
-    String _getPluralLocalizationKey(String key, num value)
+    String _getPluralKeyValue(num value)
     {
         switch(value)
         {
-            case 0: return _getPluralValue(key, Constants.pluralZero, _translations);
-            case 1: return _getPluralValue(key, Constants.pluralOne, _translations);
-            default: return _getPluralValue(key, Constants.pluralElse, _translations);
+            case 0: return Constants.pluralZero;
+            case 1: return Constants.pluralOne;
+            default: return Constants.pluralElse;
         }
     }
 
@@ -61,43 +64,37 @@ class Localization
         return value;
     }
 
-    String _getValue(String key, Map<String, dynamic> map)
+    String _getTranslation(String key, Map<String, dynamic> map)
     {
         List<String> keys = key.split('.');
 
         if (keys.length > 1)
         {
-            for (int index = 0; index <= keys.length; index++)
-            {
-                if (map.containsKey(keys[index]) && map[keys[index]] is! String)
-                {
-                    return _getValue(keys.sublist(index + 1, keys.length).join('.'), map[keys[index]]);
-                }
+            var firstKey = keys.first;
 
-                return map[key] ?? key;
+            if(map.containsKey(firstKey) && map[firstKey] is! String)
+            {
+                return _getTranslation(key.substring(key.indexOf('.') + 1), map[firstKey]);
             }
         }
 
-        return map[key] ?? key;
+        return map[key];
     }
 
-    String _getPluralValue(String key, String valueKey, Map<String, dynamic> map)
+    String _getPluralTranslation(String key, String valueKey, Map<String, dynamic> map)
     {
         List<String> keys = key.split('.');
 
         if (keys.length > 1)
         {
-            for (int index = 0; index <= keys.length; index++)
-            {
-                if (map.containsKey(keys[index]) && map[keys[index]] is! String)
-                {
-                    return _getPluralValue(keys.sublist(index + 1, keys.length).join('.'), valueKey, map[keys[index]]);
-                }
+            var firstKey = keys.first;
 
-                return map[key][valueKey] ?? key;
+            if(map.containsKey(firstKey) && map[firstKey] is! String)
+            {
+                return _getPluralTranslation(key.substring(key.indexOf('.') + 1), valueKey, map[firstKey]);
             }
         }
 
-        return map[key][valueKey] ?? key;
+        return map[key][valueKey];
     }
 }

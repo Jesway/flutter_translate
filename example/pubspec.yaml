@@ -21,7 +21,8 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  flutter_translate: 1.2.0
+  flutter_translate:
+    path: ../
 
 dev_dependencies:
 
