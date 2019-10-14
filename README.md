@@ -14,8 +14,9 @@ It lets you define translations for your content in different languages and swit
 <img src="https://raw.githubusercontent.com/leadcode/flutter_translate/master/assets/gifs/flutter_translate_screen.gif" width="300"/>
 
 ## Table of Contents
-* [Installation](#installation)
-* [Usage](#usage)
+  - [Installation](#installation)
+  - [Configuration](#configuration)
+  - [Usage](#usage)
 
 ## Installation
 
@@ -23,7 +24,7 @@ Add this to your package's pubspec.yaml file:
 
 ```sh
 dependencies:
-  flutter_translate: ^1.2.2
+  flutter_translate: ^1.2.5
 ```
 
 Install packages from the command line (or from your editor):
@@ -32,10 +33,127 @@ Install packages from the command line (or from your editor):
 flutter pub get
 ```
 
-## Usage
+## Configuration
 
-In your Dart code, you can use:
+Import flutter_translate:
 
-```sh
+```dart
 import 'package:flutter_translate/flutter_translate.dart';
 ```
+
+Place the *json* localization files in a folder of your choice within the project.
+
+By default ```flutter_translate``` will search for localization files in the `assets/i18n` directory in your project's root.
+
+Declare your assets localization directory in ```pubspec.yaml```
+
+```sh
+flutter:
+  assets:
+    - assets/i18n
+```
+
+In the main function create the localization delegate and start the app, wrapping it with LocalizedApp
+
+```dart
+void main() async
+{
+  var delegate = await LocalizationDelegate.create(
+        fallbackLanguage: 'en',
+        supportedLanguages: ['en', 'es_ES', 'fa']);
+
+  runApp(LocalizedApp(delegate, MyApp()));
+}
+```
+
+If the assets directory for the localization files is different than the default one (```assets/i18n```), you need to specify it:
+
+```dart
+void main() async
+{
+  var delegate = await LocalizationDelegate.create(
+        fallbackLanguage: 'en',
+        supportedLanguages: ['en', 'es_ES', 'fa'],
+        basePath: 'assets/i18n/');
+
+  runApp(LocalizedApp(delegate, MyApp()));
+}
+```
+
+Example MyApp:
+
+```dart
+class MyApp extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+
+    var localizationDelegate = LocalizedApp.of(context).delegate;
+
+    return LocalizationProvider(
+      state: LocalizationProvider.of(context).state,
+      child: MaterialApp(
+          title: 'Flutter Translate Demo',
+          localizationsDelegates: [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            localizationDelegate
+          ],
+          supportedLocales: localizationDelegate.configuration.supportedLocales,
+          locale: localizationDelegate.currentLocale,
+          theme: ThemeData(primarySwatch: Colors.blue),
+          home: MyHomePage(),
+          ),
+    );
+  }
+}
+```
+
+## Usage
+
+Translate a string:
+
+```dart
+translate('your.localization.key');
+```
+
+Translate with arguments;
+
+```dart
+translate('your.localization.key', args: {'argName1': argValue1, 'argName2': argValue2});
+```
+
+Translate with pluralization:
+
+```dart
+translatePlural('plural.demo', yourNumericValue);
+```
+
+JSON:
+
+```json
+"plural": {
+    "demo": {
+        "0": "Please start pushing the 'plus' button.",
+        "1": "You have pushed the button one time.",
+        "else": "You have pushed the button {{value}} times."
+    }
+}
+```
+
+Change the language:
+
+```dart
+@override
+Widget build(BuildContext context) {
+...
+  ...
+    changeLanguage(context, 'en');
+  ...
+...
+}
+```
+
+### You can view the full example here:
+
+[https://github.com/leadcode/flutter_translate/blob/master/example/lib/main.dart](https://github.com/leadcode/flutter_translate/blob/master/example/lib/main.dart)

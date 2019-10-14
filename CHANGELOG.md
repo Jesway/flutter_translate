@@ -25,3 +25,7 @@
 ## [1.2.2]
 
 - Missing localizations now return the full key path.
+
+## [1.2.5]
+
+- Fixed possible exception when adding an extra slash to the ```basePath```
