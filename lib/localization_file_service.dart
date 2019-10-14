@@ -57,6 +57,8 @@ class LocalizationFileService
 
     static String _getFilepath(String languageCode, String basePath)
     {
-        return '$basePath/$languageCode.json';
+        var separator = basePath.endsWith('/') ? '' : '/';
+
+        return '${basePath}${separator}${languageCode}.json';
     }
 }
