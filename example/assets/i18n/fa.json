@@ -8,10 +8,11 @@
 	},
 	"language": {
 		"name": {
-			"english": "انگلیسی",
-			"persian": "فارسی",
-			"spanish": "اسپانیایی"
+			"en": "انگلیسی",
+			"es": "اسپانیایی",
+			"fa": "فارسی"
 		},
+		"selected_message": "زبان انتخاب شده فعلی {language}",
 		"selection": {
 			"message": "لطفاً زبانی را از لیست انتخاب کنید",
 			"title": "انتخاب زبان"

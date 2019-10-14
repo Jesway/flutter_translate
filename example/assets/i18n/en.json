@@ -8,10 +8,11 @@
 	},
 	"language": {
 		"name": {
-			"english": "English",
-			"persian": "Persian",
-			"spanish": "Spanish"
+			"en": "English",
+			"es": "Spanish",
+			"fa": "Persian"
 		},
+		"selected_message": "Currently selected language is {language}",
 		"selection": {
 			"message": "Please select a language from the list",
 			"title": "Language Selection"

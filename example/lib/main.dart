@@ -55,6 +55,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    var localizationDelegate = LocalizedApp.of(context).delegate;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(translate('app_bar.title')),
@@ -63,12 +65,17 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            CupertinoButton.filled(
-              child: Text(translate('button.change_language')),
-              padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 36.0),
-              onPressed: () => _onActionSheetPress(context),
-              ),
-            Padding(padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 0),
+            Text(translate('language.selected_message', args: {'language': translate('language.name.${localizationDelegate.currentLocale.languageCode}')})),
+            Padding(
+              padding: EdgeInsets.only(top: 25, bottom: 160),
+              child: CupertinoButton.filled(
+                child: Text(translate('button.change_language')),
+                padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 36.0),
+                onPressed: () => _onActionSheetPress(context),
+                )
+            ),
+
+            Padding(padding: const EdgeInsets.only(bottom: 10),
                     child: Text(translatePlural('plural.demo', _counter))
             ),
             Row(
@@ -112,15 +119,15 @@ class _MyHomePageState extends State<MyHomePage> {
         message: Text(translate('language.selection.message')),
         actions: <Widget>[
           CupertinoActionSheetAction(
-            child: Text(translate('language.name.english')),
+            child: Text(translate('language.name.en')),
             onPressed: () => Navigator.pop(context, 'en'),
             ),
           CupertinoActionSheetAction(
-            child: Text(translate('language.name.spanish')),
+            child: Text(translate('language.name.es')),
             onPressed: () => Navigator.pop(context, 'es_ES'),
             ),
           CupertinoActionSheetAction(
-            child: Text(translate('language.name.persian')),
+            child: Text(translate('language.name.fa')),
             onPressed: () => Navigator.pop(context, 'fa'),
             ),
         ],
