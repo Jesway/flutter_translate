@@ -22,6 +22,6 @@
 - Fixed multiple issues.
 - translate, translatePlural and changeLanguage methods are now global.
 
-## [1.2.1]
+## [1.2.2]
 
 - Missing localizations now return the full key path.
