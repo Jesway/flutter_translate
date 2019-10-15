@@ -32,7 +32,9 @@ class LocalizationFileService
 
         Map<String, dynamic> map = jsonDecode(manifest);
 
-        return map.keys.where((x) => x.startsWith('$basePath/')).toList();
+        var separator = basePath.endsWith('/') ? '' : '/';
+
+        return map.keys.where((x) => x.startsWith('$basePath$separator')).toList();
     }
 
     static String _findLocalizationFile(String languageCode, List<String> localizedFiles, String basePath)
@@ -59,6 +61,6 @@ class LocalizationFileService
     {
         var separator = basePath.endsWith('/') ? '' : '/';
 
-        return '${basePath}${separator}${languageCode}.json';
+        return '$basePath$separator$languageCode.json';
     }
 }

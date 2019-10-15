@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 
 void main() async {
-  var delegate = await LocalizationDelegate.create(fallbackLanguage: 'en', supportedLanguages: ['en', 'es_ES', 'fa'], basePath: 'assets/i18n/');
+  var delegate = await LocalizationDelegate.create(fallbackLanguage: 'en', supportedLanguages: ['en', 'es', 'fa']);
   runApp(LocalizedApp(delegate, MyApp()));
 }
 
