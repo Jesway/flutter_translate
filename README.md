@@ -1,7 +1,7 @@
 # flutter_translate
 
 [![Build Status](https://travis-ci.org/bratan/flutter_translate.svg)](https://travis-ci.org/bratan/flutter_translate)
-[![pub package](https://img.shields.io/pub/v/flutter_translate.svg)](https://pub.dev/packages/flutter_translate)
+[![pub package](https://img.shields.io/pub/v/flutter_translate.svg?color=success)](https://pub.dev/packages/flutter_translate)
 [![License: MIT](https://img.shields.io/badge/License-MIT-ff69b4.svg)](https://github.com/bratan/flutter_translate/blob/master/LICENSE)
 [![Flutter.io](https://img.shields.io/badge/Flutter-Website-deepskyblue.svg)](https://flutter.io/)
 
@@ -13,9 +13,9 @@ It lets you define translations for your content in different languages and swit
 
 | Package                                                                            | Pub                                                                                                    | Description |
 | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ----------- |
-| [flutter_translate](https://github.com/bratan/flutter_translate/tree/master/packages/flutter_translate)                  | [![pub package](https://img.shields.io/pub/v/flutter_translate.svg)](https://pub.dev/packages/flutter_translate) | The flutter_translate core package. |
+| [flutter_translate](https://github.com/bratan/flutter_translate/tree/master/packages/flutter_translate)                  | [![pub package](https://img.shields.io/pub/v/flutter_translate.svg?color=success)](https://pub.dev/packages/flutter_translate) | The flutter_translate core package. |
+| [flutter_translate_preferences](https://github.com/bratan/flutter_translate/tree/master/packages/flutter_translate_preferences) | [![pub package](https://img.shields.io/pub/v/flutter_translate_preferences.svg?color=success)](https://pub.dev/packages/flutter_translate_preferences)  | Extension for automatically saving & restoring the selected locale. |
 | [flutter_translate_gen](https://github.com/bratan/flutter_translate_gen)           | [WIP]  | Statically-typed localization keys generator for flutter_translate.|
-| [flutter_translate_preferences](https://github.com/bratan/flutter_translate_preferences) | [WIP]  | Extension for automatically saving & restoring the selected locale. |
 
 
 <img src="https://raw.githubusercontent.com/bratan/flutter_translate/master/resources/gifs/flutter_translate_screen.gif" width="300"/>
