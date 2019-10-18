@@ -16,7 +16,7 @@ before_script:
   - /tmp/flutter/bin/flutter pub get
   - cd ../..
 script:
-  - /tmp/flutter/bin/flutter analyze packages/flutter_translate
+  - /tmp/flutter/bin/flutter analyze flutter_translate
 cache:
   directories:
     - $HOME/.pub-cache
