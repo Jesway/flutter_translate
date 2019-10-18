@@ -1,3 +1,4 @@
-## [0.0.1] - TODO: Add release date.
+## [1.0.0]
 
-* TODO: Describe initial release.
+- Initial release
+- Implemented the functionality to automatically save/restore the selected locale
