@@ -37,3 +37,7 @@
 ## [1.3.1]
 
 - Implemented the localeToString method
+
+## [1.3.2]
+
+- Fixed some callback issues for onLocaleChanged

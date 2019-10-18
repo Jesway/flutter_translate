@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'localization.dart';
 import 'localization_provider.dart';
 import 'localized_app.dart';
 
-typedef void LocaleChangedCallback(Locale locale);
+typedef LocaleChangedCallback = Future Function(Locale locale);
 
 Locale localeFromString(String code, {bool languageCodeOnly = false})
 {

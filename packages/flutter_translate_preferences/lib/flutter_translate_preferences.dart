@@ -15,20 +15,20 @@ class TranslatePreferences
         delegate.onLocaleChanged = saveLocale;
     }
 
-    void saveLocale(Locale locale) async
+    Future saveLocale(Locale locale) async
     {
         final preferences = await SharedPreferences.getInstance();
 
         await preferences.setString(_selectedLocaleKey, localeToString(locale));
     }
 
-    void loadSavedLocale() async
+    Future loadSavedLocale() async
     {
         final preferences = await SharedPreferences.getInstance();
 
-        if(await preferences.containsKey(_selectedLocaleKey))
+        if(preferences.containsKey(_selectedLocaleKey))
         {
-            var locale = await preferences.getString(_selectedLocaleKey);
+            var locale = preferences.getString(_selectedLocaleKey);
 
             await delegate.changeLocale(localeFromString(locale));
         }
@@ -40,4 +40,5 @@ class TranslatePreferences
 
         await preferences.loadSavedLocale();
     }
+
 }

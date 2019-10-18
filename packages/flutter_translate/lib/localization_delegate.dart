@@ -33,7 +33,7 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization>
 
         if(!isInitializing && onLocaleChanged != null)
         {
-            onLocaleChanged(locale);
+            await onLocaleChanged(locale);
         }
     }
 
