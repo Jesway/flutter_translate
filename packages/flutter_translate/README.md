@@ -16,7 +16,7 @@ It lets you define translations for your content in different languages and swit
 | [flutter_translate_preferences](https://github.com/bratan/flutter_translate/tree/master/packages/flutter_translate_preferences) | [![pub package](https://img.shields.io/pub/v/flutter_translate_preferences.svg?color=success)](https://pub.dev/packages/flutter_translate_preferences)  | Extension for automatically saving & restoring the selected locale. |
 | [flutter_translate_gen](https://github.com/bratan/flutter_translate_gen)           | [WIP]  | Statically-typed localization keys generator for flutter_translate.|
 
-
+## Example
 <img src="https://raw.githubusercontent.com/bratan/flutter_translate/master/resources/gifs/flutter_translate_screen.gif" width="300"/>
 
 ## Table of Contents
@@ -162,4 +162,4 @@ Widget build(BuildContext context) {
 
 ### You can view the full example here:
 
-[https://github.com/bratan/flutter_translate/blob/master/example/lib/main.dart](https://github.com/bratan/flutter_translate/blob/master/example/lib/main.dart)
+[https://github.com/bratan/flutter_translate/blob/master/packages/flutter_translate/example/lib/main.dart](https://github.com/bratan/flutter_translate/blob/master/packages/flutter_translate/example/lib/main.dart)

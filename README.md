@@ -162,4 +162,4 @@ Widget build(BuildContext context) {
 
 ### You can view the full example here:
 
-[https://github.com/bratan/flutter_translate/blob/master/example/lib/main.dart](https://github.com/bratan/flutter_translate/blob/master/example/lib/main.dart)
+[https://github.com/bratan/flutter_translate/blob/master/packages/flutter_translate/example/lib/main.dart](https://github.com/bratan/flutter_translate/blob/master/packages/flutter_translate/example/lib/main.dart)
