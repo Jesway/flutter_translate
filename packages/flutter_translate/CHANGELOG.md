@@ -29,3 +29,8 @@
 ## [1.2.5]
 
 - Fixed possible exception when adding an extra slash to the ```basePath```
+
+## [1.3.0]
+
+- Implemented the onLocaleChanged callback
+
