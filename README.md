@@ -11,7 +11,7 @@ The internationalization (i18n) library for Flutter.
 
 It lets you define translations for your content in different languages and switch between them easily.
 
-<img src="https://raw.githubusercontent.com/bratan/flutter_translate/master/assets/gifs/flutter_translate_screen.gif" width="300"/>
+<img src="https://raw.githubusercontent.com/bratan/flutter_translate/master/resources/gifs/flutter_translate_screen.gif" width="300"/>
 
 ## Table of Contents
   - [Installation](#installation)
