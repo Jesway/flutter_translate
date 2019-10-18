@@ -14,9 +14,13 @@ before_script:
   - /tmp/flutter/bin/flutter pub get
   - cd example
   - /tmp/flutter/bin/flutter pub get
+  - cd ../../flutter_translate_preferences
+  - /tmp/flutter/bin/flutter pub get
+  - cd example
+  - /tmp/flutter/bin/flutter pub get
   - cd ../..
 script:
-  - /tmp/flutter/bin/flutter analyze flutter_translate
+  - /tmp/flutter/bin/flutter analyze .
 cache:
   directories:
     - $HOME/.pub-cache
