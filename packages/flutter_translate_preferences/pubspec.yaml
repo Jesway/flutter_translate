@@ -1,0 +1,17 @@
+name: flutter_translate_preferences
+description: A flutter_translate extension for automatically saving &amp; restoring the selected locale.
+version: 0.0.1
+author:
+homepage:
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_translate: ^1.2.9
+
+dev_dependencies:
+
+flutter:
