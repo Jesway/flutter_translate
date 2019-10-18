@@ -19,6 +19,11 @@ Locale localeFromString(String code, {bool languageCodeOnly = false})
 	}
 }
 
+String localeToString(Locale locale)
+{
+	return locale.countryCode != null ? '${locale.languageCode}_${locale.countryCode}' : locale.languageCode;
+}
+
 String translate(String key, {Map<String, dynamic> args})
 {
 	return Localization.instance.translate(key, args: args);

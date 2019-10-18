@@ -34,3 +34,6 @@
 
 - Implemented the onLocaleChanged callback
 
+## [1.3.1]
+
+- Implemented the localeToString method
