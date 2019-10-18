@@ -1,7 +1,6 @@
 # flutter_translate
 
 [![Build Status](https://travis-ci.org/bratan/flutter_translate.svg)](https://travis-ci.org/bratan/flutter_translate)
-[![pub package](https://img.shields.io/pub/v/flutter_translate.svg?color=success)](https://pub.dev/packages/flutter_translate)
 [![License: MIT](https://img.shields.io/badge/License-MIT-ff69b4.svg)](https://github.com/bratan/flutter_translate/blob/master/LICENSE)
 [![Flutter.io](https://img.shields.io/badge/Flutter-Website-deepskyblue.svg)](https://flutter.io/)
 
