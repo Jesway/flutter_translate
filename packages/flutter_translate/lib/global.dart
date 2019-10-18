@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'localization.dart';
 import 'localization_provider.dart';
 import 'localized_app.dart';
