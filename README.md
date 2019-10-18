@@ -13,7 +13,7 @@ It lets you define translations for your content in different languages and swit
 
 | Package                                                                            | Pub                                                                                                    | Description |
 | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ----------- |
-| [flutter_translate](https://github.com/bratan/flutter_translate/)                  | [![pub package](https://img.shields.io/pub/v/flutter_translate.svg)](https://pub.dev/packages/flutter_translate) | The flutter_translate core package. |
+| [flutter_translate](https://github.com/bratan/flutter_translate/tree/master/packages/flutter_translate)                  | [![pub package](https://img.shields.io/pub/v/flutter_translate.svg)](https://pub.dev/packages/flutter_translate) | The flutter_translate core package. |
 | [flutter_translate_gen](https://github.com/bratan/flutter_translate_gen)           | [WIP]  | Statically-typed localization keys generator for flutter_translate.|
 | [flutter_translate_preferences](https://github.com/bratan/flutter_translate_preferences) | [WIP]  | Extension for automatically saving & restoring the selected locale. |
 <br/>
