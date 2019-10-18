@@ -3,6 +3,8 @@ import 'localization.dart';
 import 'localization_provider.dart';
 import 'localized_app.dart';
 
+typedef void LocaleChangedCallback(Locale locale);
+
 Locale localeFromString(String code, {bool languageCodeOnly = false})
 {
 	if (code.contains('_'))
@@ -31,7 +33,7 @@ void changeLanguage(BuildContext context, String localeCode)
 {
 	if (localeCode != null)
 	{
-		LocalizedApp.of(context).delegate.changeLanguage(localeFromString(localeCode));
+		LocalizedApp.of(context).delegate.changeLocale(localeFromString(localeCode));
 
 		LocalizationProvider.of(context).state.onLanguageChanged();
 	}

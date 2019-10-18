@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'constants.dart';
+import 'global.dart';
 import 'localization_file_service.dart';
 import 'localization_configuration.dart';
 import 'localization.dart';
@@ -9,23 +10,30 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization>
 {
     Locale _currentLocale;
 
+    LocaleChangedCallback onLocaleChanged;
+
     final LocalizationConfiguration configuration;
 
     Locale get currentLocale => _currentLocale;
 
     LocalizationDelegate._(this.configuration);
 
-    Future changeLanguage(Locale newLocale) async
+    Future changeLocale(Locale newLocale) async
     {
+        var isInitializing = currentLocale == null;
         var locale = _findLocale(newLocale) ?? configuration.fallbackLocale;
-        
-        if(_currentLocale != locale)
+
+        if(_currentLocale == locale) return;
+
+        var localizedContent = await _getLocalizedContent(locale);
+
+        Localization.load(localizedContent);
+
+        _currentLocale = locale;
+
+        if(!isInitializing && onLocaleChanged != null)
         {
-            var localizedContent = await _getLocalizedContent(locale);
-
-            Localization.load(localizedContent);
-
-            _currentLocale = locale;
+            onLocaleChanged(locale);
         }
     }
 
@@ -34,7 +42,7 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization>
     {
         if(currentLocale != newLocale)
         {
-            await changeLanguage(newLocale);
+            await changeLocale(newLocale);
         }
 
         return Localization.instance;
