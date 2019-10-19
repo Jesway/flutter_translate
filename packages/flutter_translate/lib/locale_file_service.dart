@@ -1,19 +1,18 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'constants.dart';
 
-class LocalizationFileService
+class LocaleFileService
 {
-    static const String assetManifestFilename = 'AssetManifest.json';
-
-    static Future<Map<String, String>> getLocalizedFiles(List<String> languages, String basePath) async
+    static Future<Map<String, String>> getLocaleFiles(List<String> locales, String basePath) async
     {
-        var localizedFiles = await _getAllLocalizedFiles(basePath);
+        var localizedFiles = await _getAllLocaleFiles(basePath);
 
         final files = new Map<String, String>();
 
-        for(final language in languages.toSet())
+        for(final language in locales.toSet())
         {
-            var file = _findLocalizationFile(language, localizedFiles, basePath);
+            var file = _findLocaleFile(language, localizedFiles, basePath);
 
             files[language] = file;
         }
@@ -21,14 +20,14 @@ class LocalizationFileService
         return files;
     }
 
-    static Future<String> getLocalizedContent(String file) async
+    static Future<String> getLocaleContent(String file) async
     {
         return await rootBundle.loadString(file);
     }
 
-    static Future<List<String>> _getAllLocalizedFiles(String basePath) async
+    static Future<List<String>> _getAllLocaleFiles(String basePath) async
     {
-        final manifest = await rootBundle.loadString(assetManifestFilename);
+        final manifest = await rootBundle.loadString(Constants.assetManifestFilename);
 
         Map<String, dynamic> map = jsonDecode(manifest);
 
@@ -37,7 +36,7 @@ class LocalizationFileService
         return map.keys.where((x) => x.startsWith('$basePath$separator')).toList();
     }
 
-    static String _findLocalizationFile(String languageCode, List<String> localizedFiles, String basePath)
+    static String _findLocaleFile(String languageCode, List<String> localizedFiles, String basePath)
     {
         var file = _getFilepath(languageCode, basePath);
 

@@ -34,12 +34,12 @@ String translatePlural(String key, num value, {Map<String, dynamic> args})
 	return Localization.instance.plural(key, value, args: args);
 }
 
-void changeLanguage(BuildContext context, String localeCode)
+void changeLocale(BuildContext context, String localeCode)
 {
 	if (localeCode != null)
 	{
 		LocalizedApp.of(context).delegate.changeLocale(localeFromString(localeCode));
 
-		LocalizationProvider.of(context).state.onLanguageChanged();
+		LocalizationProvider.of(context).state.onLocaleChanged();
 	}
 }

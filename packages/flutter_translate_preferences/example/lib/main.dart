@@ -6,9 +6,10 @@ import 'package:flutter_translate_preferences/flutter_translate_preferences.dart
 
 void main() async
 {
-  var delegate = await LocalizationDelegate.create(fallbackLanguage: 'en', supportedLanguages: ['en', 'es', 'fa']);
-
-  await TranslatePreferences.initialize(delegate);
+  var delegate = await LocalizationDelegate.create(
+          fallbackLocale: 'en_US',
+          supportedLocales: ['en_US', 'es', 'fa'],
+          preferences: TranslatePreferences());
 
   runApp(LocalizedApp(delegate, MyApp()));
 }
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
           GlobalWidgetsLocalizations.delegate,
           localizationDelegate
         ],
-        supportedLocales: localizationDelegate.configuration.supportedLocales,
+        supportedLocales: localizationDelegate.supportedLocales,
         locale: localizationDelegate.currentLocale,
         theme: ThemeData(primarySwatch: Colors.blue),
         home: MyHomePage(),
@@ -106,9 +107,9 @@ class _MyHomePageState extends State<MyHomePage> {
     showCupertinoModalPopup<String>(
             context: context,
             builder: (BuildContext context) => child).then((String value)
-                                                           {
-                                                             changeLanguage(context, value);
-                                                           });
+            {
+              changeLocale(context, value);
+            });
   }
 
   void _onActionSheetPress(BuildContext context) {
@@ -120,11 +121,11 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: <Widget>[
           CupertinoActionSheetAction(
             child: Text(translate('language.name.en')),
-            onPressed: () => Navigator.pop(context, 'en'),
+            onPressed: () => Navigator.pop(context, 'en_US'),
             ),
           CupertinoActionSheetAction(
             child: Text(translate('language.name.es')),
-            onPressed: () => Navigator.pop(context, 'es_ES'),
+            onPressed: () => Navigator.pop(context, 'es'),
             ),
           CupertinoActionSheetAction(
             child: Text(translate('language.name.fa')),

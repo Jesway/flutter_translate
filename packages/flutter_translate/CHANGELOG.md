@@ -41,3 +41,7 @@
 ## [1.3.2]
 
 - Fixed some callback issues for onLocaleChanged
+
+## [1.4.0]
+
+- Implemented support for automatically saving & restoring the selected locale using shared preferences

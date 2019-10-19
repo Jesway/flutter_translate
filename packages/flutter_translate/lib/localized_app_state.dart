@@ -4,9 +4,8 @@ import 'localization_provider.dart';
 
 class LocalizedAppState extends State<LocalizedApp>
 {
-    void onLanguageChanged() => setState(() {});
+    void onLocaleChanged() => setState(() {});
 
     @override
     Widget build(BuildContext context) => LocalizationProvider(state: this, child: widget.child);
-
 }

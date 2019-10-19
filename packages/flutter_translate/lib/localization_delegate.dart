@@ -1,39 +1,49 @@
-import 'dart:convert';
 import 'package:flutter/cupertino.dart';
+import 'configuration_validator.dart';
+import 'locale_service.dart';
 import 'constants.dart';
-import 'global.dart';
-import 'localization_file_service.dart';
-import 'localization_configuration.dart';
-import 'localization.dart';
+import 'flutter_translate.dart';
 
 class LocalizationDelegate extends LocalizationsDelegate<Localization>
 {
     Locale _currentLocale;
 
-    LocaleChangedCallback onLocaleChanged;
+    final Locale fallbackLocale;
 
-    final LocalizationConfiguration configuration;
+    final List<Locale> supportedLocales;
+
+    final Map<Locale, String> supportedLocalesMap;
+
+    final ITranslatePreferences preferences;
+
+    LocaleChangedCallback onLocaleChanged;
 
     Locale get currentLocale => _currentLocale;
 
-    LocalizationDelegate._(this.configuration);
+    LocalizationDelegate._(this.fallbackLocale, this.supportedLocales, this.supportedLocalesMap, this.preferences);
 
     Future changeLocale(Locale newLocale) async
     {
         var isInitializing = currentLocale == null;
-        var locale = _findLocale(newLocale) ?? configuration.fallbackLocale;
+
+        var locale = LocaleService.findLocale(newLocale, supportedLocales) ?? fallbackLocale;
 
         if(_currentLocale == locale) return;
 
-        var localizedContent = await _getLocalizedContent(locale);
+        var localizedContent = await LocaleService.getLocaleContent(locale, supportedLocalesMap);
 
         Localization.load(localizedContent);
 
         _currentLocale = locale;
 
-        if(!isInitializing && onLocaleChanged != null)
+        if(onLocaleChanged != null)
         {
             await onLocaleChanged(locale);
+        }
+
+        if(!isInitializing && preferences != null)
+        {
+            await preferences.savePreferredLocale(locale);
         }
     }
 
@@ -48,26 +58,6 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization>
         return Localization.instance;
     }
 
-    Future<Map<String, dynamic>> _getLocalizedContent(Locale locale) async
-    {
-        var file = configuration.localizations[locale];
-
-        var content = await LocalizationFileService.getLocalizedContent(file);
-
-        return json.decode(content);
-    }
-
-    Locale _findLocale(Locale locale)
-    {
-        var existing = configuration.localizations.keys.firstWhere((x) => x == locale, orElse: () => null);
-
-        if(existing == null)
-        {
-            existing = configuration.localizations.keys.firstWhere((x) => x.languageCode == locale.languageCode, orElse: () => null);
-        }
-
-        return existing;
-    }
 
     @override
     bool isSupported(Locale locale) => locale != null;
@@ -75,12 +65,33 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization>
     @override
     bool shouldReload(LocalizationsDelegate<Localization> old) => true;
 
-    static Future<LocalizationDelegate> create({@required String fallbackLanguage,
-                                                @required List<String> supportedLanguages,
-                                                String basePath = Constants.defaultLocalizedAssetsPath}) async
+    static Future<LocalizationDelegate> create({@required String fallbackLocale,
+                                                @required List<String> supportedLocales,
+                                                String basePath = Constants.localizedAssetsPath,
+                                                ITranslatePreferences preferences}) async
     {
-        var configuration = await LocalizationConfiguration.create(fallbackLanguage, supportedLanguages, basePath: basePath);
+        var fallback = localeFromString(fallbackLocale);
+        var localesMap = await LocaleService.getLocalesMap(supportedLocales, basePath);
+        var locales = localesMap.keys.toList();
 
-        return new LocalizationDelegate._(configuration);
+        ConfigurationValidator.Validate(fallback, locales);
+
+        var delegate = LocalizationDelegate._(fallback, locales, localesMap, preferences);
+
+        await delegate._initializePreferences();
+
+        return delegate;
+    }
+
+    Future _initializePreferences() async
+    {
+        if(preferences == null) return;
+
+        var locale = await preferences.getPreferredLocale();
+
+        if(locale != null)
+        {
+            await changeLocale(locale);
+        }
     }
 }

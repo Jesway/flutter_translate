@@ -30,7 +30,7 @@ Add this to your package's pubspec.yaml file:
 
 ```sh
 dependencies:
-  flutter_translate: ^1.3.2
+  flutter_translate: ^1.4.0
 ```
 
 Install packages from the command line (or from your editor):
@@ -65,8 +65,8 @@ In the main function create the localization delegate and start the app, wrappin
 void main() async
 {
   var delegate = await LocalizationDelegate.create(
-        fallbackLanguage: 'en',
-        supportedLanguages: ['en', 'es_ES', 'fa']);
+        fallbackLocale: 'en_US',
+        supportedLocales: ['en_US', 'es', 'fa']);
 
   runApp(LocalizedApp(delegate, MyApp()));
 }
@@ -75,15 +75,18 @@ void main() async
 If the assets directory for the localization files is different than the default one (```assets/i18n```), you need to specify it:
 
 ```dart
-void main() async
-{
-  var delegate = await LocalizationDelegate.create(
-        fallbackLanguage: 'en',
-        supportedLanguages: ['en', 'es_ES', 'fa'],
-        basePath: 'assets/i18n/');
+ var delegate = await LocalizationDelegate.create(
+      ...
+        basePath: 'assets/i18n/'
+      ...
+```
 
-  runApp(LocalizedApp(delegate, MyApp()));
-}
+Automatically save & restore the selected locale using the ```flutter_translate_preferences``` extension package
+```dart
+ var delegate = await LocalizationDelegate.create(
+      ...
+        preferences: TranslatePreferences()
+      ...
 ```
 
 Example MyApp:
@@ -99,18 +102,18 @@ class MyApp extends StatelessWidget {
     return LocalizationProvider(
       state: LocalizationProvider.of(context).state,
       child: MaterialApp(
-          title: 'Flutter Translate Demo',
-          localizationsDelegates: [
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            localizationDelegate
-          ],
-          supportedLocales: localizationDelegate.configuration.supportedLocales,
-          locale: localizationDelegate.currentLocale,
-          theme: ThemeData(primarySwatch: Colors.blue),
-          home: MyHomePage(),
-          ),
-    );
+        title: 'Flutter Translate Demo',
+        localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          localizationDelegate
+        ],
+        supportedLocales: localizationDelegate.supportedLocales,
+        locale: localizationDelegate.currentLocale,
+        theme: ThemeData(primarySwatch: Colors.blue),
+        home: MyHomePage(),
+        ),
+      );
   }
 }
 ```
@@ -154,7 +157,7 @@ Change the language:
 Widget build(BuildContext context) {
 ...
   ...
-    changeLanguage(context, 'en');
+    changeLocale(context, value);
   ...
 ...
 }

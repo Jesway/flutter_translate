@@ -6,3 +6,7 @@
 ## [1.0.1]
 
 - Fixed some issues related to async calls
+
+## [1.1.0]
+
+- Implementation for the ITranslatePreferences interface

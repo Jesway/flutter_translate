@@ -30,7 +30,7 @@ Add this to your package's pubspec.yaml file:
 
 ```sh
 dependencies:
-  flutter_translate: ^1.3.2
+  flutter_translate: ^1.4.0
 ```
 
 Install packages from the command line (or from your editor):

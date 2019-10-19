@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
+import 'locale_file_service.dart';
 import 'constants.dart';
 import 'global.dart';
-import 'localization_file_service.dart';
 
 class LocalizationConfiguration
 {
@@ -15,13 +15,13 @@ class LocalizationConfiguration
 
     LocalizationConfiguration._(this.fallbackLocale, this.supportedLocales);
 
-    static Future<LocalizationConfiguration> create(String fallbackLanguage, List<String> supportedLanguages, {String basePath = Constants.defaultLocalizedAssetsPath}) async
+    static Future<LocalizationConfiguration> create(String fallbackLanguage, List<String> supportedLanguages, {String basePath = Constants.localizedAssetsPath}) async
     {
         var configuration = new LocalizationConfiguration._(localeFromString(fallbackLanguage), _generateSupportedLocales(supportedLanguages));
 
         _validateConfiguration(fallbackLanguage, supportedLanguages);
 
-        var files = await LocalizationFileService.getLocalizedFiles(supportedLanguages, basePath);
+        var files = await LocaleFileService.getLocaleFiles(supportedLanguages, basePath);
 
         configuration._localizations = files.map((x,y) => _getLocalizedEntry(x, y));
 
