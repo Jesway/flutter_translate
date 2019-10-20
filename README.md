@@ -1,4 +1,4 @@
-# flutter_translate
+[<img src="https://github.com/bratan/flutter_translate/raw/master/resources/images/flutter_translate.png" />](https://github.com/bratan/flutter_translate/)
 
 [![Build Status](https://travis-ci.org/bratan/flutter_translate.svg)](https://travis-ci.org/bratan/flutter_translate)
 [![License: MIT](https://img.shields.io/badge/License-MIT-ff69b4.svg)](https://github.com/bratan/flutter_translate/blob/master/LICENSE)
