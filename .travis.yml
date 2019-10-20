@@ -18,7 +18,11 @@ before_script:
   - /tmp/flutter/bin/flutter pub get
   - cd example
   - /tmp/flutter/bin/flutter pub get
-  - cd ../..
+  - cd ../../flutter_translate_gen
+  - /tmp/flutter/bin/flutter pub get
+  - cd example
+  - /tmp/flutter/bin/flutter pub get
+  - cd ..
 script:
   - /tmp/flutter/bin/flutter analyze .
 cache:
