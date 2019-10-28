@@ -74,7 +74,7 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization>
         var localesMap = await LocaleService.getLocalesMap(supportedLocales, basePath);
         var locales = localesMap.keys.toList();
 
-        ConfigurationValidator.Validate(fallback, locales);
+        ConfigurationValidator.validate(fallback, locales);
 
         var delegate = LocalizationDelegate._(fallback, locales, localesMap, preferences);
 
