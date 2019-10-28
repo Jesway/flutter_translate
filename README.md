@@ -1,6 +1,9 @@
 [<img src="https://github.com/bratan/flutter_translate/raw/master/resources/images/flutter_translate.png" />](https://github.com/bratan/flutter_translate/)
 
 [![Build Status](https://travis-ci.org/bratan/flutter_translate.svg)](https://travis-ci.org/bratan/flutter_translate)
+<a href="https://github.com/Solido/awesome-flutter">
+   <img alt="Awesome Flutter" src="https://img.shields.io/badge/Awesome-Flutter-blue.svg?longCache=true" />
+</a>
 [![License: MIT](https://img.shields.io/badge/License-MIT-ff69b4.svg)](https://github.com/bratan/flutter_translate/blob/master/LICENSE)
 [![Flutter.io](https://img.shields.io/badge/Flutter-Website-deepskyblue.svg)](https://flutter.io/)
 
@@ -30,7 +33,7 @@ Add this to your package's pubspec.yaml file:
 
 ```sh
 dependencies:
-  flutter_translate: ^1.4.0
+  flutter_translate: ^1.4.0+1
 ```
 
 Install packages from the command line (or from your editor):

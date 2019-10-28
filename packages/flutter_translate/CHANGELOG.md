@@ -45,3 +45,7 @@
 ## [1.4.0]
 
 - Implemented support for automatically saving & restoring the selected locale using shared preferences
+
+## [1.4.0+1]
+
+- Added the Awesome Flutter badge
