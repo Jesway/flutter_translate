@@ -33,7 +33,7 @@ Add this to your package's pubspec.yaml file:
 
 ```sh
 dependencies:
-  flutter_translate: ^1.4.0+1
+  flutter_translate: ^1.4.0+2
 ```
 
 Install packages from the command line (or from your editor):
@@ -67,6 +67,9 @@ In the main function create the localization delegate and start the app, wrappin
 ```dart
 void main() async
 {
+  // Necessary since https://github.com/flutter/flutter/pull/38464 in order to access platform channels before runApp
+  WidgetsFlutterBinding.ensureInitialized();
+
   var delegate = await LocalizationDelegate.create(
         fallbackLocale: 'en_US',
         supportedLocales: ['en_US', 'es', 'fa']);
@@ -160,7 +163,7 @@ Change the language:
 Widget build(BuildContext context) {
 ...
   ...
-    changeLocale(context, value);
+    changeLocale(context, 'en_US');
   ...
 ...
 }

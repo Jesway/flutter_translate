@@ -49,3 +49,7 @@
 ## [1.4.0+1]
 
 - Added the Awesome Flutter badge
+
+## [1.4.0+2]
+
+- Fixed the example to adapt the changes to BinaryMessenger (https://github.com/flutter/flutter/pull/38464)
