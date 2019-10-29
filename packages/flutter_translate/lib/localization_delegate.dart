@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/widgets.dart';
 import 'configuration_validator.dart';
 import 'locale_service.dart';
@@ -85,7 +87,12 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization>
 
     Future _initializePreferences() async
     {
-        if(preferences == null) return;
+        if(preferences == null)
+        {
+          var locale = Locale(Platform.localeName);
+          await changeLocale(locale);
+          return;
+        }
 
         var locale = await preferences.getPreferredLocale();
 
