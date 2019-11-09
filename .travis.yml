@@ -10,15 +10,6 @@ addons:
 before_script:
   - git clone https://github.com/flutter/flutter.git /tmp/flutter -b stable 
   - /tmp/flutter/bin/flutter doctor
-  - cd packages/flutter_translate
-  - /tmp/flutter/bin/flutter pub get
-  - cd example
-  - /tmp/flutter/bin/flutter pub get
-  - cd ../../flutter_translate_preferences
-  - /tmp/flutter/bin/flutter pub get
-  - cd example
-  - /tmp/flutter/bin/flutter pub get
-  - cd ../../flutter_translate_gen
   - /tmp/flutter/bin/flutter pub get
   - cd example
   - /tmp/flutter/bin/flutter pub get
