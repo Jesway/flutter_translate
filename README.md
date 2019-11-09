@@ -1,6 +1,7 @@
 [<img src="https://github.com/bratan/flutter_translate/raw/master/resources/images/flutter_translate.png" />](https://github.com/bratan/flutter_translate/)
 
 [![Build Status](https://travis-ci.org/bratan/flutter_translate.svg)](https://travis-ci.org/bratan/flutter_translate)
+[![pub package](https://img.shields.io/pub/v/flutter_translate.svg?color=important)](https://pub.dev/packages/flutter_translate)
 <a href="https://github.com/Solido/awesome-flutter">
    <img alt="Awesome Flutter" src="https://img.shields.io/badge/Awesome-Flutter-blue.svg?longCache=true" />
 </a>
@@ -12,12 +13,6 @@
 The internationalization (i18n) library for Flutter.
 
 It lets you define translations for your content in different languages and switch between them easily.
-
-| Package                                                                            | Pub                                                                                                    | Description |
-| ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ----------- |
-| [flutter_translate](https://github.com/bratan/flutter_translate/tree/master/packages/flutter_translate)                  | [![pub package](https://img.shields.io/pub/v/flutter_translate.svg?color=success)](https://pub.dev/packages/flutter_translate) | The flutter_translate core package. |
-| [flutter_translate_preferences](https://github.com/bratan/flutter_translate/tree/master/packages/flutter_translate_preferences) | [![pub package](https://img.shields.io/pub/v/flutter_translate_preferences.svg?color=success)](https://pub.dev/packages/flutter_translate_preferences)  | Extension for automatically saving & restoring the selected locale. |
-| [flutter_translate_gen](https://github.com/bratan/flutter_translate_gen)           | [WIP]  | Statically-typed localization keys generator for flutter_translate.|
 
 ## Example
 <img src="https://raw.githubusercontent.com/bratan/flutter_translate/master/resources/gifs/flutter_translate_screen.gif" width="300"/>
@@ -33,7 +28,7 @@ Add this to your package's pubspec.yaml file:
 
 ```sh
 dependencies:
-  flutter_translate: ^1.5.0
+  flutter_translate: ^1.5.0+1
 ```
 
 Install packages from the command line (or from your editor):
@@ -67,9 +62,6 @@ In the main function create the localization delegate and start the app, wrappin
 ```dart
 void main() async
 {
-  // Necessary since https://github.com/flutter/flutter/pull/38464 in order to access platform channels before runApp
-  WidgetsFlutterBinding.ensureInitialized();
-
   var delegate = await LocalizationDelegate.create(
         fallbackLocale: 'en_US',
         supportedLocales: ['en_US', 'es', 'fa']);
@@ -84,14 +76,6 @@ If the assets directory for the localization files is different than the default
  var delegate = await LocalizationDelegate.create(
       ...
         basePath: 'assets/i18n/'
-      ...
-```
-
-Automatically save & restore the selected locale using the ```flutter_translate_preferences``` extension package
-```dart
- var delegate = await LocalizationDelegate.create(
-      ...
-        preferences: TranslatePreferences()
       ...
 ```
 
@@ -171,4 +155,4 @@ Widget build(BuildContext context) {
 
 ### You can view the full example here:
 
-[https://github.com/bratan/flutter_translate/blob/master/packages/flutter_translate/example/lib/main.dart](https://github.com/bratan/flutter_translate/blob/master/packages/flutter_translate/example/lib/main.dart)
+[https://github.com/bratan/flutter_translate/blob/master/example/lib/main.dart](https://github.com/bratan/flutter_translate/blob/master/example/lib/main.dart)
