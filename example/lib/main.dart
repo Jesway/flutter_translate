@@ -23,18 +23,18 @@ class MyApp extends StatelessWidget {
     return LocalizationProvider(
       state: LocalizationProvider.of(context).state,
       child: MaterialApp(
-          title: 'Flutter Translate Demo',
-          localizationsDelegates: [
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            localizationDelegate
-          ],
-          supportedLocales: localizationDelegate.supportedLocales,
-          locale: localizationDelegate.currentLocale,
-          theme: ThemeData(primarySwatch: Colors.blue),
-          home: MyHomePage(),
-          ),
-    );
+        title: 'Flutter Translate Demo',
+        localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          localizationDelegate
+        ],
+        supportedLocales: localizationDelegate.supportedLocales,
+        locale: localizationDelegate.currentLocale,
+        theme: ThemeData(primarySwatch: Colors.blue),
+        home: MyHomePage(),
+        ),
+      );
   }
 }
 
@@ -61,24 +61,24 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(translate('app_bar.title')),
-      ),
+        ),
       body:  Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(translate('language.selected_message', args: {'language': translate('language.name.${localizationDelegate.currentLocale.languageCode}')})),
             Padding(
-              padding: EdgeInsets.only(top: 25, bottom: 160),
-              child: CupertinoButton.filled(
-                child: Text(translate('button.change_language')),
-                padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 36.0),
-                onPressed: () => _onActionSheetPress(context),
-                )
-            ),
+                    padding: EdgeInsets.only(top: 25, bottom: 160),
+                    child: CupertinoButton.filled(
+                      child: Text(translate('button.change_language')),
+                      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 36.0),
+                      onPressed: () => _onActionSheetPress(context),
+                      )
+                    ),
 
             Padding(padding: const EdgeInsets.only(bottom: 10),
-                    child: Text(translatePlural('plural.demo', _counter))
-            ),
+                            child: Text(translatePlural('plural.demo', _counter))
+                    ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -94,21 +94,21 @@ class _MyHomePageState extends State<MyHomePage> {
                   onPressed: () => setState(() => _incrementCounter()),
                   ),
               ],
-            )
+              )
 
           ],
+          ),
         ),
-      ),
-    );
+      );
   }
 
   void showDemoActionSheet({BuildContext context, Widget child}) {
     showCupertinoModalPopup<String>(
-      context: context,
-      builder: (BuildContext context) => child).then((String value)
-      {
-        changeLocale(context, value);
-      });
+            context: context,
+            builder: (BuildContext context) => child).then((String value)
+                                                           {
+                                                             changeLocale(context, value);
+                                                           });
   }
 
   void _onActionSheetPress(BuildContext context) {
