@@ -53,3 +53,9 @@
 ## [1.4.0+2]
 
 - Fixed the example to adapt the changes to BinaryMessenger (https://github.com/flutter/flutter/pull/38464)
+
+## [1.5.0]
+
+- Fixed the blackscreen issue on startup
+- Fixed the iOS issue regarding the device locale
+- The current device locale is now used on startup

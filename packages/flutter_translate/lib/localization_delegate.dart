@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_device_locale/flutter_device_locale.dart';
 import 'configuration_validator.dart';
 import 'locale_service.dart';
 import 'constants.dart';
@@ -70,6 +71,8 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization>
                                                 String basePath = Constants.localizedAssetsPath,
                                                 ITranslatePreferences preferences}) async
     {
+        WidgetsFlutterBinding.ensureInitialized();
+
         var fallback = localeFromString(fallbackLocale);
         var localesMap = await LocaleService.getLocalesMap(supportedLocales, basePath);
         var locales = localesMap.keys.toList();
@@ -78,20 +81,52 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization>
 
         var delegate = LocalizationDelegate._(fallback, locales, localesMap, preferences);
 
-        await delegate._initializePreferences();
+        if(!await delegate._loadPreferences())
+        {
+            await delegate._loadDeviceLocale();
+        }
 
         return delegate;
     }
 
-    Future _initializePreferences() async
+    Future<bool> _loadPreferences() async
     {
-        if(preferences == null) return;
+        if(preferences == null) return false;
 
-        var locale = await preferences.getPreferredLocale();
+        Locale locale;
+
+        try
+        {
+            locale = await preferences.getPreferredLocale();
+        }
+        catch(e)
+        {
+            return false;
+        }
 
         if(locale != null)
         {
             await changeLocale(locale);
+            return true;
+        }
+
+        return false;
+    }
+
+    Future _loadDeviceLocale() async
+    {
+        try
+        {
+            var locale = await DeviceLocale.getCurrentLocale();
+
+            if(locale != null)
+            {
+                await changeLocale(locale);
+            }
+        }
+        catch(e)
+        {
+            await changeLocale(fallbackLocale);
         }
     }
 }

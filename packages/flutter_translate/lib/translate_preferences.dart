@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:ui';
 
 abstract class ITranslatePreferences
 {

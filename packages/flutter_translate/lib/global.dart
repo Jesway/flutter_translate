@@ -1,4 +1,7 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:ui';
+
+import 'package:flutter/widgets.dart';
+
 import 'localization.dart';
 import 'localization_provider.dart';
 import 'localized_app.dart';
