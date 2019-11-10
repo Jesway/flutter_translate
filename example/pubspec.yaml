@@ -14,8 +14,6 @@ dependencies:
   flutter_translate:
     path: ../
 
-dev_dependencies:
-
 flutter:
 
   uses-material-design: true
