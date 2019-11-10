@@ -59,3 +59,8 @@
 - Fixed the blackscreen issue on startup
 - Fixed the iOS issue regarding the device locale
 - The current device locale is now used on startup
+
+## [1.5.1]
+
+- Updated the flutter_device_locale dependency to avoid a possible exception
+- Updated the example to AndroidX
