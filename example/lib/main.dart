@@ -5,7 +5,6 @@ import 'package:flutter_translate/flutter_translate.dart';
 
 void main() async
 {
-  // Necessary since https://github.com/flutter/flutter/pull/38464 in order to access platform channels before runApp
   var delegate = await LocalizationDelegate.create(
           fallbackLocale: 'en_US',
           supportedLocales: ['en_US', 'es', 'fa']);

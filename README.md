@@ -1,11 +1,11 @@
-[<img src="https://github.com/bratan/flutter_translate/raw/master/resources/images/flutter_translate.png" />](https://github.com/bratan/flutter_translate/)
+[<img src="https://github.com/jesway/flutter_translate/raw/master/resources/images/flutter_translate.png" />](https://github.com/jesway/flutter_translate/)
 
-[![Build Status](https://travis-ci.org/bratan/flutter_translate.svg)](https://travis-ci.org/bratan/flutter_translate)
+[![Build Status](https://travis-ci.org/jesway/flutter_translate.svg)](https://travis-ci.org/jesway/flutter_translate)
 [![pub package](https://img.shields.io/pub/v/flutter_translate.svg?color=important)](https://pub.dev/packages/flutter_translate)
 <a href="https://github.com/Solido/awesome-flutter">
    <img alt="Awesome Flutter" src="https://img.shields.io/badge/Awesome-Flutter-blue.svg?longCache=true" />
 </a>
-[![License: MIT](https://img.shields.io/badge/License-MIT-ff69b4.svg)](https://github.com/bratan/flutter_translate/blob/master/LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-ff69b4.svg)](https://github.com/jesway/flutter_translate/blob/master/LICENSE)
 [![Flutter.io](https://img.shields.io/badge/Flutter-Website-deepskyblue.svg)](https://flutter.io/)
 
 ---
@@ -15,7 +15,7 @@ The internationalization (i18n) library for Flutter.
 It lets you define translations for your content in different languages and switch between them easily.
 
 ## Example
-<img src="https://raw.githubusercontent.com/bratan/flutter_translate/master/resources/gifs/flutter_translate_screen.gif" width="300"/>
+<img src="https://raw.githubusercontent.com/jesway/flutter_translate/master/resources/gifs/flutter_translate_screen.gif" width="300"/>
 
 ## Table of Contents
   - [Installation](#installation)
@@ -28,7 +28,7 @@ Add this to your package's pubspec.yaml file:
 
 ```sh
 dependencies:
-  flutter_translate: ^1.5.2
+  flutter_translate: ^1.5.3
 ```
 
 Install packages from the command line (or from your editor):
@@ -155,4 +155,26 @@ Widget build(BuildContext context) {
 
 ### You can view the full example here:
 
-[https://github.com/bratan/flutter_translate/blob/master/example/lib/main.dart](https://github.com/bratan/flutter_translate/blob/master/example/lib/main.dart)
+[https://github.com/jesway/flutter_translate/blob/master/example/lib/main.dart](https://github.com/jesway/flutter_translate/blob/master/example/lib/main.dart)
+
+## License
+
+MIT License - Copyright (c) 2019 [Jesway](https://jesway.com)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

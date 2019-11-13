@@ -68,3 +68,7 @@
 ## [1.5.2]
 
 - Updated the flutter_device_locale version
+
+## [1.5.3]
+
+- Renamed packages, updated license and links
