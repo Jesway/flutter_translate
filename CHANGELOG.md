@@ -64,3 +64,7 @@
 
 - Updated the flutter_device_locale dependency to avoid a possible exception
 - Updated the example to AndroidX
+
+## [1.5.2]
+
+- Updated the flutter_device_locale version
