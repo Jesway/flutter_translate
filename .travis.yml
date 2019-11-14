@@ -13,6 +13,8 @@ before_script:
   - /tmp/flutter/bin/flutter pub get
   - cd example
   - /tmp/flutter/bin/flutter pub get
+  - cd ../example_static_keys
+  - /tmp/flutter/bin/flutter pub get
   - cd ..
 script:
   - /tmp/flutter/bin/flutter analyze .

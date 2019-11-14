@@ -20,5 +20,5 @@ flutter:
     - assets/i18n/
 
 dev_dependencies:
-  flutter_translate_gen: ^1.2.0
+  flutter_translate_gen: ^1.2.1
   build_runner: ^1.7.0
