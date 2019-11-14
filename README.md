@@ -10,152 +10,34 @@
 
 ---
 
-The internationalization (i18n) library for Flutter.
+Flutter Translate is a fully featured localization / internationalization (i18n) library for Flutter.
 
 It lets you define translations for your content in different languages and switch between them easily.
 
 ## Example
 <img src="https://raw.githubusercontent.com/jesway/flutter_translate/master/resources/gifs/flutter_translate_screen.gif" width="300"/>
 
-## Table of Contents
-  - [Installation](#installation)
-  - [Configuration](#configuration)
-  - [Usage](#usage)
+## Features
 
-## Installation
+* Very easy to use
+* ```Pluralization``` support
+* ```Static keys``` support with [flutter_translate_gen](https://github.com/jesway/flutter_translate/wiki/3.-Generating-statically-typed-localization-keys)
+* Supports both ``languageCode (en)`` and ``languageCode_countryCode (en_US)`` locale formats 
+* Automatically ```save & restore``` the selected locale [with a simple implementation](https://github.com/jesway/flutter_translate/wiki/2.-Automatically-saving-&-restoring-the-selected-locale)
+* Full support for ```right-to-left``` locales
+* ``Fallback`` locale support in case the system locale is not unsupported.
+* Supports both ``inline or nested`` JSON
 
-Add this to your package's pubspec.yaml file:
+## Documentation
 
-```sh
-dependencies:
-  flutter_translate: ^1.5.3
-```
+Complete documentation is available [on the wiki page](https://github.com/jesway/flutter_translate/wiki).
 
-Install packages from the command line (or from your editor):
+To get started please see [Installation, Configuration & Usage](https://github.com/jesway/flutter_translate/wiki/1.-Installation,-Configuration-&-Usage).
 
-```sh
-flutter pub get
-```
+## Examples
 
-## Configuration
-
-Import flutter_translate:
-
-```dart
-import 'package:flutter_translate/flutter_translate.dart';
-```
-
-Place the *json* localization files in a folder of your choice within the project.
-
-By default ```flutter_translate``` will search for localization files in the `assets/i18n` directory in your project's root.
-
-Declare your assets localization directory in ```pubspec.yaml```
-
-```sh
-flutter:
-  assets:
-    - assets/i18n
-```
-
-In the main function create the localization delegate and start the app, wrapping it with LocalizedApp
-
-```dart
-void main() async
-{
-  var delegate = await LocalizationDelegate.create(
-        fallbackLocale: 'en_US',
-        supportedLocales: ['en_US', 'es', 'fa']);
-
-  runApp(LocalizedApp(delegate, MyApp()));
-}
-```
-
-If the assets directory for the localization files is different than the default one (```assets/i18n```), you need to specify it:
-
-```dart
- var delegate = await LocalizationDelegate.create(
-      ...
-        basePath: 'assets/i18n/'
-      ...
-```
-
-Example MyApp:
-
-```dart
-class MyApp extends StatelessWidget {
-
-  @override
-  Widget build(BuildContext context) {
-
-    var localizationDelegate = LocalizedApp.of(context).delegate;
-
-    return LocalizationProvider(
-      state: LocalizationProvider.of(context).state,
-      child: MaterialApp(
-        title: 'Flutter Translate Demo',
-        localizationsDelegates: [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          localizationDelegate
-        ],
-        supportedLocales: localizationDelegate.supportedLocales,
-        locale: localizationDelegate.currentLocale,
-        theme: ThemeData(primarySwatch: Colors.blue),
-        home: MyHomePage(),
-        ),
-      );
-  }
-}
-```
-
-## Usage
-
-Translate a string:
-
-```dart
-translate('your.localization.key');
-```
-
-Translate with arguments;
-
-```dart
-translate('your.localization.key', args: {'argName1': argValue1, 'argName2': argValue2});
-```
-
-Translate with pluralization:
-
-```dart
-translatePlural('plural.demo', yourNumericValue);
-```
-
-JSON:
-
-```json
-"plural": {
-    "demo": {
-        "0": "Please start pushing the 'plus' button.",
-        "1": "You have pushed the button one time.",
-        "else": "You have pushed the button {{value}} times."
-    }
-}
-```
-
-Change the language:
-
-```dart
-@override
-Widget build(BuildContext context) {
-...
-  ...
-    changeLocale(context, 'en_US');
-  ...
-...
-}
-```
-
-### You can view the full example here:
-
-[https://github.com/jesway/flutter_translate/blob/master/example/lib/main.dart](https://github.com/jesway/flutter_translate/blob/master/example/lib/main.dart)
+* [Example using dynamic keys](https://github.com/jesway/flutter_translate/tree/master/example)
+* [Example using static keys](https://github.com/jesway/flutter_translate/tree/master/example_static_keys)
 
 ## License
 
