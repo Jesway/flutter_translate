@@ -25,7 +25,7 @@ It lets you define translations for your content in different languages and swit
 * Supports both ``languageCode (en)`` and ``languageCode_countryCode (en_US)`` locale formats 
 * Automatically ```save & restore``` the selected locale [with a simple implementation](https://github.com/jesway/flutter_translate/wiki/2.-Automatically-saving-&-restoring-the-selected-locale)
 * Full support for ```right-to-left``` locales
-* ``Fallback`` locale support in case the system locale is not unsupported.
+* ``Fallback`` locale support in case the system locale is not unsupported
 * Supports both ``inline or nested`` JSON
 
 ## Documentation
