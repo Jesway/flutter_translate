@@ -1,8 +1,8 @@
 name: flutter_translate
 description: The internationalization (i18n) library for Flutter. It lets you define translations for your content in different languages and switch between them easily.
-version: 1.5.4
+version: 1.5.5
 author: Jesway <hello@jesway.com>
-homepage: https://github.com/jesway/flutter_device_locale
+homepage: https://github.com/jesway/flutter_translate
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
