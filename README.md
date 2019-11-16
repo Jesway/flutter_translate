@@ -39,6 +39,10 @@ To get started please see [Installation, Configuration & Usage](https://github.c
 * [Example using dynamic keys](https://github.com/jesway/flutter_translate/tree/master/example)
 * [Example using static keys](https://github.com/jesway/flutter_translate/tree/master/example_static_keys)
 
+## Contributors
+
+[<img height="180" width="180" src="https://jesway.com/images/team/florin_bratan_r.png" alt="Florin Bratan" title="Florin Bratan" />](https://github.com/bratan)
+
 ## License
 
 MIT License - Copyright (c) 2019 [Jesway](https://jesway.com)
