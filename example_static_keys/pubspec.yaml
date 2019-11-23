@@ -10,8 +10,9 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  flutter_translate: ^1.5.4
-  flutter_translate_annotations: ^1.0.0
+  flutter_translate:
+    path: ../
+  flutter_translate_annotations: ^1.0.1
 
 flutter:
 
@@ -20,5 +21,5 @@ flutter:
     - assets/i18n/
 
 dev_dependencies:
-  flutter_translate_gen: ^1.2.1
+  flutter_translate_gen: ^1.2.3
   build_runner: ^1.7.0

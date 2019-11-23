@@ -1,4 +1,4 @@
-package com.jesway.example;
+package dev.leadcode.example;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
