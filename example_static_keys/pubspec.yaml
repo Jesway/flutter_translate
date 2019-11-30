@@ -1,6 +1,6 @@
 name: example_static_keys
 description: Flutter translate example with static localization keys.
-
+version: 1.5.7
 
 environment:
   sdk: ">=2.1.0 <3.0.0"

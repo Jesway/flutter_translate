@@ -1,6 +1,6 @@
 name: example
 description: Example project for the flutter_translate library
-version: 1.5.4
+version: 1.5.7
 
 environment:
   sdk: ">=2.1.0 <3.0.0"

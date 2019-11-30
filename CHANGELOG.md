@@ -72,3 +72,8 @@
 ## [1.5.3]
 
 - Renamed packages, updated license and links
+
+## [1.5.7]
+
+- Updated the examples
+- Fixed some issues with flutter_device_locale and swift
