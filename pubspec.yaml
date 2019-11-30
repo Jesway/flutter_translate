@@ -11,6 +11,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_device_locale: ^0.3.4
+  flutter_device_locale: ^0.3.4+1
 
 flutter:
