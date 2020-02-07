@@ -1,0 +1,1 @@
+﻿enum CaseStyle { camelCase, screamingCaps }
