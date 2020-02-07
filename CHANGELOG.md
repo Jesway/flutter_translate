@@ -1,3 +1,8 @@
+## 1.6.0
+
+- Added `flutter_translate_annotations` library
+- Updated the examples
+
 ## 1.5.7
 
 - Updated the examples
