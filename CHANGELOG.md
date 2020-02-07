@@ -1,79 +1,79 @@
-## [1.0.0]
+## 1.5.7
 
-- Initial release.
+- Updated the examples
+- Fixed some issues with flutter_device_locale and swift
 
-## [1.0.1]
+## 1.5.3
 
-- Removed the flutter_localizations dependency.
+- Renamed packages, updated license and links
 
-## [1.0.2]
+## 1.5.2
 
-- Simplified the localization initialization.
+- Updated the flutter_device_locale version
 
-## [1.1.0]
+## 1.5.1
 
-- Implemented a global translate method.
-- Removed the static Translate class.
-- Localization is now a singleton.
+- Updated the flutter_device_locale dependency to avoid a possible exception
+- Updated the example to AndroidX
 
-## [1.2.0]
+## 1.5.0
+
+- Fixed the black screen issue on startup
+- Fixed the iOS issue regarding the device locale
+- The current device locale is now used on startup
+
+## 1.4.0+2
+
+- Fixed the example to adapt the changes to BinaryMessenger (https://github.com/flutter/flutter/pull/38464)
+
+## 1.4.0+1
+
+- Added the Awesome Flutter badge
+
+## 1.4.0
+
+- Implemented support for automatically saving & restoring the selected locale using shared preferences
+
+## 1.3.2
+
+- Fixed some callback issues for onLocaleChanged
+
+## 1.3.1
+
+- Implemented the localeToString method
+
+## 1.3.0
+
+- Implemented the onLocaleChanged callback
+
+## 1.2.5
+
+- Fixed possible exception when adding an extra slash to the `basePath`
+
+## 1.2.2
+
+- Missing localizations now return the full key path.
+
+## 1.2.0
 
 - Implemented pluralization.
 - Fixed multiple issues.
 - translate, translatePlural and changeLanguage methods are now global.
 
-## [1.2.2]
+## 1.1.0
 
-- Missing localizations now return the full key path.
+- Implemented a global translate method.
+- Removed the static Translate class.
+- Localization is now a singleton.
 
-## [1.2.5]
+## 1.0.2
 
-- Fixed possible exception when adding an extra slash to the ```basePath```
+- Simplified the localization initialization.
 
-## [1.3.0]
+## 1.0.1
 
-- Implemented the onLocaleChanged callback
+- Removed the flutter_localizations dependency.
 
-## [1.3.1]
+## 1.0.0
 
-- Implemented the localeToString method
-
-## [1.3.2]
-
-- Fixed some callback issues for onLocaleChanged
-
-## [1.4.0]
-
-- Implemented support for automatically saving & restoring the selected locale using shared preferences
-
-## [1.4.0+1]
-
-- Added the Awesome Flutter badge
-
-## [1.4.0+2]
-
-- Fixed the example to adapt the changes to BinaryMessenger (https://github.com/flutter/flutter/pull/38464)
-
-## [1.5.0]
-
-- Fixed the blackscreen issue on startup
-- Fixed the iOS issue regarding the device locale
-- The current device locale is now used on startup
-
-## [1.5.1]
-
-- Updated the flutter_device_locale dependency to avoid a possible exception
-- Updated the example to AndroidX
-
-## [1.5.2]
-
-- Updated the flutter_device_locale version
-
-## [1.5.3]
-
-- Renamed packages, updated license and links
-
-## [1.5.7]
-
-- Updated the examples
-- Fixed some issues with flutter_device_locale and swift
+- Initial release.
