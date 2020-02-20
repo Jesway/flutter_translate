@@ -95,6 +95,6 @@ class Localization
             }
         }
 
-        return map[key][valueKey];
+        return map[key][valueKey] ?? map[key][Constants.pluralElse];
     }
 }
