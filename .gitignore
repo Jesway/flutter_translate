@@ -72,3 +72,6 @@ build/
 !**/ios/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 pubspec.lock
+example_static_keys/lib/generated_plugin_registrant.dart
+example_static_keys/.flutter-plugins-dependencies
+example/lib/generated_plugin_registrant.dart

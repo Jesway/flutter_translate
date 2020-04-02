@@ -77,3 +77,8 @@
 
 - Updated the examples
 - Fixed some issues with flutter_device_locale and swift
+
+## [1.6.0]
+
+- Web applications are now supported
+- Updated the examples with web support
