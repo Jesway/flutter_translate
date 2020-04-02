@@ -9,7 +9,7 @@ class LocalizationProvider extends InheritedWidget
 
     LocalizationProvider({Key key, this.child, this.state}) : super(key: key, child: child);
 
-    static LocalizationProvider of(BuildContext context) => (context.inheritFromWidgetOfExactType(LocalizationProvider) as LocalizationProvider);
+    static LocalizationProvider of(BuildContext context) => (context.dependOnInheritedWidgetOfExactType<LocalizationProvider>());
 
     @override
     bool updateShouldNotify(LocalizationProvider oldWidget) => true;
