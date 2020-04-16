@@ -44,6 +44,18 @@ class Localization
         return translation ?? '$key.$pluralKeyValue';
     }
 
+    List<String> list(String key, {Map<String, dynamic> args})
+    {
+      var translations = _getListTranslation(key, _translations);
+
+      if(translations != null && args != null)
+      {
+        translations = translations.map((t) => _assignArguments(t, args)).toList();
+      }
+
+      return List<String>.from(translations ?? [key]);
+    }
+
     String _getPluralKeyValue(num value)
     {
         switch(value)
@@ -96,5 +108,22 @@ class Localization
         }
 
         return map[key][valueKey] ?? map[key][Constants.pluralElse];
+    }
+
+    List<dynamic> _getListTranslation(String key, Map<String, dynamic> map)
+    {
+      List<String> keys = key.split('.');
+
+      if (keys.length > 1)
+        {
+            var firstKey = keys.first;
+
+            if(map.containsKey(firstKey) && map[firstKey] is! List<dynamic>)
+            {
+                return _getListTranslation(key.substring(key.indexOf('.') + 1), map[firstKey]);
+            }
+        }
+
+        return map[key];
     }
 }

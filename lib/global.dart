@@ -37,6 +37,11 @@ String translatePlural(String key, num value, {Map<String, dynamic> args})
 	return Localization.instance.plural(key, value, args: args);
 }
 
+List<String> translateList(String key, {Map<String, dynamic> args})
+{
+  return Localization.instance.list(key, args: args);
+}
+
 Future changeLocale(BuildContext context, String localeCode) async
 {
 	if (localeCode != null)
