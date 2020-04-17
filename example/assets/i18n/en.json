@@ -10,7 +10,8 @@
 		"name": {
 			"en": "English",
 			"es": "Spanish",
-			"fa": "Persian"
+			"fa": "Persian",
+			"ar": "Arabic"
 		},
 		"selected_message": "Currently selected language is {language}",
 		"selection": {
