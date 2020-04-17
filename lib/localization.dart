@@ -50,6 +50,7 @@ class Localization
         {
             case 0: return Constants.pluralZero;
             case 1: return Constants.pluralOne;
+            case 2: return Constants.pluralTwo;
             default: return Constants.pluralElse;
         }
     }
