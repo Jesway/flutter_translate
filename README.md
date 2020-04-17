@@ -21,7 +21,7 @@ It lets you define translations for your content in different languages and swit
 
 * Very easy to use
 * ```Mobile``` & ```Web``` support
-* ```Pluralization``` support
+* ```Pluralization``` and ```Duals``` support 
 * ```Static keys``` support with [flutter_translate_gen](https://github.com/bratan/flutter_translate/wiki/3.-Generating-statically-typed-localization-keys)
 * Supports both ``languageCode (en)`` and ``languageCode_countryCode (en_US)`` locale formats 
 * Automatically ```save & restore``` the selected locale [with a simple implementation](https://github.com/bratan/flutter_translate/wiki/2.-Automatically-saving-&-restoring-the-selected-locale)
