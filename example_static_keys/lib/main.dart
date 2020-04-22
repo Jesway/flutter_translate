@@ -9,7 +9,7 @@ void main() async
 {
   var delegate = await LocalizationDelegate.create(
           fallbackLocale: 'en_US',
-          supportedLocales: ['en_US', 'es', 'fa']);
+          supportedLocales: ['en_US', 'es', 'fa', 'ar']);
 
   runApp(LocalizedApp(delegate, MyApp()));
 }
@@ -131,6 +131,10 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Text(translate(Keys.Language_Name_Fa)),
             onPressed: () => Navigator.pop(context, 'fa'),
           ),
+          CupertinoActionSheetAction(
+            child: Text(translate(Keys.Language_Name_Ar)),
+            onPressed: () => Navigator.pop(context, 'ar'),
+          ),
         ],
         cancelButton: CupertinoActionSheetAction(
           child: Text(translate(Keys.Button_Cancel)),
@@ -150,6 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
       case "en_US": return Keys.Language_Name_En;
       case "es": return Keys.Language_Name_Es;
       case "fa": return Keys.Language_Name_Fa;
+      case "ar": return Keys.Language_Name_Ar;
       default: return null;
     }
   }

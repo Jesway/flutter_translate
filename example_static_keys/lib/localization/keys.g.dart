@@ -19,6 +19,8 @@ class Keys {
 
   static const String Language_Name_Fa = 'language.name.fa';
 
+  static const String Language_Name_Ar = 'language.name.ar';
+
   static const String Language_Selected_Message = 'language.selected_message';
 
   static const String Language_Selection_Message = 'language.selection.message';
@@ -26,4 +28,6 @@ class Keys {
   static const String Language_Selection_Title = 'language.selection.title';
 
   static const String Plural_Demo = 'plural.demo';
+
+  static const String Plural_Demo_2 = 'plural.demo.2';
 }
