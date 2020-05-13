@@ -33,7 +33,9 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization>
 
         var localizedContent = await LocaleService.getLocaleContent(locale, supportedLocalesMap);
 
-        Localization.load(localizedContent);
+        var fallbackContent = locale != fallbackLocale ? await LocaleService.getLocaleContent(fallbackLocale, supportedLocalesMap) : null;
+
+        Localization.load(localizedContent, fallback: fallbackContent);
 
         _currentLocale = locale;
 
