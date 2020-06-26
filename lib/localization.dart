@@ -11,7 +11,7 @@ class Localization
 
     static void load(Map<dynamic, dynamic> translations)
     {
-        instance._translations = translations ?? {};
+        instance._translations = translations;
     }
 
     String translate(String key, {Map<String, dynamic> args})
@@ -69,6 +69,8 @@ class Localization
     {
         List<String> keys = key.split('.');
 
+        if(map == null) return key;
+
         if (keys.length > 1)
         {
             var firstKey = keys.first;
@@ -83,7 +85,8 @@ class Localization
     }
 
     String _getPluralTranslation(String key, String valueKey, Map<String, dynamic> map)
-    {
+    { 
+        if(map == null) return key;
         List<String> keys = key.split('.');
 
         if (keys.length > 1)
