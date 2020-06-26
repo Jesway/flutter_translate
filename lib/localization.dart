@@ -11,7 +11,7 @@ class Localization
 
     static void load(Map<dynamic, dynamic> translations)
     {
-        instance._translations = translations;
+        instance._translations = translations ?? {};
     }
 
     String translate(String key, {Map<String, dynamic> args})
