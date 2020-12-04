@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/services.dart';
 import 'constants.dart';
 
@@ -22,7 +23,18 @@ class LocaleFileService
 
     static Future<String> getLocaleContent(String file) async
     {
-        return await rootBundle.loadString(file);
+        if (file == null) return null;
+
+        if (file.startsWith("/")) {
+          File f = File(file);
+          if (await f.exists()) {
+            return await f.readAsString();
+          } else {
+            return null;
+          }
+        } else {
+          return await rootBundle.loadString(file);
+        }
     }
 
     static Future<List<String>> _getAllLocaleFiles(String basePath) async
