@@ -8,41 +8,33 @@ import 'localized_app.dart';
 
 typedef LocaleChangedCallback = Future Function(Locale locale);
 
-Locale localeFromString(String code, {bool languageCodeOnly = false})
-{
-	if (code.contains('_'))
-	{
-		var parts = code.split('_');
+Locale localeFromString(String code, {bool languageCodeOnly = false}) {
+  if (code.contains('_')) {
+    var parts = code.split('_');
 
-		return languageCodeOnly ? Locale(parts[0]) : Locale(parts[0], parts[1]);
-	}
-	else
-	{
-		return Locale(code);
-	}
+    return languageCodeOnly ? Locale(parts[0]) : Locale(parts[0], parts[1]);
+  } else {
+    return Locale(code);
+  }
 }
 
-String localeToString(Locale locale)
-{
-	return locale.countryCode != null ? '${locale.languageCode}_${locale.countryCode}' : locale.languageCode;
+String localeToString(Locale locale) {
+  return locale.countryCode != null
+      ? '${locale.languageCode}_${locale.countryCode}'
+      : locale.languageCode;
 }
 
-String translate(String key, {Map<String, dynamic> args})
-{
-	return Localization.instance.translate(key, args: args);
+String translate(String key, {Map<String, dynamic>? args}) {
+  return Localization.instance.translate(key, args: args);
 }
 
-String translatePlural(String key, num value, {Map<String, dynamic> args})
-{
-	return Localization.instance.plural(key, value, args: args);
+String translatePlural(String key, num value, {Map<String, dynamic>? args}) {
+  return Localization.instance.plural(key, value, args: args);
 }
 
-Future changeLocale(BuildContext context, String localeCode) async
-{
-	if (localeCode != null)
-	{
-		await LocalizedApp.of(context).delegate.changeLocale(localeFromString(localeCode));
-
-		LocalizationProvider.of(context).state.onLocaleChanged();
-	}
+Future changeLocale(BuildContext context, String localeCode) async {
+  await LocalizedApp.of(context)!
+      .delegate
+      .changeLocale(localeFromString(localeCode));
+  LocalizationProvider.of(context)!.state!.onLocaleChanged();
 }

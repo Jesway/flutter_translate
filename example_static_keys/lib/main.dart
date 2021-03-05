@@ -5,20 +5,16 @@ import 'package:flutter_translate/flutter_translate.dart';
 
 import 'localization/keys.dart';
 
-void main() async
-{
+void main() async {
   var delegate = await LocalizationDelegate.create(
-          fallbackLocale: 'en_US',
-          supportedLocales: ['en_US', 'es', 'fa', 'ar']);
+      fallbackLocale: 'en_US', supportedLocales: ['en_US', 'es', 'fa', 'ar']);
 
   runApp(LocalizedApp(delegate, MyApp()));
 }
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-
     var localizationDelegate = LocalizedApp.of(context).delegate;
 
     return LocalizationProvider(
@@ -48,7 +44,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   int _counter = 0;
 
   void _decrementCounter() => setState(() => _counter--);
@@ -63,30 +58,34 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(translate(Keys.App_Bar_Title)),
       ),
-      body:  Center(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(translate(Keys.Language_Selected_Message, args: {'language': translate(getCurrentLanguageLocalizationKey(localizationDelegate.currentLocale.languageCode))})),
+            Text(translate(Keys.Language_Selected_Message, args: {
+              'language': translate(getCurrentLanguageLocalizationKey(
+                  localizationDelegate.currentLocale.languageCode))
+            })),
             Padding(
-                    padding: EdgeInsets.only(top: 25, bottom: 160),
-                    child: CupertinoButton.filled(
-                      child: Text(translate(Keys.Button_Change_Language)),
-                      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 36.0),
-                      onPressed: () => _onActionSheetPress(context),
-                    )
-            ),
-
-            Padding(padding: const EdgeInsets.only(bottom: 10),
-                    child: Text(translatePlural(Keys.Plural_Demo, _counter))
-            ),
+                padding: EdgeInsets.only(top: 25, bottom: 160),
+                child: CupertinoButton.filled(
+                  child: Text(translate(Keys.Button_Change_Language)),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 10.0, horizontal: 36.0),
+                  onPressed: () => _onActionSheetPress(context),
+                )),
+            Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: Text(translatePlural(Keys.Plural_Demo, _counter))),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 IconButton(
                   icon: Icon(Icons.remove_circle),
                   iconSize: 48,
-                  onPressed: _counter > 0 ? () => setState(() => _decrementCounter()) : null,
+                  onPressed: _counter > 0
+                      ? () => setState(() => _decrementCounter())
+                      : null,
                 ),
                 IconButton(
                   icon: Icon(Icons.add_circle),
@@ -96,7 +95,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             )
-
           ],
         ),
       ),
@@ -105,9 +103,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void showDemoActionSheet({BuildContext context, Widget child}) {
     showCupertinoModalPopup<String>(
-            context: context,
-            builder: (BuildContext context) => child).then((String value)
-    {
+        context: context,
+        builder: (BuildContext context) => child).then((String value) {
       changeLocale(context, value);
     });
   }
@@ -145,17 +142,19 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-
-  getCurrentLanguageLocalizationKey(String code)
-  {
-    switch(code)
-    {
+  getCurrentLanguageLocalizationKey(String code) {
+    switch (code) {
       case "en":
-      case "en_US": return Keys.Language_Name_En;
-      case "es": return Keys.Language_Name_Es;
-      case "fa": return Keys.Language_Name_Fa;
-      case "ar": return Keys.Language_Name_Ar;
-      default: return null;
+      case "en_US":
+        return Keys.Language_Name_En;
+      case "es":
+        return Keys.Language_Name_Es;
+      case "fa":
+        return Keys.Language_Name_Fa;
+      case "ar":
+        return Keys.Language_Name_Ar;
+      default:
+        return null;
     }
   }
 }
