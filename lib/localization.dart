@@ -1,7 +1,7 @@
 import 'constants.dart';
 
 class Localization {
-  late Map<String, dynamic> _translations;
+  late Map<String, dynamic>? _translations;
 
   Localization._();
 
@@ -9,8 +9,8 @@ class Localization {
   static Localization get instance =>
       _instance ?? (_instance = Localization._());
 
-  static void load(Map<dynamic, dynamic> translations) {
-    instance._translations = translations as Map<String, dynamic>;
+  static void load(Map<String, dynamic>? translations) {
+    instance._translations = translations;
   }
 
   String translate(String key, {Map<String, dynamic>? args}) {
@@ -60,8 +60,12 @@ class Localization {
     return value;
   }
 
-  String? _getTranslation(String key, Map<String, dynamic> map) {
+  String? _getTranslation(String key, Map<String, dynamic>? map) {
     List<String> keys = key.split('.');
+
+    if (map == null) {
+      return null;
+    }
 
     if (keys.length > 1) {
       var firstKey = keys.first;
@@ -76,8 +80,12 @@ class Localization {
   }
 
   String? _getPluralTranslation(
-      String key, String valueKey, Map<String, dynamic> map) {
+      String key, String valueKey, Map<String, dynamic>? map) {
     List<String> keys = key.split('.');
+
+    if (map == null) {
+      return null;
+    }
 
     if (keys.length > 1) {
       var firstKey = keys.first;

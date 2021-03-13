@@ -33,8 +33,7 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization> {
     if (_currentLocale == locale) return;
 
     var localizedContent =
-        await (LocaleService.getLocaleContent(locale, supportedLocalesMap)
-            as Future<Map<String, dynamic>>);
+        await LocaleService.getLocaleContent(locale, supportedLocalesMap);
 
     Localization.load(localizedContent);
 
