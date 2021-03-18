@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'dart:ui';
+import 'package:flutter_translate/flutter_translate.dart';
+
 import 'locale_file_service.dart';
-import 'global.dart';
 
 class LocaleService
 {

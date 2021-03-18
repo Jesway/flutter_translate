@@ -1,4 +1,5 @@
-import 'constants.dart';
+
+import 'package:flutter_translate/src/constants/constants.dart';
 
 class Localization
 {

@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'localized_app_state.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 
 class LocalizationProvider extends InheritedWidget
 {

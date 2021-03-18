@@ -1,9 +1,9 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_device_locale/flutter_device_locale.dart';
-import 'configuration_validator.dart';
-import 'locale_service.dart';
-import 'constants.dart';
-import 'flutter_translate.dart';
+import 'package:flutter_translate/flutter_translate.dart';
+import 'package:flutter_translate/src/constants/constants.dart';
+import 'package:flutter_translate/src/services/locale_service.dart';
+import 'package:flutter_translate/src/utils/device_locale.dart';
+import 'package:flutter_translate/src/validators/configuration_validator.dart';
 
 class LocalizationDelegate extends LocalizationsDelegate<Localization>
 {
@@ -117,7 +117,7 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization>
     {
         try
         {
-            var locale = await DeviceLocale.getCurrentLocale();
+            var locale = getCurrentLocale();
 
             if(locale != null)
             {
