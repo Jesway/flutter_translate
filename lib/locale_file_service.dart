@@ -22,7 +22,9 @@ class LocaleFileService
 
     static Future<String> getLocaleContent(String file) async
     {
-        return await rootBundle.loadString(file);
+        final ByteData data = await rootBundle.load(file);
+        if (data == null) return null;
+        return utf8.decode(data.buffer.asUint8List());
     }
 
     static Future<List<String>> _getAllLocaleFiles(String basePath) async
