@@ -1,6 +1,6 @@
 name: flutter_translate
 description: Flutter Translate is a fully featured localization / internationalization (i18n) library for Flutter.
-version: 2.0.0
+version: 2.0.1
 homepage: https://leadcode.dev
 repository: https://github.com/bratan/flutter_translate
 
@@ -10,5 +10,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  universal_io: ^2.0.1
 
 flutter:

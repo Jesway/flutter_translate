@@ -89,3 +89,7 @@
 - The native flutter locale retrieval method is now used
 - Added support for desktop
 - Added examples for windows desktop
+
+## [2.0.1]
+
+- Fixed web support
