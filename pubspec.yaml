@@ -16,4 +16,10 @@ dev_dependencies:
   build_runner: ^1.10.1
   pedantic: ^1.9.2
 
+dependency_overrides:
+#  PR to the author of flutter_device_locale already - https://github.com/bratan/flutter_device_locale/pull/15
+  flutter_device_locale:
+    git:
+      url: https://github.com/trustmefelix/flutter_device_locale.git
+
 flutter:
