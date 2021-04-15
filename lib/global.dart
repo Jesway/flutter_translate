@@ -22,11 +22,11 @@ String? localeToString(Locale? locale) {
   return locale!.countryCode != null ? '${locale.languageCode}_${locale.countryCode}' : locale.languageCode;
 }
 
-String? translate(String? key, {Map<String?, dynamic>? args}) {
+String? translate(String? key, {Map<String, dynamic>? args}) {
   return Localization.instance!.translate(key, args: args);
 }
 
-String? translatePlural(String? key, num? value, {Map<String?, dynamic>? args}) {
+String? translatePlural(String? key, num? value, {Map<String, dynamic>? args}) {
   return Localization.instance!.plural(key, value, args: args);
 }
 

@@ -3,6 +3,7 @@ import 'package:flutter_device_locale/flutter_device_locale.dart';
 import 'configuration_validator.dart';
 import 'locale_service.dart';
 import 'constants.dart';
+
 import 'flutter_translate.dart';
 
 class LocalizationDelegate extends LocalizationsDelegate<Localization> {
@@ -10,9 +11,9 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization> {
 
   final Locale? fallbackLocale;
 
-  final List<Locale?>? supportedLocales;
+  final List<Locale>? supportedLocales;
 
-  final Map<Locale?, String?>? supportedLocalesMap;
+  final Map<Locale, String>? supportedLocalesMap;
 
   final ITranslatePreferences? preferences;
 
@@ -61,14 +62,14 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization> {
 
   static Future<LocalizationDelegate> create(
       {@required String? fallbackLocale,
-      @required List<String?>? supportedLocales,
+      @required List<String>? supportedLocales,
       String? basePath = Constants.localizedAssetsPath,
       ITranslatePreferences? preferences}) async {
     WidgetsFlutterBinding.ensureInitialized();
 
     final Locale? fallback = localeFromString(fallbackLocale);
-    final Map<Locale?, String?>? localesMap = await LocaleService.getLocalesMap(supportedLocales, basePath);
-    final List<Locale?> locales = localesMap!.keys.toList();
+    final Map<Locale, String>? localesMap = await LocaleService.getLocalesMap(supportedLocales, basePath);
+    final List<Locale> locales = localesMap!.keys.toList();
 
     ConfigurationValidator.validate(fallback, locales);
 

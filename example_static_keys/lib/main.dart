@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
           GlobalWidgetsLocalizations.delegate,
           localizationDelegate
         ],
-        supportedLocales: localizationDelegate.supportedLocales! as Iterable<Locale>,
+        supportedLocales: localizationDelegate.supportedLocales!,
         locale: localizationDelegate.currentLocale,
         theme: ThemeData(primarySwatch: Colors.blue),
         home: MyHomePage(),

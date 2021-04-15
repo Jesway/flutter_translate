@@ -14,7 +14,7 @@ class LocalizationConfiguration {
 
   LocalizationConfiguration._(this.fallbackLocale, this.supportedLocales);
 
-  static Future<LocalizationConfiguration?> create(String? fallbackLanguage, List<String?>? supportedLanguages,
+  static Future<LocalizationConfiguration?> create(String? fallbackLanguage, List<String>? supportedLanguages,
       {String? basePath = Constants.localizedAssetsPath}) async {
     final LocalizationConfiguration configuration =
         LocalizationConfiguration._(localeFromString(fallbackLanguage), _generateSupportedLocales(supportedLanguages!));

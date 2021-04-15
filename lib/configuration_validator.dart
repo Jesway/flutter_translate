@@ -2,7 +2,7 @@ import 'dart:ui';
 
 class ConfigurationValidator
 {
-    static void validate(Locale? fallbackLocale, List<Locale?>? supportedLocales)
+    static void validate(Locale? fallbackLocale, List<Locale>? supportedLocales)
     {
         if(!supportedLocales!.contains(fallbackLocale))
         {

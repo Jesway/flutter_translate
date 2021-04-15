@@ -13,8 +13,8 @@ class Localization {
     instance!._translations = translations;
   }
 
-  String? translate(String? key, {Map<String?, dynamic>? args}) {
-    String? translation = _getTranslation(key, _translations as Map<String?, dynamic>?);
+  String? translate(String? key, {Map<String, dynamic>? args}) {
+    String? translation = _getTranslation(key, _translations as Map<String, dynamic>?);
 
     if (translation != null && args != null) {
       translation = _assignArguments(translation, args);
@@ -23,9 +23,9 @@ class Localization {
     return translation ?? key;
   }
 
-  String plural(String? key, num? value, {Map<String?, dynamic>? args}) {
+  String plural(String? key, num? value, {Map<String, dynamic>? args}) {
     final String pluralKeyValue = _getPluralKeyValue(value!);
-    String? translation = _getPluralTranslation(key!, pluralKeyValue, _translations as Map<String?, dynamic>?);
+    String? translation = _getPluralTranslation(key!, pluralKeyValue, _translations as Map<String, dynamic>?);
 
     if (translation != null) {
       translation = translation.replaceAll(Constants.pluralValueArg, value.toString());
@@ -51,7 +51,7 @@ class Localization {
     }
   }
 
-  String _assignArguments(String? value, Map<String?, dynamic>? args) {
+  String _assignArguments(String? value, Map<String, dynamic>? args) {
     for (final String? key in args!.keys) {
       value = value!.replaceAll('{$key}', '${args[key]}');
     }
@@ -59,21 +59,21 @@ class Localization {
     return value!;
   }
 
-  String? _getTranslation(String? key, Map<String?, dynamic>? map) {
+  String? _getTranslation(String? key, Map<String, dynamic>? map) {
     final List<String> keys = key!.split('.');
 
     if (keys.length > 1) {
       final String firstKey = keys.first;
 
       if (map!.containsKey(firstKey) && map[firstKey] is! String) {
-        return _getTranslation(key.substring(key.indexOf('.') + 1), map[firstKey] as Map<String?, dynamic>);
+        return _getTranslation(key.substring(key.indexOf('.') + 1), map[firstKey] as Map<String, dynamic>);
       }
     }
 
     return map![key] as String?;
   }
 
-  String? _getPluralTranslation(String? key, String? valueKey, Map<String?, dynamic>? map) {
+  String? _getPluralTranslation(String? key, String? valueKey, Map<String, dynamic>? map) {
     final List<String> keys = key!.split('.');
 
     if (keys.length > 1) {
@@ -81,7 +81,7 @@ class Localization {
 
       if (map!.containsKey(firstKey) && map[firstKey] is! String) {
         return _getPluralTranslation(
-            key.substring(key.indexOf('.') + 1), valueKey, map[firstKey] as Map<String?, dynamic>);
+            key.substring(key.indexOf('.') + 1), valueKey, map[firstKey] as Map<String, dynamic>);
       }
     }
 
