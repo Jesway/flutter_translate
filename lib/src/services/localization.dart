@@ -3,21 +3,21 @@ import 'package:flutter_translate/src/constants/constants.dart';
 
 class Localization
 {
-    Map<dynamic, dynamic> _translations;
+    Map<dynamic, dynamic>? _translations;
 
     Localization._();
 
-    static Localization _instance;
+    static Localization? _instance;
     static Localization get instance => _instance ?? (_instance = Localization._());
 
-    static void load(Map<dynamic, dynamic> translations)
+    static void load(Map<dynamic, dynamic>? translations)
     {
         instance._translations = translations;
     }
 
-    String translate(String key, {Map<String, dynamic> args})
+    String? translate(String? key, {Map<String, dynamic>? args})
     {
-        var translation = _getTranslation(key, _translations);
+        var translation = _getTranslation(key, _translations as Map<String, dynamic>?);
 
         if (translation != null && args != null)
         {
@@ -27,10 +27,10 @@ class Localization
         return translation ?? key;
     }
 
-    String plural(String key, num value, {Map<String, dynamic> args})
+    String? plural(String? key, num? value, {Map<String, dynamic>? args})
     {
         var pluralKeyValue = _getPluralKeyValue(value);
-        var translation = _getPluralTranslation(key, pluralKeyValue, _translations);
+        var translation = _getPluralTranslation(key, pluralKeyValue, _translations as Map<String, dynamic>?);
 
         if(translation != null)
         {
@@ -45,7 +45,7 @@ class Localization
         return translation ?? '$key.$pluralKeyValue';
     }
 
-    String _getPluralKeyValue(num value)
+    String? _getPluralKeyValue(num? value)
     {
         switch(value)
         {
@@ -56,47 +56,47 @@ class Localization
         }
     }
 
-    String _assignArguments(String value, Map<String, dynamic> args)
+    String? _assignArguments(String? value, Map<String, dynamic> args)
     {
         for(final key in args.keys)
         {
-            value = value.replaceAll('{$key}', '${args[key]}');
+            value = value!.replaceAll('{$key}', '${args[key]}');
         }
 
         return value;
     }
 
-    String _getTranslation(String key, Map<String, dynamic> map)
+    String? _getTranslation(String? key, Map<String, dynamic>? map)
     {
-        List<String> keys = key.split('.');
+        List<String> keys = key!.split('.');
 
         if (keys.length > 1)
         {
             var firstKey = keys.first;
 
-            if(map.containsKey(firstKey) && map[firstKey] is! String)
+            if(map!.containsKey(firstKey) && map[firstKey] is! String)
             {
                 return _getTranslation(key.substring(key.indexOf('.') + 1), map[firstKey]);
             }
         }
 
-        return map[key];
+        return map![key];
     }
 
-    String _getPluralTranslation(String key, String valueKey, Map<String, dynamic> map)
+    String? _getPluralTranslation(String? key, String? valueKey, Map<String, dynamic>? map)
     {
-        List<String> keys = key.split('.');
+        List<String> keys = key!.split('.');
 
         if (keys.length > 1)
         {
             var firstKey = keys.first;
 
-            if(map.containsKey(firstKey) && map[firstKey] is! String)
+            if(map!.containsKey(firstKey) && map[firstKey] is! String)
             {
                 return _getPluralTranslation(key.substring(key.indexOf('.') + 1), valueKey, map[firstKey]);
             }
         }
 
-        return map[key][valueKey] ?? map[key][Constants.pluralElse];
+        return map![key][valueKey] ?? map[key][Constants.pluralElse];
     }
 }
