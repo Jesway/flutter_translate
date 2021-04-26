@@ -11,7 +11,7 @@ class LocaleService
     {
         Map<String, String>? files = await LocaleFileService.getLocaleFiles(locales!, basePath!);
 
-        return files!.map((x,y) => MapEntry(localeFromString(x)!, y));
+        return files!.map((x,y) => MapEntry(localeFromString(x), y));
     }
 
     static Locale? findLocale(Locale? locale, List<Locale>? supportedLocales)

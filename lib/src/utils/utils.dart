@@ -40,7 +40,7 @@ Future changeLocale(BuildContext context, String? localeCode) async
 {
 	if (localeCode != null)
 	{
-		await LocalizedApp.of(context)!.delegate.changeLocale(localeFromString(localeCode)!);
+		await LocalizedApp.of(context)!.delegate.changeLocale(localeFromString(localeCode));
 
 		LocalizationProvider.of(context)!.state!.onLocaleChanged();
 	}
