@@ -3,12 +3,14 @@ import 'package:flutter/services.dart';
 import 'constants.dart';
 
 class LocaleFileService {
-  static Future<Map<String?, String?>?> getLocaleFiles(List<String> locales, String? basePath) async {
+  /// Set Key-value variables of Map variable as non-null variables
+  static Future<Map<String, String>?> getLocaleFiles(List<String> locales, String? basePath) async {
     final List<String>? localizedFiles = await _getAllLocaleFiles(basePath);
 
     final Map<String, String> files = <String, String>{};
 
-    for (final String? language in locales.toSet()) {
+    /// Set language variable as a non-null variable
+    for (final String language in locales.toSet()) {
       final String file = _findLocaleFile(language, localizedFiles, basePath!)!;
 
       files[language] = file;
