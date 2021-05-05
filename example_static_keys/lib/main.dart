@@ -40,8 +40,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-  final String title;
+  MyHomePage({Key? key}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -67,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(translate(Keys.Language_Selected_Message, args: {'language': translate(getCurrentLanguageLocalizationKey(localizationDelegate.currentLocale.languageCode))})),
+            Text(translate(Keys.Language_Selected_Message, args: {'language': translate(getCurrentLanguageLocalizationKey(localizationDelegate.currentLocale!.languageCode))})),
             Padding(
                     padding: EdgeInsets.only(top: 25, bottom: 160),
                     child: CupertinoButton.filled(
@@ -103,13 +102,12 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  void showDemoActionSheet({BuildContext context, Widget child}) {
+  void showDemoActionSheet({required BuildContext context, required Widget child}) {
     showCupertinoModalPopup<String>(
-            context: context,
-            builder: (BuildContext context) => child).then((String value)
-    {
-      changeLocale(context, value);
-    });
+      context: context,
+      builder: (BuildContext context) => child).then((String? value) {
+        changeLocale(context, value);
+      });
   }
 
   void _onActionSheetPress(BuildContext context) {

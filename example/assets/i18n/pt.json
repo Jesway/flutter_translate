@@ -1,0 +1,30 @@
+{
+	"app_bar": {
+		"title": "Seja bem vindo a página inicial"
+	},
+	"button": {
+		"cancel": "Cancelar",
+		"change_language": "Alterar idioma"
+	},
+	"language": {
+		"name": {
+			"en": "Inglês",
+			"es": "Espanhol",
+			"pt": "Português (Brasil)",
+			"fa": "Persa",
+			"ar": "Árabe"
+		},
+		"selected_message": "A lingua atual selecionada é {language}",
+		"selection": {
+			"message": "Por favor, escolha um idioma da lista",
+			"title": "Seleção de idioma"
+		}
+	},
+	"plural": {
+		"demo": {
+			"0": "Por favor, começe apertando o botão de 'mais'.",
+			"1": "Você pressionou o botão uma vez.",
+			"else": "Você pressionou o botão {{value}} vezes."
+		}
+	}
+}

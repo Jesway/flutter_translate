@@ -7,7 +7,7 @@ void main() async
 {
   var delegate = await LocalizationDelegate.create(
           fallbackLocale: 'en_US',
-          supportedLocales: ['en_US', 'es', 'fa', 'ar']);
+          supportedLocales: ['en_US', 'es', 'pt_BR', 'fa', 'ar']);
 
   runApp(LocalizedApp(delegate, MyApp()));
 }
@@ -38,8 +38,8 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-  final String title;
+  MyHomePage({Key? key, this.title}) : super(key: key);
+  final String? title;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -65,7 +65,8 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(translate('language.selected_message', args: {'language': translate('language.name.${localizationDelegate.currentLocale.languageCode}')})),
+            Text(translate('language.selected_message', args: {
+              'language': translate('language.name.${localizationDelegate.currentLocale!.languageCode}')})),
             Padding(
                     padding: EdgeInsets.only(top: 25, bottom: 160),
                     child: CupertinoButton.filled(
@@ -101,13 +102,14 @@ class _MyHomePageState extends State<MyHomePage> {
       );
   }
 
-  void showDemoActionSheet({BuildContext context, Widget child}) {
+  void showDemoActionSheet({required BuildContext context, required Widget child}) {
     showCupertinoModalPopup<String>(
             context: context,
-            builder: (BuildContext context) => child).then((String value)
-                                                           {
-                                                             changeLocale(context, value);
-                                                           });
+            builder: (BuildContext context) => child)
+              .then((String? value) {
+                if(value != null)
+                  changeLocale(context, value);
+             });
   }
 
   void _onActionSheetPress(BuildContext context) {
@@ -125,6 +127,10 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Text(translate('language.name.es')),
             onPressed: () => Navigator.pop(context, 'es'),
             ),
+          CupertinoActionSheetAction(
+            child: Text(translate('language.name.pt')),
+            onPressed: () => Navigator.pop(context, 'pt_BR'),
+          ),
           CupertinoActionSheetAction(
             child: Text(translate('language.name.fa')),
             onPressed: () => Navigator.pop(context, 'fa'),
