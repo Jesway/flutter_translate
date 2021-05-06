@@ -5,11 +5,15 @@ homepage: https://leadcode.dev
 repository: https://github.com/bratan/flutter_translate
 
 environment:
-  sdk: ">=2.5.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  universal_io: ^2.0.1
+  universal_io: ^2.0.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
 
 flutter:

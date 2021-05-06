@@ -12,5 +12,5 @@ class LocalizedApp extends StatefulWidget
 
     LocalizedAppState createState() => LocalizedAppState();
 
-    static LocalizedApp of(BuildContext context) => context.findAncestorWidgetOfExactType<LocalizedApp>();
+    static LocalizedApp of(BuildContext context) => context.findAncestorWidgetOfExactType<LocalizedApp>()!;
 }
