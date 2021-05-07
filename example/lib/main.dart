@@ -38,8 +38,8 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-  final String title;
+  MyHomePage({Key? key, this.title}) : super(key: key);
+  final String? title;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -101,11 +101,12 @@ class _MyHomePageState extends State<MyHomePage> {
       );
   }
 
-  void showDemoActionSheet({BuildContext context, Widget child}) {
+  void showDemoActionSheet({required BuildContext context, required Widget child}) {
     showCupertinoModalPopup<String>(
             context: context,
-            builder: (BuildContext context) => child).then((String value)
+            builder: (BuildContext context) => child).then((String? value)
                                                            {
+                                                            if(value != null)
                                                              changeLocale(context, value);
                                                            });
   }

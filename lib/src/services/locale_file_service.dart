@@ -20,9 +20,9 @@ class LocaleFileService
         return files;
     }
 
-    static Future<String> getLocaleContent(String file) async
+    static Future<String?> getLocaleContent(String file) async
     {
-        final ByteData data = await rootBundle.load(file);
+        final ByteData? data = await rootBundle.load(file);
         if (data == null) return null;
         return utf8.decode(data.buffer.asUint8List());
     }
@@ -58,7 +58,7 @@ class LocaleFileService
         return file;
     }
 
-    static String _getFilepath(String languageCode, String basePath)
+    static String? _getFilepath(String languageCode, String basePath)
     {
         var separator = basePath.endsWith('/') ? '' : '/';
 
