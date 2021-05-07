@@ -93,3 +93,7 @@
 ## [2.0.1]
 
 - Fixed web support
+
+## [3.0.0]
+
+- Null safety support
