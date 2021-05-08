@@ -97,3 +97,7 @@
 ## [3.0.0]
 
 - Null safety support
+
+## [3.0.1]
+
+- Code format
