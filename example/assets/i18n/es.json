@@ -11,7 +11,8 @@
 			"en": "Inglés",
 			"es": "Español",
 			"fa": "Persa",
-			"ar": "Arábica"
+			"ar": "Arábica",
+			"ru": "Ruso"
 		},
 		"selected_message": "El idioma seleccionado actualmente es {language}",
 		"selection": {
