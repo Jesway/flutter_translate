@@ -101,3 +101,7 @@
 ## [3.0.1]
 
 - Code format
+
+## [3.1.0]
+
+- Updated dependencies
