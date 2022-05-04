@@ -1,4 +1,4 @@
-package dev.leadcode.example_static_keys;
+package dev.com.jesway.example_static_keys;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

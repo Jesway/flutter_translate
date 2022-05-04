@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/widgets.dart';
 import 'package:universal_io/io.dart';
 
@@ -11,7 +10,7 @@ Locale? getCurrentLocale()
 /// Returns preferred device locales
 List<Locale>? getPreferredLocales() 
 {
-    final deviceLocales = WidgetsBinding.instance?.window.locales;
+    final deviceLocales = WidgetsBinding.instance.window.locales;
 
     return deviceLocales;
 }
