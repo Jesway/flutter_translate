@@ -127,10 +127,6 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () => Navigator.pop(context, 'es'),
             ),
           CupertinoActionSheetAction(
-            child: Text(translate('language.name.fa')),
-            onPressed: () => Navigator.pop(context, 'fa'),
-            ),
-          CupertinoActionSheetAction(
             child: Text(translate('language.name.ar')),
             onPressed: () => Navigator.pop(context, 'ar'),
             ),

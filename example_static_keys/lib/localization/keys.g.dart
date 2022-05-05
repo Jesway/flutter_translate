@@ -21,13 +21,23 @@ class Keys {
 
   static const String Language_Name_Ar = 'language.name.ar';
 
+  static const String Language_Name_Ru = 'language.name.ru';
+
   static const String Language_Selected_Message = 'language.selected_message';
 
   static const String Language_Selection_Message = 'language.selection.message';
 
   static const String Language_Selection_Title = 'language.selection.title';
 
-  static const String Plural_Demo = 'plural.demo';
+  static const String Plural_Demo_Zero = 'plural.demo.zero';
 
-  static const String Plural_Demo_2 = 'plural.demo.2';
+  static const String Plural_Demo_One = 'plural.demo.one';
+
+  static const String Plural_Demo_Two = 'plural.demo.two';
+
+  static const String Plural_Demo_Other = 'plural.demo.other';
+
+  static const String Plural_Demo_Few = 'plural.demo.few';
+
+  static const String Plural_Demo_Many = 'plural.demo.many';
 }

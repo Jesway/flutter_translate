@@ -154,9 +154,9 @@ class _MyHomePageState extends State<MyHomePage> {
       case "en":
       case "en_US": return Keys.Language_Name_En;
       case "es": return Keys.Language_Name_Es;
-      case "fa": return Keys.Language_Name_Fa;
       case "ar": return Keys.Language_Name_Ar;
-      default: return null;
+        case "ru": return Keys.Language_Name_Ru;
+        default: return null;
     }
   }
 }

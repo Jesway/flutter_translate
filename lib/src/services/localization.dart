@@ -31,29 +31,27 @@ class Localization
     String plural(String key, num value, {Map<String, dynamic>? args})
     {
         final forms = _getAllPluralForms(key, _translations);
+
         return Intl.plural(
             value,
-            zero: _putArgs(forms[Constants.pluralZero], value, args: args)
-                ?? _putArgs(forms[Constants.plural0], value, args: args),
-            one: _putArgs(forms[Constants.pluralOne], value, args: args)
-                ?? _putArgs(forms[Constants.plural1], value, args: args),
-            two: _putArgs(forms[Constants.pluralTwo], value, args: args)
-                ?? _putArgs(forms[Constants.plural2], value, args: args),
+            zero: _putArgs(forms[Constants.pluralZero], value, args: args),
+            one: _putArgs(forms[Constants.pluralOne], value, args: args),
+            two: _putArgs(forms[Constants.pluralTwo], value, args: args),
             few: _putArgs(forms[Constants.pluralFew], value, args: args),
             many: _putArgs(forms[Constants.pluralMany], value, args: args),
-            other: _putArgs(forms[Constants.pluralOther], value, args: args)
-                ?? _putArgs(forms[Constants.pluralElse], value, args: args)
-                ?? '$key.${Constants.pluralOther}',
+            other: _putArgs(forms[Constants.pluralOther], value, args: args) ?? '$key.${Constants.pluralOther}',
         );
     }
 
     String? _putArgs(String? template, num value, {Map<String, dynamic>? args})
     {
-        if (template == null) {
+        if (template == null) 
+        {
             return null;
         }
 
         template = template.replaceAll(Constants.pluralValueArg, value.toString());
+
         if (args == null)
         {
             return template;
@@ -63,6 +61,7 @@ class Localization
         {
             template = template!.replaceAll("{$k}", args[k].toString());
         }
+
         return template;
     }
 
@@ -93,20 +92,24 @@ class Localization
         return map[key];
     }
 
-    Map<String, String> _getAllPluralForms(String key, Map<String, dynamic> map) {
+    Map<String, String> _getAllPluralForms(String key, Map<String, dynamic> map) 
+    {
         List<String> keys = key.split('.');
 
-        if (keys.length > 1) {
+        if (keys.length > 1) 
+        {
             var firstKey = keys.first;
 
-            if (map.containsKey(firstKey) && map[firstKey] is! String) {
-                return _getAllPluralForms(
-                    key.substring(key.indexOf('.') + 1), map[firstKey]);
+            if (map.containsKey(firstKey) && map[firstKey] is! String) 
+            {
+                return _getAllPluralForms(key.substring(key.indexOf('.') + 1), map[firstKey]);
             }
         }
 
         final result = <String, String>{};
-        for (String k in map[key].keys) {
+
+        for (String k in map[key].keys) 
+        {
             result[k] = map[key][k].toString();
         }
 

@@ -1,13 +1,17 @@
 {
-	"app_bar": {
+	"app_bar": 
+	{
 		"title": "Welcome to the home page"
 	},
-	"button": {
+	"button": 
+	{
 		"cancel": "Cancel",
 		"change_language": "Change Language"
 	},
-	"language": {
-		"name": {
+	"language": 
+	{
+		"name": 
+		{
 			"en": "English",
 			"es": "Spanish",
 			"fa": "Persian",
@@ -15,16 +19,20 @@
 			"ru": "Russian"
 		},
 		"selected_message": "Currently selected language is {language}",
-		"selection": {
+		"selection": 
+		{
 			"message": "Please select a language from the list",
 			"title": "Language Selection"
 		}
 	},
-	"plural": {
-		"demo": {
-			"0": "Please start pushing the 'plus' button.",
-			"1": "You have pushed the button one time.",
-			"else": "You have pushed the button {{value}} times."
+	"plural": 
+	{
+		"demo": 
+		{
+			"zero": "Please start pushing the 'plus' button.",
+			"one": "You have pushed the button one time.",
+			"two": "You have pushed the button two times.",
+			"other": "You have pushed the button {{value}} times."
 		}
 	}
 }

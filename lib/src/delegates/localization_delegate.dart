@@ -68,10 +68,11 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization>
     @override
     bool shouldReload(LocalizationsDelegate<Localization> old) => true;
 
-  static Future<LocalizationDelegate> create({required String fallbackLocale,
-                                              required List<String> supportedLocales,
-                                                String basePath = Constants.localizedAssetsPath,
-                                                ITranslatePreferences? preferences}) async
+    static Future<LocalizationDelegate> create({
+        required String fallbackLocale,
+        required List<String> supportedLocales,
+        String basePath = Constants.localizedAssetsPath,
+        ITranslatePreferences? preferences}) async
     {
         WidgetsFlutterBinding.ensureInitialized();
 
