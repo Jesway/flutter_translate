@@ -1,5 +1,6 @@
 
 import 'package:flutter_translate/src/constants/constants.dart';
+import 'package:intl/intl.dart';
 
 class Localization
 {
@@ -29,31 +30,40 @@ class Localization
 
     String plural(String key, num value, {Map<String, dynamic>? args})
     {
-        var pluralKeyValue = _getPluralKeyValue(value);
-        var translation = _getPluralTranslation(key, pluralKeyValue, _translations);
-
-        if(translation != null)
-        {
-            translation = translation.replaceAll(Constants.pluralValueArg, value.toString());
-
-            if (args != null)
-            {
-                translation = _assignArguments(translation, args);
-            }
-        }
-
-        return translation ?? '$key.$pluralKeyValue';
+        final forms = _getAllPluralForms(key, _translations);
+        return Intl.plural(
+            value,
+            zero: _putArgs(forms[Constants.pluralZero], value, args: args)
+                ?? _putArgs(forms[Constants.plural0], value, args: args),
+            one: _putArgs(forms[Constants.pluralOne], value, args: args)
+                ?? _putArgs(forms[Constants.plural1], value, args: args),
+            two: _putArgs(forms[Constants.pluralTwo], value, args: args)
+                ?? _putArgs(forms[Constants.plural2], value, args: args),
+            few: _putArgs(forms[Constants.pluralFew], value, args: args),
+            many: _putArgs(forms[Constants.pluralMany], value, args: args),
+            other: _putArgs(forms[Constants.pluralOther], value, args: args)
+                ?? _putArgs(forms[Constants.pluralElse], value, args: args)
+                ?? '$key.${Constants.pluralOther}',
+        );
     }
 
-    String _getPluralKeyValue(num value)
+    String? _putArgs(String? template, num value, {Map<String, dynamic>? args})
     {
-        switch(value)
-        {
-            case 0: return Constants.pluralZero;
-            case 1: return Constants.pluralOne;
-            case 2: return Constants.pluralTwo;
-            default: return Constants.pluralElse;
+        if (template == null) {
+            return null;
         }
+
+        template = template.replaceAll(Constants.pluralValueArg, value.toString());
+        if (args == null)
+        {
+            return template;
+        }
+
+        for (String k in args.keys)
+        {
+            template = template!.replaceAll("{$k}", args[k].toString());
+        }
+        return template;
     }
 
     String _assignArguments(String value, Map<String, dynamic> args)
@@ -83,20 +93,23 @@ class Localization
         return map[key];
     }
 
-    String? _getPluralTranslation(String key, String valueKey, Map<String, dynamic> map)
-    {
+    Map<String, String> _getAllPluralForms(String key, Map<String, dynamic> map) {
         List<String> keys = key.split('.');
 
-        if (keys.length > 1)
-        {
+        if (keys.length > 1) {
             var firstKey = keys.first;
 
-            if(map.containsKey(firstKey) && map[firstKey] is! String)
-            {
-                return _getPluralTranslation(key.substring(key.indexOf('.') + 1), valueKey, map[firstKey]);
+            if (map.containsKey(firstKey) && map[firstKey] is! String) {
+                return _getAllPluralForms(
+                    key.substring(key.indexOf('.') + 1), map[firstKey]);
             }
         }
 
-        return map[key][valueKey] ?? map[key][Constants.pluralElse];
+        final result = <String, String>{};
+        for (String k in map[key].keys) {
+            result[k] = map[key][k].toString();
+        }
+
+        return result;
     }
 }

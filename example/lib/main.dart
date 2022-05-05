@@ -7,7 +7,7 @@ void main() async
 {
   var delegate = await LocalizationDelegate.create(
           fallbackLocale: 'en_US',
-          supportedLocales: ['en_US', 'es', 'fa', 'ar']);
+          supportedLocales: ['en_US', 'es', 'fa', 'ar', 'ru']);
 
   runApp(LocalizedApp(delegate, MyApp()));
 }
@@ -133,6 +133,10 @@ class _MyHomePageState extends State<MyHomePage> {
           CupertinoActionSheetAction(
             child: Text(translate('language.name.ar')),
             onPressed: () => Navigator.pop(context, 'ar'),
+            ),
+          CupertinoActionSheetAction(
+            child: Text(translate('language.name.ru')),
+            onPressed: () => Navigator.pop(context, 'ru'),
             ),
         ],
         cancelButton: CupertinoActionSheetAction(
