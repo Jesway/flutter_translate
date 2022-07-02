@@ -114,3 +114,7 @@
 ## [4.0.2]
 
 - Fixed null safety compile issue
+
+## [4.0.3]
+
+- Fixed null-aware operation exception
