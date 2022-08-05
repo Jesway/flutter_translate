@@ -5,131 +5,131 @@ import 'package:flutter_translate/src/constants/constants.dart';
 import 'package:flutter_translate/src/services/locale_service.dart';
 import 'package:flutter_translate/src/validators/configuration_validator.dart';
 
-class LocalizationDelegate extends LocalizationsDelegate<Localization>
-{
-    Locale? _currentLocale;
+class LocalizationDelegate extends LocalizationsDelegate<Localization> {
+  Locale? _currentLocale;
 
-    final Locale fallbackLocale;
+  final Locale fallbackLocale;
 
-    final List<Locale> supportedLocales;
+  final List<Locale> supportedLocales;
 
-    final Map<Locale, String> supportedLocalesMap;
+  final Map<Locale, String> supportedLocalesMap;
 
-    final ITranslatePreferences? preferences;
+  final ITranslatePreferences? preferences;
 
-    LocaleChangedCallback? onLocaleChanged;
+  final bool fallbackForMissingStrings;
 
-    Locale get currentLocale => _currentLocale!;
+  LocaleChangedCallback? onLocaleChanged;
 
-    LocalizationDelegate._(this.fallbackLocale, this.supportedLocales, this.supportedLocalesMap, this.preferences);
+  Locale get currentLocale => _currentLocale!;
 
-    Future changeLocale(Locale newLocale) async
-    {
-        var isInitializing = _currentLocale == null;
+  LocalizationDelegate._(
+    this.fallbackLocale,
+    this.supportedLocales,
+    this.supportedLocalesMap,
+    this.preferences,
+    this.fallbackForMissingStrings,
+  );
 
-        var locale = LocaleService.findLocale(newLocale, supportedLocales) ?? fallbackLocale;
+  Future changeLocale(Locale newLocale) async {
+    var isInitializing = _currentLocale == null;
 
-        if(_currentLocale == locale) return;
+    var locale =
+        LocaleService.findLocale(newLocale, supportedLocales) ?? fallbackLocale;
 
-        var localizedContent = await LocaleService.getLocaleContent(locale, supportedLocalesMap);
+    if (_currentLocale == locale) return;
 
-        Localization.load(localizedContent);
+    var localizedContent =
+        await LocaleService.getLocaleContent(locale, supportedLocalesMap);
 
-        _currentLocale = locale;
+    var fallbackContent =
+        (fallbackForMissingStrings && locale != fallbackLocale)
+            ? await LocaleService.getLocaleContent(
+                fallbackLocale, supportedLocalesMap)
+            : null;
 
-        Intl.defaultLocale = _currentLocale?.languageCode;
+    Localization.load(localizedContent, fallback: fallbackContent);
 
-        if(onLocaleChanged != null)
-        {
-           await onLocaleChanged!(locale);
-        }
+    _currentLocale = locale;
 
-        if(!isInitializing && preferences != null)
-        {
-           await preferences!.savePreferredLocale(locale);
-        }
+    Intl.defaultLocale = _currentLocale?.languageCode;
+
+    if (onLocaleChanged != null) {
+      await onLocaleChanged!(locale);
     }
 
-    @override
-    Future<Localization> load(Locale newLocale) async
-    {
-        if(currentLocale != newLocale)
-        {
-            await changeLocale(newLocale);
-        }
+    if (!isInitializing && preferences != null) {
+      await preferences!.savePreferredLocale(locale);
+    }
+  }
 
-        return Localization.instance;
+  @override
+  Future<Localization> load(Locale newLocale) async {
+    if (currentLocale != newLocale) {
+      await changeLocale(newLocale);
     }
 
+    return Localization.instance;
+  }
 
-    @override
-    bool isSupported(Locale? locale) => locale != null;
+  @override
+  bool isSupported(Locale? locale) => locale != null;
 
-    @override
-    bool shouldReload(LocalizationsDelegate<Localization> old) => true;
+  @override
+  bool shouldReload(LocalizationsDelegate<Localization> old) => true;
 
-    static Future<LocalizationDelegate> create({
-        required String fallbackLocale,
-        required List<String> supportedLocales,
-        String basePath = Constants.localizedAssetsPath,
-        ITranslatePreferences? preferences}) async
-    {
-        WidgetsFlutterBinding.ensureInitialized();
+  static Future<LocalizationDelegate> create(
+      {required String fallbackLocale,
+      required List<String> supportedLocales,
+      bool? useFallbackForMissingStrings,
+      String basePath = Constants.localizedAssetsPath,
+      ITranslatePreferences? preferences}) async {
+    WidgetsFlutterBinding.ensureInitialized();
 
-        var fallback = localeFromString(fallbackLocale);
-        var localesMap = await LocaleService.getLocalesMap(supportedLocales, basePath);
-        var locales = localesMap.keys.toList();
+    var fallback = localeFromString(fallbackLocale);
+    var localesMap =
+        await LocaleService.getLocalesMap(supportedLocales, basePath);
+    var locales = localesMap.keys.toList();
 
-        ConfigurationValidator.validate(fallback, locales);
+    ConfigurationValidator.validate(fallback, locales);
 
-        var delegate = LocalizationDelegate._(fallback, locales, localesMap, preferences);
+    var delegate = LocalizationDelegate._(fallback, locales, localesMap,
+        preferences, useFallbackForMissingStrings ?? false);
 
-        if(!await delegate._loadPreferences())
-        {
-            await delegate._loadDeviceLocale();
-        }
-
-        return delegate;
+    if (!await delegate._loadPreferences()) {
+      await delegate._loadDeviceLocale();
     }
 
-    Future<bool> _loadPreferences() async
-    {
-        if(preferences == null) return false;
+    return delegate;
+  }
 
-        Locale? locale;
+  Future<bool> _loadPreferences() async {
+    if (preferences == null) return false;
 
-        try
-        {
-            locale = await preferences!.getPreferredLocale();
-        }
-        catch(e)
-        {
-            return false;
-        }
+    Locale? locale;
 
-        if(locale != null)
-        {
-            await changeLocale(locale);
-            return true;
-        }
-
-        return false;
+    try {
+      locale = await preferences!.getPreferredLocale();
+    } catch (e) {
+      return false;
     }
 
-    Future _loadDeviceLocale() async
-    {
-        try
-        {
-            var locale = getCurrentLocale();
-
-            if(locale != null)
-            {
-                await changeLocale(locale);
-            }
-        }
-        catch(e)
-        {
-            await changeLocale(fallbackLocale);
-        }
+    if (locale != null) {
+      await changeLocale(locale);
+      return true;
     }
+
+    return false;
+  }
+
+  Future _loadDeviceLocale() async {
+    try {
+      var locale = getCurrentLocale();
+
+      if (locale != null) {
+        await changeLocale(locale);
+      }
+    } catch (e) {
+      await changeLocale(fallbackLocale);
+    }
+  }
 }

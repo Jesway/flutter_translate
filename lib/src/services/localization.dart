@@ -5,20 +5,22 @@ import 'package:intl/intl.dart';
 class Localization
 {
     late Map<String, dynamic> _translations;
+    Map<String, dynamic>? _fallbackTranslations;
 
     Localization._();
 
     static Localization? _instance;
     static Localization get instance => _instance ?? (_instance = Localization._());
 
-    static void load(Map<String, dynamic> translations)
+    static void load(Map<String, dynamic> translations, {Map<String, dynamic>? fallback})
     {
         instance._translations = translations;
+        instance._fallbackTranslations = fallback;
     }
 
     String translate(String key, {Map<String, dynamic>? args})
     {
-        var translation = _getTranslation(key, _translations);
+        var translation = _getTranslation(key, _translations, _fallbackTranslations);
 
         if (translation != null && args != null)
         {
@@ -75,21 +77,30 @@ class Localization
         return value;
     }
 
-    String? _getTranslation(String key, Map<String, dynamic> map)
+    String? _getTranslation(String key, Map<String, dynamic> map, Map<String, dynamic>? fallbackMap)
     {
         List<String> keys = key.split('.');
 
         if (keys.length > 1)
         {
             var firstKey = keys.first;
+            var remainingKey = key.substring(key.indexOf('.') + 1);
 
-            if(map.containsKey(firstKey) && map[firstKey] is! String)
+             var value = map[firstKey];
+            if (value != null && value is! String)
             {
-                return _getTranslation(key.substring(key.indexOf('.') + 1), map[firstKey]);
+                return _getTranslation(remainingKey, value, fallbackMap?[firstKey]);
+            } else if (fallbackMap != null)
+            {
+                var fallbackValue = fallbackMap[firstKey];
+                if (fallbackValue != null && fallbackValue is! String)
+                {
+                    return _getTranslation(remainingKey, fallbackValue, null);
+                }
             }
         }
 
-        return map[key];
+        return map[key] ?? (fallbackMap?[key]);
     }
 
     Map<String, String> _getAllPluralForms(String key, Map<String, dynamic> map) 

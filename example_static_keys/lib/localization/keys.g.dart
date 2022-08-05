@@ -40,4 +40,6 @@ class Keys {
   static const String Plural_Demo_Few = 'plural.demo.few';
 
   static const String Plural_Demo_Many = 'plural.demo.many';
+
+  static const String Language_Fallback_String = 'language.fallback_string';
 }

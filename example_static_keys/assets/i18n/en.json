@@ -18,6 +18,7 @@
 			"ar": "Arabic",
 			"ru": "Russian"
 		},
+		"fallback_string": "This string is translated in english only",
 		"selected_message": "Currently selected language is {language}",
 		"selection": 
 		{
