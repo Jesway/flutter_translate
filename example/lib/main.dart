@@ -8,6 +8,7 @@ void main() async {
     fallbackLocale: 'en_US',
     supportedLocales: ['en_US', 'es', 'fa', 'ar', 'ru'],
     useFallbackForMissingStrings: true,
+    interpolateEmptyAsEmtpyString: true,
   );
 
   runApp(LocalizedApp(delegate, MyApp()));

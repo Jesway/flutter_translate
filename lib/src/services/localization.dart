@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 class Localization {
   late Map<String, dynamic> _translations;
   Map<String, dynamic>? _fallbackTranslations;
+  bool? _interpolateEmptyAsEmtpyString;
 
   Localization._();
 
@@ -12,9 +13,10 @@ class Localization {
       _instance ?? (_instance = Localization._());
 
   static void load(Map<String, dynamic> translations,
-      {Map<String, dynamic>? fallback}) {
+      {Map<String, dynamic>? fallback, bool? interpolateEmptyAsEmtpyString}) {
     instance._translations = translations;
     instance._fallbackTranslations = fallback;
+    instance._interpolateEmptyAsEmtpyString = interpolateEmptyAsEmtpyString;
   }
 
   String translate(String key, {Map<String, dynamic>? args}) {
@@ -76,6 +78,9 @@ class Localization {
   String _assignArguments(String value, Map<String, dynamic> args) {
     for (final key in args.keys) {
       value = value.replaceAll('{$key}', '${args[key]}');
+      if (_interpolateEmptyAsEmtpyString ?? false) {
+        value = value.replaceAll('{}', '');
+      }
     }
 
     return value;

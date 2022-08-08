@@ -18,6 +18,8 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization> {
 
   final bool fallbackForMissingStrings;
 
+  final bool interpolateEmptyAsEmtpyString;
+
   LocaleChangedCallback? onLocaleChanged;
 
   Locale get currentLocale => _currentLocale!;
@@ -28,6 +30,7 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization> {
     this.supportedLocalesMap,
     this.preferences,
     this.fallbackForMissingStrings,
+    this.interpolateEmptyAsEmtpyString,
   );
 
   Future changeLocale(Locale newLocale) async {
@@ -47,7 +50,11 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization> {
                 fallbackLocale, supportedLocalesMap)
             : null;
 
-    Localization.load(localizedContent, fallback: fallbackContent);
+    Localization.load(
+      localizedContent,
+      fallback: fallbackContent,
+      interpolateEmptyAsEmtpyString: interpolateEmptyAsEmtpyString,
+    );
 
     _currentLocale = locale;
 
@@ -81,6 +88,7 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization> {
       {required String fallbackLocale,
       required List<String> supportedLocales,
       bool? useFallbackForMissingStrings,
+      bool? interpolateEmptyAsEmtpyString,
       String basePath = Constants.localizedAssetsPath,
       ITranslatePreferences? preferences}) async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -92,8 +100,14 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization> {
 
     ConfigurationValidator.validate(fallback, locales);
 
-    var delegate = LocalizationDelegate._(fallback, locales, localesMap,
-        preferences, useFallbackForMissingStrings ?? false);
+    var delegate = LocalizationDelegate._(
+      fallback,
+      locales,
+      localesMap,
+      preferences,
+      useFallbackForMissingStrings ?? false,
+      interpolateEmptyAsEmtpyString ?? false,
+    );
 
     if (!await delegate._loadPreferences()) {
       await delegate._loadDeviceLocale();
