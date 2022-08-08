@@ -23,8 +23,8 @@ class Localization {
     var translation =
         _getTranslation(key, _translations, _fallbackTranslations);
 
-    if (translation != null && args != null) {
-      translation = _assignArguments(translation, args);
+    if (translation != null) {
+      translation = _assignArguments(translation, args ?? {});
     }
 
     return translation ?? key;
@@ -49,9 +49,9 @@ class Localization {
     var translations =
         _getListTranslation(key, _translations, _fallbackTranslations);
 
-    if (translations != null && args != null) {
+    if (translations != null) {
       translations =
-          translations.map((t) => _assignArguments(t, args)).toList();
+          translations.map((t) => _assignArguments(t, args ?? {})).toList();
     }
 
     return List<String>.from(translations ?? [key]);
@@ -71,6 +71,9 @@ class Localization {
     for (String k in args.keys) {
       template = template!.replaceAll("{$k}", args[k].toString());
     }
+    if (_interpolateEmptyAsEmtpyString ?? false) {
+      template = template!.replaceAll('{}', '');
+    }
 
     return template;
   }
@@ -78,9 +81,9 @@ class Localization {
   String _assignArguments(String value, Map<String, dynamic> args) {
     for (final key in args.keys) {
       value = value.replaceAll('{$key}', '${args[key]}');
-      if (_interpolateEmptyAsEmtpyString ?? false) {
-        value = value.replaceAll('{}', '');
-      }
+    }
+    if (_interpolateEmptyAsEmtpyString ?? false) {
+      value = value.replaceAll('{}', '');
     }
 
     return value;
