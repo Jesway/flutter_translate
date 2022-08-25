@@ -1,3 +1,6 @@
+This fork is mostly adding some features to work better with community translate tools such as [Weblate](https://weblate.org/).
+- Missing translations fallback to default
+- Support empty interpolations to work as empty strings
 
 [<img src="https://github.com/Jesway/Flutter-Translate/raw/master/resources/images/flutter_translate.png" />](https://github.com/Jesway/Flutter-Translate/)
 
