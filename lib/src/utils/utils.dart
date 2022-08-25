@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_translate/flutter_translate.dart';
+import 'package:flutter_translate_community/flutter_translate_community.dart';
 
 typedef LocaleChangedCallback = Future Function(Locale locale);
 

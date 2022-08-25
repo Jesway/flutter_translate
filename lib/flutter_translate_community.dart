@@ -1,4 +1,4 @@
-library flutter_translate;
+library flutter_translate_community;
 
 export 'src/utils/utils.dart';
 export 'src/services/localization.dart';
