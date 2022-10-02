@@ -23,15 +23,15 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization>
 
     LocalizationDelegate._(this.fallbackLocale, this.supportedLocales, this.supportedLocalesMap, this.preferences);
 
-    Future changeLocale(Locale newLocale) async
+    Future changeLocale(Locale newLocale, {Map<String, dynamic>? localizations}) async
     {
         var isInitializing = _currentLocale == null;
 
         var locale = LocaleService.findLocale(newLocale, supportedLocales) ?? fallbackLocale;
 
-        if(_currentLocale == locale) return;
+        if(_currentLocale == locale && localizations == null) return;
 
-        var localizedContent = await LocaleService.getLocaleContent(locale, supportedLocalesMap);
+        var localizedContent = localizations ?? await LocaleService.getLocaleContent(locale, supportedLocalesMap);
 
         Localization.load(localizedContent);
 

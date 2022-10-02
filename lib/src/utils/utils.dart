@@ -35,11 +35,11 @@ String translatePlural(String key, num value, {Map<String, dynamic>? args})
 }
 
 /// Change the currently selected locale
-Future changeLocale(BuildContext context, String? localeCode) async
+Future changeLocale(BuildContext context, String? localeCode, {Map<String, dynamic>? localizations}) async
 {
 	if (localeCode != null)
 	{
-		await LocalizedApp.of(context).delegate.changeLocale(localeFromString(localeCode));
+		await LocalizedApp.of(context).delegate.changeLocale(localeFromString(localeCode), localizations: localizations);
 
 		LocalizationProvider.of(context).state.onLocaleChanged();
 	}
