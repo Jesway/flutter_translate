@@ -10,7 +10,7 @@ Locale? getCurrentLocale()
 /// Returns preferred device locales
 List<Locale>? getPreferredLocales() 
 {
-    final deviceLocales = WidgetsBinding.instance.window.locales;
+    final deviceLocales = WidgetsBinding.instance?.window.locales;
 
     return deviceLocales;
 }
