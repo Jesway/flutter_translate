@@ -23,7 +23,6 @@ It lets you define translations for your content in different languages and swit
 * Very easy to use
 * ```Mobile```, ```Web``` and ```Desktop``` support
 * ```Pluralization``` and ```Duals``` support 
-* ```Static keys``` support with [flutter_translate_gen](https://github.com/Jesway/Flutter-Translate/wiki/3.-Generating-statically-typed-localization-keys)
 * Supports both ``languageCode (en)`` and ``languageCode_countryCode (en_US)`` locale formats 
 * Automatically ```save & restore``` the selected locale [with a simple implementation](https://github.com/Jesway/Flutter-Translate/wiki/2.-Automatically-saving-&-restoring-the-selected-locale)
 * Full support for ```right-to-left``` locales
@@ -36,10 +35,9 @@ Complete documentation is available [on the wiki page](https://github.com/Jesway
 
 To get started please see [Installation, Configuration & Usage](https://github.com/Jesway/Flutter-Translate/wiki/1.-Installation,-Configuration-&-Usage).
 
-## Examples
+## Example
 
-* [Example using dynamic keys](https://github.com/Jesway/Flutter-Translate/tree/master/example)
-* [Example using static keys](https://github.com/Jesway/Flutter-Translate/tree/master/example_static_keys)
+https://github.com/Jesway/Flutter-Translate/tree/master/example
 
 ## Issues
 Please file any issues, bugs or feature request [here](https://github.com/Jesway/Flutter-Translate/issues).
