@@ -28,6 +28,17 @@ class Localization
         return translation ?? key;
     }
 
+    String? translateIfExists(String key, {Map<String, dynamic>? args}) 
+    {
+        var translation = _getTranslation(key, _translations);
+
+        if (translation != null && args != null) {
+            translation = _assignArguments(translation, args);
+        }
+
+        return translation;
+    }
+
     String plural(String key, num value, {Map<String, dynamic>? args})
     {
         final forms = _getAllPluralForms(key, _translations);

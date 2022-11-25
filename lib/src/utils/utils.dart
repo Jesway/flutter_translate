@@ -28,6 +28,13 @@ String translate(String key, {Map<String, dynamic>? args})
 	return Localization.instance.translate(key, args: args);
 }
 
+/// Translate the selected key into the currently selected locale.
+/// If the selected translation key is not found, returns null.
+String? translateIfExists(String key, {Map<String, dynamic>? args}) 
+{
+  return Localization.instance.translateIfExists(key, args: args);
+}
+
 /// Translate the selected key into the currently selected locale using pluralization
 String translatePlural(String key, num value, {Map<String, dynamic>? args})
 {
