@@ -1,7 +1,6 @@
 
 [<img src="https://github.com/Jesway/Flutter-Translate/raw/master/resources/images/flutter_translate.png" />](https://github.com/Jesway/Flutter-Translate/)
 
-[![Build Status](https://travis-ci.org/bratan/flutter_translate.svg)](https://travis-ci.org/bratan/flutter_translate)
 [![pub package](https://img.shields.io/pub/v/flutter_translate.svg?color=important)](https://pub.dev/packages/flutter_translate)
 <a href="https://github.com/Solido/awesome-flutter">
    <img alt="Awesome Flutter" src="https://img.shields.io/badge/Awesome-Flutter-blue.svg?longCache=true" />
