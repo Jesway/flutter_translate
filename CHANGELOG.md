@@ -118,3 +118,7 @@
 ## [4.0.3]
 
 - Fixed null-aware operation exception
+
+## [4.0.4]
+
+- Bump intl version to support latest Flutter version
