@@ -1,6 +1,6 @@
 name: flutter_translate
 description: Flutter Translate is a fully featured localization / internationalization (i18n) library for Flutter.
-version: 4.0.3
+version: 4.0.4
 homepage: https://jesway.com
 repository: https://github.com/Jesway/Flutter-Translate
 
@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   universal_io: ^2.0.4
-  intl: ^0.17.0
+  intl: ^0.18.0
 
 dev_dependencies:
   flutter_test:
