@@ -105,3 +105,20 @@
 ## [3.1.0]
 
 - Updated dependencies
+
+## [4.0.0]
+
+- Plurals functionality is now based on Intl rules (https://api.flutter.dev/flutter/intl/Intl/plural.html)
+- Supported formats are: zero, one, two, few, many, other
+
+## [4.0.2]
+
+- Fixed null safety compile issue
+
+## [4.0.3]
+
+- Fixed null-aware operation exception
+
+## [4.0.4]
+
+- Bump intl version to support latest Flutter version
