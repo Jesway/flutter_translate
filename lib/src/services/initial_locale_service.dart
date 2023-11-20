@@ -37,7 +37,7 @@ class InitialLocaleService
             locale = await LocalePersistenceService.getPreferredLocale();
         }
 
-        locale ??= options.initialLocale ?? options.fallbackLocale;
+        locale ??= options.initialLocale ?? getCurrentDeviceLocale(); // options.fallbackLocale
 
         return locale; 
     }

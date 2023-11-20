@@ -20,7 +20,6 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  universal_io: ^2.2.2
   intl: '>=0.17.0-0 <=0.18.1'
   shared_preferences: ^2.2.2
   path: ^1.8.0
