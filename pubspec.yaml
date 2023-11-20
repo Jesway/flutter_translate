@@ -21,13 +21,13 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: '>=0.17.0-0 <=0.18.1'
-  shared_preferences: ^2.2.2
-  path: ^1.8.0
-  collection: ^1.18.0
+  shared_preferences: '>=2.2.2 <3.0.0'
+  path: '>=1.8.0 <2.0.0'
+  collection: '>=1.17.0 <2.0.0'
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.1
+  flutter_lints: '>=2.0.2 <4.0.0'
 
 flutter:
