@@ -1,12 +1,14 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:flutter_translate/src/contexts/localization_context.dart';
+import 'package:flutter_translate/src/extensions/string_extensions.dart';
 import 'package:flutter_translate/src/models/locale_data.dart';
 import 'package:flutter_translate/src/services/change_locale_service.dart';
 import 'package:flutter_translate/src/services/fallback_locale_service.dart';
 import 'package:flutter_translate/src/services/initial_locale_service.dart';
 import 'package:flutter_translate/src/services/loaders/base/localization_loader.dart';
 import 'package:flutter_translate/src/services/loaders/factories/localization_loader_factory.dart';
+import 'package:flutter_translate/src/services/locale_persistence_service.dart';
 import 'package:flutter_translate/src/services/localization_service.dart';
 import 'package:flutter_translate/src/services/missing_localization_key_service.dart';
 import 'package:flutter_translate/src/services/translation_service.dart';
@@ -30,6 +32,7 @@ class FlutterTranslate
     late InitialLocaleService _initialLocaleService;
     late MissingLocalizationKeyService _missingLocalizationKeyService;
     late ChangeLocaleService _changeLocaleService;
+    late LocalePersistenceService _localePersistenceService;
 
     List<Locale> get supportedLocales => _options.supportedLocales;
 
@@ -54,9 +57,10 @@ class FlutterTranslate
         _options = options;
         
         _loader = LocalizationLoaderFactory.createLoader(options);
+        _localePersistenceService = LocalePersistenceService();
         _localizationService = LocalizationService(_loader, options);
         _fallbackLocaleService = FallbackLocaleService(_localizationService, options);
-        _initialLocaleService = InitialLocaleService(_localizationService, _fallbackLocaleService, options);
+        _initialLocaleService = InitialLocaleService(_localizationService, _fallbackLocaleService, _localePersistenceService, options);
         _missingLocalizationKeyService = MissingLocalizationKeyService(_fallbackLocaleService, options);
         _translationService = TranslationService(_context);
         _changeLocaleService = ChangeLocaleService(_localizationService, _fallbackLocaleService, _context);
@@ -76,5 +80,5 @@ class FlutterTranslate
 
     String plural(String key, num value, {Map<String, dynamic>? args}) => _translationService.plural(key, value, args: args);
 
-    Future changeLocale(Locale newLocale) => _changeLocaleService.changeLocale(newLocale);
+    Future changeLocale(String newLocale) => _changeLocaleService.changeLocale(newLocale.toLocale());
 }

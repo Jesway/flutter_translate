@@ -11,8 +11,7 @@ import 'package:flutter_translate/flutter_translate.dart';
                 supported: ['en', 'es', 'ru', 'ar'],
                 autoSave: true,
                 missingKeyStrategy: MissingKeyStrategy.key,
-                loader: AssetsLoaderOptions(),
-                useCountryCode: false
+                loader: AssetsLoaderOptions()
         ));
 
         runApp(const LocalizedApp(MyApp()));

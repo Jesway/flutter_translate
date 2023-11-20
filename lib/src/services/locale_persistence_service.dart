@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_translate/src/utils/utils.dart';
+import 'package:flutter_translate/src/extensions/string_extensions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Service for persisting and retrieving user's preferred locale settings.
@@ -10,7 +10,7 @@ class LocalePersistenceService
 
     /// Retrieves the preferred Locale from SharedPreferences.
     /// Returns null if no preferred Locale is set or in case of an error.
-    static Future<Locale?> getPreferredLocale() async
+    Future<Locale?> getPreferredLocale() async
     {
         try
         {
@@ -28,7 +28,7 @@ class LocalePersistenceService
             var locale = preferences.getString(_selectedLocaleKey);
 
             // Convert the string to a Locale object.
-            return localeFromString(locale!);
+            return locale!.toLocale();
         }
         catch (e)
         {
@@ -38,7 +38,7 @@ class LocalePersistenceService
     }
 
     /// Saves the user's preferred Locale to SharedPreferences.
-    static Future savePreferredLocale(Locale locale) async
+    Future savePreferredLocale(Locale locale) async
     {
         try
         {
@@ -46,7 +46,7 @@ class LocalePersistenceService
             final preferences = await SharedPreferences.getInstance();
 
             // Store the locale string in SharedPreferences.
-            await preferences.setString(_selectedLocaleKey, localeToString(locale));
+            await preferences.setString(_selectedLocaleKey, locale.toString());
         }
         catch (e) 
         {

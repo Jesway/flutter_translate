@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:flutter_translate/src/constants/constants.dart';
 import 'package:flutter_translate/src/services/loaders/base/localization_loader.dart';
-import 'package:flutter_translate/src/utils/utils.dart';
 import 'package:path/path.dart' as path;
 
 class AssetsLocalizationLoader extends LocalizationLoader
@@ -36,7 +35,7 @@ class AssetsLocalizationLoader extends LocalizationLoader
     
     String? _getLocaleFile(Locale locale)
     {
-        final localeString = localeToString(locale);
+        final localeString = locale.toString();
 
         return files[localeString];
     }
@@ -67,11 +66,6 @@ class AssetsLocalizationLoader extends LocalizationLoader
             if (!_isLocalizationFile(key)) continue;
 
             var locale = path.basenameWithoutExtension(key);
-
-            if (!options.useCountryCode && locale.contains('_'))
-            {
-                locale = localeFromString(locale).languageCode;
-            }
 
             if (!result.containsKey(locale))
             {

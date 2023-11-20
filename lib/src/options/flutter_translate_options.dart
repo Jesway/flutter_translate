@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_translate/flutter_translate.dart';
+import 'package:flutter_translate/src/extensions/string_extensions.dart';
 import 'package:flutter_translate/src/services/loaders/base/localization_loader_options.dart';
-import 'package:flutter_translate/src/utils/utils.dart';
 
 /// Configures localization settings for the flutter_translate package.
 ///
@@ -37,15 +37,6 @@ class FlutterTranslateOptions
     /// This can be used to perform actions when the app's language is changed.
     final LocaleChangedCallback? onLocaleChanged;
 
-    /// Determines whether to use the country code in addition to the language code for retrieving localizations.
-    ///
-    /// If set to `false` (the default), only the language code is used to retrieve localizations. 
-    /// This means that localization will be based purely on language (e.g., 'en', 'fr')
-    ///
-    /// If set to `true`, the country code is also considered, allowing for more specific localizations 
-    /// that take into account both the language and the country/region (e.g., 'en_US', 'en_UK', 'fr_CA').
-    final bool useCountryCode;
-
     /// Specifies the loader type for localization data.
     /// 
     /// This field determines how localization data is sourced - either from local assets or via HTTP.
@@ -70,29 +61,36 @@ class FlutterTranslateOptions
     ///     perform actions when the app's language is changed.
     ///   - [loader]: Specifies the loader type for localization data, determining how localization data
     ///     is sourced - either from local assets or via HTTP. If null, a default assets loader is used.
-    ///   - [useCountryCode] Determines whether to use the country code in addition to the language code for retrieving localizations.
-    ///     Defaults to false.
     FlutterTranslateOptions({
         this.autoSave = false,
         this.missingKeyStrategy = MissingKeyStrategy.key,
         this.onLocaleChanged,
-        this.useCountryCode = false,
         List<String>? supported = const [_defaultLocale], 
         String? fallback = _defaultLocale,
         String? initial,
         LocalizationLoaderOptions? loader,
-    }) : fallbackLocale = localeFromString(fallback ?? _defaultLocale, languageCodeOnly: !useCountryCode),
-         supportedLocales = getSupportedLocales(supported, useCountryCode),
-         initialLocale = initial != null ? localeFromString(initial, languageCodeOnly: !useCountryCode) : null,
+    }) : fallbackLocale = getFallbackLocale(fallback),
+         supportedLocales = getSupportedLocales(supported),
+         initialLocale = getInitialLocale(initial),
          loaderOptions =  loader ?? AssetsLoaderOptions();
 
-    static List<Locale> getSupportedLocales(List<String>? locales, bool useCountryCode)
+    static List<Locale> getSupportedLocales(List<String>? locales)
     {
         if (locales != null && locales.isNotEmpty)
         {
-            return locales.map((x) => localeFromString(x, languageCodeOnly: !useCountryCode)).toList();
+            return locales.map((x) => x.toLocale()).toList();
         }
 
-        return [localeFromString(_defaultLocale, languageCodeOnly: !useCountryCode)];
+        return [_defaultLocale.toLocale()];
+    }
+
+    static Locale getFallbackLocale(String? fallback)
+    {
+        return (fallback ?? _defaultLocale).toLocale();
+    }
+
+    static Locale? getInitialLocale(String? initial)
+    {
+        return initial?.toLocale();
     }
 }

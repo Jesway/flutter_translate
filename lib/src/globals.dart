@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_translate/flutter_translate.dart';
-import 'package:flutter_translate/src/utils/utils.dart';
 
 /// Translate the selected key into the currently selected locale
 String translate(String key, {Map<String, dynamic>? args})
@@ -15,11 +14,9 @@ String translatePlural(String key, num value, {Map<String, dynamic>? args})
 }
 
 /// Change the currently selected locale
-Future changeLocale(BuildContext context, String localeCode) async
-{
-	final newLocale = localeFromString(localeCode);
-	
-	await FlutterTranslate.instance.changeLocale(newLocale);
+Future changeLocale(BuildContext context, String locale) async
+{	
+	await FlutterTranslate.instance.changeLocale(locale);
 
 	if (context.mounted)
 	{

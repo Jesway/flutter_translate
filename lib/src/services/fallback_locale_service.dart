@@ -1,7 +1,6 @@
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:flutter_translate/src/models/locale_data.dart';
 import 'package:flutter_translate/src/services/localization_service.dart';
-import 'package:flutter_translate/src/utils/utils.dart';
 
 class FallbackLocaleService
 {
@@ -24,7 +23,7 @@ class FallbackLocaleService
 
         if (data == null)
         {
-            throw Exception("Fatal error: fallback localizations were not found for locale ${localeToString(_options.fallbackLocale)}.");
+            throw Exception("Fatal error: fallback localizations were not found for locale ${_options.fallbackLocale.toString()}.");
         }
 
         return data;

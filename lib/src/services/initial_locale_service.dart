@@ -9,8 +9,13 @@ class InitialLocaleService
     FlutterTranslateOptions options;
     LocalizationService localizationService;
     FallbackLocaleService fallbackLocaleService;
+    LocalePersistenceService localePersistenceService;
 
-    InitialLocaleService(this.localizationService, this.fallbackLocaleService, this.options);
+    InitialLocaleService(
+        this.localizationService, 
+        this.fallbackLocaleService, 
+        this.localePersistenceService, 
+        this.options);
 
     Future<Locale> getInitialLocale() async 
     {
@@ -34,7 +39,7 @@ class InitialLocaleService
 
         if (options.autoSave)
         {
-            locale = await LocalePersistenceService.getPreferredLocale();
+            locale = await localePersistenceService.getPreferredLocale();
         }
 
         locale ??= options.initialLocale ?? getCurrentDeviceLocale(); // options.fallbackLocale
