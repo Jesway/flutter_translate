@@ -11,6 +11,7 @@ import 'package:flutter_translate/src/services/loaders/factories/localization_lo
 import 'package:flutter_translate/src/services/locale_persistence_service.dart';
 import 'package:flutter_translate/src/services/localization_service.dart';
 import 'package:flutter_translate/src/services/missing_localization_key_service.dart';
+import 'package:flutter_translate/src/services/supported_locale_service.dart';
 import 'package:flutter_translate/src/services/translation_service.dart';
 
 class FlutterTranslate
@@ -33,19 +34,20 @@ class FlutterTranslate
     late MissingLocalizationKeyService _missingLocalizationKeyService;
     late ChangeLocaleService _changeLocaleService;
     late LocalePersistenceService _localePersistenceService;
+    late SupportedLocaleService _supportedLocaleService;
 
     List<Locale> get supportedLocales => _options.supportedLocales;
 
     Locale get currentLocale => _context.current.locale;
 
-    static Future<void> initialize({FlutterTranslateOptions? options}) async
+    static Future<void> initialize(FlutterTranslateOptions options) async
     {
         if (_instance._isInitialized)
         {
             throw Exception("FlutterTranslate.initialize should only be called once.");
         }
 
-        await _instance._initialize(options ?? FlutterTranslateOptions());
+        await _instance._initialize(options);
   
         _instance._isInitialized = true;
     }
@@ -63,7 +65,8 @@ class FlutterTranslate
         _initialLocaleService = InitialLocaleService(_localizationService, _fallbackLocaleService, _localePersistenceService, options);
         _missingLocalizationKeyService = MissingLocalizationKeyService(_fallbackLocaleService, options);
         _translationService = TranslationService(_context);
-        _changeLocaleService = ChangeLocaleService(_localizationService, _fallbackLocaleService, _context);
+        _supportedLocaleService = SupportedLocaleService(_options);
+        _changeLocaleService = ChangeLocaleService(_localizationService, _fallbackLocaleService, _supportedLocaleService, _context);
 
         await _missingLocalizationKeyService.initialize();
         await _setupInitialLocale();

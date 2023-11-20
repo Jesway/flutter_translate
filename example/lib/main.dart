@@ -5,13 +5,13 @@ import 'package:flutter_translate/flutter_translate.dart';
     void main() async 
     {
         await FlutterTranslate.initialize(
-            options: FlutterTranslateOptions(
+            FlutterTranslateOptions(
                 initial: 'en',
                 fallback: 'en',
                 supported: ['en', 'es', 'ru', 'ar'],
                 autoSave: true,
                 missingKeyStrategy: MissingKeyStrategy.key,
-                loader: AssetsLoaderOptions()
+                loader: AssetsLoaderOptions(),
         ));
 
         runApp(const LocalizedApp(MyApp()));

@@ -17,7 +17,19 @@ class LocalizationService
     
     Future<Map<String, dynamic>?> loadLocaleData(Locale locale) async 
     {
-         var data = _getLocalizationData(locale);
+        var data = await _loadLocaleData(locale);
+
+        if (data == null && locale.countryCode != null)
+        {
+            data = await _loadLocaleData(Locale(locale.languageCode));
+        }
+
+        return data;
+    }
+
+    Future<Map<String, dynamic>?> _loadLocaleData(Locale locale) async
+    {
+        var data = _getLocalizationData(locale);
 
         if (data == null) 
         {
