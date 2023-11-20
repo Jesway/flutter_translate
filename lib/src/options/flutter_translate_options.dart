@@ -10,9 +10,6 @@ import 'package:flutter_translate/src/services/loaders/base/localization_loader_
 /// handlers for locale changes.
 class FlutterTranslateOptions 
 {
-    // Default locale used when no specific locale is provided or available.
-    static const _defaultLocale = 'en_US';
-
     /// Fallback locale used when the selected locale is not supported.
     /// This ensures the app has a default language to fall back to.
     final Locale fallbackLocale;
@@ -47,10 +44,10 @@ class FlutterTranslateOptions
     /// Initializes the class with default or provided values for localization settings.
     /// 
     /// Parameters:
-    ///   - [supported]: A list of language codes (e.g., 'en_US', 'fr_FR') representing the locales 
-    ///     supported by the application. If no list is provided, the default locale 'en_US' is used.
+    ///   - [supported]: A list of language codes (e.g., 'en_US', 'de', etc.) representing the locales 
+    ///     supported by the application.
     ///   - [fallback]: The locale to use when the selected locale is not supported. If not provided,
-    ///     the default locale 'en_US' is used as a fallback.
+    ///     the first supported locale is used as a fallback.
     ///   - [autoSave]: Determines if the selected locale should be saved and reloaded on app restart. 
     ///     Defaults to false.
     ///   - [missingKeyStrategy]: Strategy to handle missing translation keys. Defaults to using the key
@@ -65,28 +62,42 @@ class FlutterTranslateOptions
         this.autoSave = false,
         this.missingKeyStrategy = MissingKeyStrategy.key,
         this.onLocaleChanged,
-        List<String>? supported = const [_defaultLocale], 
-        String? fallback = _defaultLocale,
+        required List<String> supported, 
+        String? fallback,
         String? initial,
         LocalizationLoaderOptions? loader,
-    }) : fallbackLocale = getFallbackLocale(fallback),
-         supportedLocales = getSupportedLocales(supported),
+    }) : supportedLocales = getSupportedLocales(supported),
+         fallbackLocale = getFallbackLocale(fallback, supported),
          initialLocale = getInitialLocale(initial),
          loaderOptions =  loader ?? AssetsLoaderOptions();
 
-    static List<Locale> getSupportedLocales(List<String>? locales)
+    static List<Locale> getSupportedLocales(List<String> locales)
     {
-        if (locales != null && locales.isNotEmpty)
+        if (locales.isNotEmpty)
         {
             return locales.toSet().map((x) => x.toLocale()).toList();
         }
-
-        return [_defaultLocale.toLocale()];
+        else
+        {
+            throw Exception("At least one supported locale must be specified.");
+        }
     }
 
-    static Locale getFallbackLocale(String? fallback)
+    static Locale getFallbackLocale(String? fallback, List<String> supportedLocales)
     {
-        return (fallback ?? _defaultLocale).toLocale();
+        if (fallback != null)
+        {
+            if (supportedLocales.any((x) => x == fallback))
+            {
+                return fallback.toLocale();
+            }
+            else
+            {
+                throw Exception("The fallback locale must be present in the list of supported locales.");
+            }
+        }
+        
+        return supportedLocales.first.toLocale();
     }
 
     static Locale? getInitialLocale(String? initial)
