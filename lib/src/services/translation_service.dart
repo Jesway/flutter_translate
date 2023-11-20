@@ -1,24 +1,21 @@
-
 import 'package:flutter_translate/src/constants/constants.dart';
+import 'package:flutter_translate/src/contexts/localization_context.dart';
 import 'package:intl/intl.dart';
 
-class Localization
+class TranslationService
 {
-    late Map<String, dynamic> _translations;
+    LocalizationContext _context;
 
-    Localization._();
+    TranslationService(this._context);
 
-    static Localization? _instance;
-    static Localization get instance => _instance ?? (_instance = Localization._());
-
-    static void load(Map<String, dynamic> translations)
+    void updateLocale(LocalizationContext context)
     {
-        instance._translations = translations;
+        _context = context;
     }
-
+    
     String translate(String key, {Map<String, dynamic>? args})
     {
-        var translation = _getTranslation(key, _translations);
+        var translation = _getTranslation(key, _context.current.localizations);
 
         if (translation != null && args != null)
         {
@@ -30,7 +27,7 @@ class Localization
 
     String plural(String key, num value, {Map<String, dynamic>? args})
     {
-        final forms = _getAllPluralForms(key, _translations);
+        final forms = _getAllPluralForms(key, _context.current.localizations);
 
         return Intl.plural(
             value,
@@ -108,9 +105,13 @@ class Localization
 
         final result = <String, String>{};
 
-        for (String k in map[key].keys) 
+        // Added null check for map[key]
+        if (map[key] != null) 
         {
-            result[k] = map[key][k].toString();
+            for (String k in map[key].keys) 
+            {
+                result[k] = map[key][k].toString();
+            }
         }
 
         return result;
