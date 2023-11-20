@@ -78,7 +78,7 @@ class FlutterTranslateOptions
     {
         if (locales != null && locales.isNotEmpty)
         {
-            return locales.map((x) => x.toLocale()).toList();
+            return locales.toSet().map((x) => x.toLocale()).toList();
         }
 
         return [_defaultLocale.toLocale()];
