@@ -16,36 +16,37 @@ class Localization
         instance._translations = translations;
     }
 
-    String translate(String key, {Map<String, dynamic>? args})
-    {
-        var translation = _getTranslation(key, _translations);
+  String translate(String key, {Map<String, dynamic>? args}) {
+    var translation = getValueAtKeyPath(key);
 
-        if (translation != null && args != null)
-        {
-            translation = _assignArguments(translation, args);
-        }
-
-        return translation ?? key;
+    if (translation != null && translation is String && args != null) {
+      translation = _assignArguments(translation, args);
     }
 
-    String plural(String key, num value, {Map<String, dynamic>? args})
-    {
-        final forms = _getAllPluralForms(key, _translations);
+    return translation is String ? translation : key;
+  }
 
-        return Intl.plural(
-            value,
-            zero: _putArgs(forms[Constants.pluralZero], value, args: args),
-            one: _putArgs(forms[Constants.pluralOne], value, args: args),
-            two: _putArgs(forms[Constants.pluralTwo], value, args: args),
-            few: _putArgs(forms[Constants.pluralFew], value, args: args),
-            many: _putArgs(forms[Constants.pluralMany], value, args: args),
-            other: _putArgs(forms[Constants.pluralOther], value, args: args) ?? '$key.${Constants.pluralOther}',
-        );
+  String plural(String key, num value, {Map<String, dynamic>? args}) {
+    var forms = getValueAtKeyPath(key);
+
+    if (forms is! Map) {
+      return key; // Return the key if the expected plural forms are not found.
     }
+
+    return Intl.plural(
+      value,
+      zero: _putArgs(forms[Constants.pluralZero], value, args: args),
+      one: _putArgs(forms[Constants.pluralOne], value, args: args),
+      two: _putArgs(forms[Constants.pluralTwo], value, args: args),
+      few: _putArgs(forms[Constants.pluralFew], value, args: args),
+      many: _putArgs(forms[Constants.pluralMany], value, args: args),
+      other: _putArgs(forms[Constants.pluralOther], value, args: args) ?? '$key.${Constants.pluralOther}',
+    );
+  }
 
     String? _putArgs(String? template, num value, {Map<String, dynamic>? args})
     {
-        if (template == null) 
+        if (template == null)
         {
             return null;
         }
@@ -92,15 +93,15 @@ class Localization
         return map[key];
     }
 
-    Map<String, String> _getAllPluralForms(String key, Map<String, dynamic> map) 
+    Map<String, String> _getAllPluralForms(String key, Map<String, dynamic> map)
     {
         List<String> keys = key.split('.');
 
-        if (keys.length > 1) 
+        if (keys.length > 1)
         {
             var firstKey = keys.first;
 
-            if (map.containsKey(firstKey) && map[firstKey] is! String) 
+            if (map.containsKey(firstKey) && map[firstKey] is! String)
             {
                 return _getAllPluralForms(key.substring(key.indexOf('.') + 1), map[firstKey]);
             }
@@ -108,11 +109,31 @@ class Localization
 
         final result = <String, String>{};
 
-        for (String k in map[key].keys) 
+        for (String k in map[key].keys)
         {
             result[k] = map[key][k].toString();
         }
 
         return result;
     }
+
+  dynamic getValueAtKeyPath(String keyPath) {
+    List<String> parts = keyPath.split('.');
+    dynamic current = _translations;
+    for (String part in parts) {
+      if (current is Map) {
+        current = current[part];
+      } else if (current is List) {
+        int index = int.tryParse(part) ?? -1;
+        if (index >= 0 && index < current.length) {
+          current = current[index];
+        } else {
+          return null;
+        }
+      } else {
+        return null;
+      }
+    }
+    return current;
+  }
 }
