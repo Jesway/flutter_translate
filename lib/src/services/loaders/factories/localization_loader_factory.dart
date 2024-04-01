@@ -8,23 +8,24 @@ import 'package:flutter_translate/src/services/loaders/http_loader/http_localiza
 ///
 /// This class provides a method to instantiate the appropriate localization loader
 /// based on the provided `LocalizationLoaderOptions`.
-class LocalizationLoaderFactory
-{
-    /// Creates a `LocalizationLoader` based on the specified loader options.
-    /// 
-    /// Parameters:
-    ///   - [loaderOptions]: The `LocalizationLoaderOptions` containing the configuration for the loader.
-    ///
-    /// Returns a `LocalizationLoader` instance according to the type defined in the options.
-    /// 
-    /// Throws `UnimplementedError` if the loader type is not recognized or not implemented.
-    static LocalizationLoader createLoader(FlutterTranslateOptions options)
-    {
-        switch (options.loaderOptions.type)
-        {
-            case LocalizationLoaderType.assets: return AssetsLocalizationLoader(options);
-            case LocalizationLoaderType.http: return HttpLocalizationLoader(options);
-            default: throw UnimplementedError('LocalizationLoader for the specified type is not implemented.');
-        }
+class LocalizationLoaderFactory {
+  /// Creates a `LocalizationLoader` based on the specified loader options.
+  ///
+  /// Parameters:
+  ///   - [loaderOptions]: The `LocalizationLoaderOptions` containing the configuration for the loader.
+  ///
+  /// Returns a `LocalizationLoader` instance according to the type defined in the options.
+  ///
+  /// Throws `UnimplementedError` if the loader type is not recognized or not implemented.
+  static LocalizationLoader createLoader(FlutterTranslateOptions options) {
+    switch (options.loaderOptions.type) {
+      case LocalizationLoaderType.assets:
+        return AssetsLocalizationLoader(options);
+      case LocalizationLoaderType.http:
+        return HttpLocalizationLoader(options);
+      default:
+        throw UnimplementedError(
+            'LocalizationLoader for the specified type is not implemented.');
     }
+  }
 }

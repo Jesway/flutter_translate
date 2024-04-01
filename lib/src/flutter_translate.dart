@@ -14,74 +14,78 @@ import 'package:flutter_translate/src/services/missing_localization_key_service.
 import 'package:flutter_translate/src/services/supported_locale_service.dart';
 import 'package:flutter_translate/src/services/translation_service.dart';
 
-class FlutterTranslate
-{
-    static final FlutterTranslate _instance = FlutterTranslate._();
-    static FlutterTranslate get instance => _instance;
-    FlutterTranslate._();
-    
-    bool _isInitialized = false;
+class FlutterTranslate {
+  static final FlutterTranslate _instance = FlutterTranslate._();
+  static FlutterTranslate get instance => _instance;
+  FlutterTranslate._();
 
-    final LocalizationContext _context = LocalizationContext(LocaleData.undefined());
+  bool _isInitialized = false;
 
-    late FlutterTranslateOptions _options;
-    
-    late TranslationService _translationService;
-    late LocalizationService _localizationService;
-    late FallbackLocaleService _fallbackLocaleService;
-    late LocalizationLoader _loader;
-    late InitialLocaleService _initialLocaleService;
-    late MissingLocalizationKeyService _missingLocalizationKeyService;
-    late ChangeLocaleService _changeLocaleService;
-    late LocalePersistenceService _localePersistenceService;
-    late SupportedLocaleService _supportedLocaleService;
+  final LocalizationContext _context =
+      LocalizationContext(LocaleData.undefined());
 
-    List<Locale> get supportedLocales => _options.supportedLocales;
+  late FlutterTranslateOptions _options;
 
-    Locale get currentLocale => _context.current.locale;
+  late TranslationService _translationService;
+  late LocalizationService _localizationService;
+  late FallbackLocaleService _fallbackLocaleService;
+  late LocalizationLoader _loader;
+  late InitialLocaleService _initialLocaleService;
+  late MissingLocalizationKeyService _missingLocalizationKeyService;
+  late ChangeLocaleService _changeLocaleService;
+  late LocalePersistenceService _localePersistenceService;
+  late SupportedLocaleService _supportedLocaleService;
 
-    static Future<void> initialize(FlutterTranslateOptions options) async
-    {
-        if (_instance._isInitialized)
-        {
-            throw Exception("FlutterTranslate.initialize should only be called once.");
-        }
+  List<Locale> get supportedLocales => _options.supportedLocales;
 
-        await _instance._initialize(options);
-  
-        _instance._isInitialized = true;
+  Locale get currentLocale => _context.current.locale;
+
+  static Future<void> initialize(FlutterTranslateOptions options) async {
+    if (_instance._isInitialized) {
+      throw Exception(
+          "FlutterTranslate.initialize should only be called once.");
     }
 
-    Future<void> _initialize(FlutterTranslateOptions options) async
-    {                
-        WidgetsFlutterBinding.ensureInitialized();
+    await _instance._initialize(options);
 
-        _options = options;
-        
-        _loader = LocalizationLoaderFactory.createLoader(options);
-        _localePersistenceService = LocalePersistenceService();
-        _localizationService = LocalizationService(_loader, options);
-        _fallbackLocaleService = FallbackLocaleService(_localizationService, options);
-        _initialLocaleService = InitialLocaleService(_localizationService, _fallbackLocaleService, _localePersistenceService, options);
-        _missingLocalizationKeyService = MissingLocalizationKeyService(_fallbackLocaleService, options);
-        _translationService = TranslationService(_context);
-        _supportedLocaleService = SupportedLocaleService(_options);
-        _changeLocaleService = ChangeLocaleService(_localizationService, _fallbackLocaleService, _supportedLocaleService, _context);
+    _instance._isInitialized = true;
+  }
 
-        await _missingLocalizationKeyService.initialize();
-        await _setupInitialLocale();
-    }
+  Future<void> _initialize(FlutterTranslateOptions options) async {
+    WidgetsFlutterBinding.ensureInitialized();
 
-    Future _setupInitialLocale() async
-    {
-        final initialLocale = await _initialLocaleService.getInitialLocale();
+    _options = options;
 
-        await _changeLocaleService.changeLocale(initialLocale);
-    }
-    
-    String translate(String key, {Map<String, dynamic>? args}) => _translationService.translate(key, args: args);
+    _loader = LocalizationLoaderFactory.createLoader(options);
+    _localePersistenceService = LocalePersistenceService();
+    _localizationService = LocalizationService(_loader, options);
+    _fallbackLocaleService =
+        FallbackLocaleService(_localizationService, options);
+    _initialLocaleService = InitialLocaleService(_localizationService,
+        _fallbackLocaleService, _localePersistenceService, options);
+    _missingLocalizationKeyService =
+        MissingLocalizationKeyService(_fallbackLocaleService, options);
+    _translationService = TranslationService(_context);
+    _supportedLocaleService = SupportedLocaleService(_options);
+    _changeLocaleService = ChangeLocaleService(_localizationService,
+        _fallbackLocaleService, _supportedLocaleService, _context);
 
-    String plural(String key, num value, {Map<String, dynamic>? args}) => _translationService.plural(key, value, args: args);
+    await _missingLocalizationKeyService.initialize();
+    await _setupInitialLocale();
+  }
 
-    Future changeLocale(String newLocale) => _changeLocaleService.changeLocale(newLocale.toLocale());
+  Future _setupInitialLocale() async {
+    final initialLocale = await _initialLocaleService.getInitialLocale();
+
+    await _changeLocaleService.changeLocale(initialLocale);
+  }
+
+  String translate(String key, {Map<String, dynamic>? args}) =>
+      _translationService.translate(key, args: args);
+
+  String plural(String key, num value, {Map<String, dynamic>? args}) =>
+      _translationService.plural(key, value, args: args);
+
+  Future changeLocale(String newLocale) =>
+      _changeLocaleService.changeLocale(newLocale.toLocale());
 }
