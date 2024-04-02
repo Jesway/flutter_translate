@@ -11,6 +11,9 @@ String translatePlural(String key, num value, {Map<String, dynamic>? args}) {
   return FlutterTranslate.instance.plural(key, value, args: args);
 }
 
+dynamic getValueAtKeyPath(String keyPath){
+  return FlutterTranslate.instance.getValueAtKeyPath(keyPath);
+}
 /// Change the currently selected locale
 Future changeLocale(BuildContext context, String locale) async {
   await FlutterTranslate.instance.changeLocale(locale);

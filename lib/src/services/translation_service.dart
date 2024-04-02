@@ -62,42 +62,46 @@ class TranslationService {
     return value;
   }
 
-  String? _getTranslation(String key, Map<String, dynamic> map) {
-    List<String> keys = key.split('.');
-
-    if (keys.length > 1) {
-      var firstKey = keys.first;
-
-      if (map.containsKey(firstKey) && map[firstKey] is! String) {
-        return _getTranslation(
-            key.substring(key.indexOf('.') + 1), map[firstKey]);
-      }
+  String? _getTranslation(String key, dynamic localizations) {
+    dynamic value = getValueAtKeyPath(key, localizations);
+    if (value is String) {
+      return value;
     }
-
-    return map[key];
+    return null;
   }
 
-  Map<String, String> _getAllPluralForms(String key, Map<String, dynamic> map) {
-    List<String> keys = key.split('.');
-
-    if (keys.length > 1) {
-      var firstKey = keys.first;
-
-      if (map.containsKey(firstKey) && map[firstKey] is! String) {
-        return _getAllPluralForms(
-            key.substring(key.indexOf('.') + 1), map[firstKey]);
-      }
-    }
-
+  Map<String, String> _getAllPluralForms(String key, dynamic localizations) {
+    dynamic value = getValueAtKeyPath(key, localizations);
     final result = <String, String>{};
 
-    // Added null check for map[key]
-    if (map[key] != null) {
-      for (String k in map[key].keys) {
-        result[k] = map[key][k].toString();
-      }
+    if (value is Map) {
+      value.forEach((k, v) {
+        if (v is String) {
+          result[k] = v;
+        }
+      });
     }
 
     return result;
+  }
+
+  dynamic getValueAtKeyPath(String keyPath, [dynamic localizations]) {
+    List<String> parts = keyPath.split('.');
+    dynamic current = localizations ?? _context.current.localizations;
+    for (String part in parts) {
+      if (current is Map) {
+        current = current[part];
+      } else if (current is List) {
+        int index = int.tryParse(part) ?? -1;
+        if (index >= 0 && index < current.length) {
+          current = current[index];
+        } else {
+          return null;
+        }
+      } else {
+        return null;
+      }
+    }
+    return current;
   }
 }
