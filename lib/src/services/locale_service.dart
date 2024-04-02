@@ -4,9 +4,7 @@ import 'package:flutter_translate/flutter_translate.dart';
 
 import 'locale_file_service.dart';
 
-
-
-class LocaleService 
+class LocaleService
 {
     static Future<Map<Locale, String>> getLocalesMap(List<String> locales, String basePath) async
     {
