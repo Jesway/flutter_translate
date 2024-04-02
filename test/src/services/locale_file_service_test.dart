@@ -53,48 +53,47 @@ void main() {
       });
     });
 
-group('getLocaleContent', () {
-  test('should return content of the file', () async {
-    final String filePath = 'assets/i18n/en.json';
-    final String fileContent = '{"hello": "Hello"}';
-    final Map<String, dynamic> manifestContent = {
-      filePath: ['en.json']
-    };
+    group('getLocaleContent', () {
+      test('should return content of the file', () async {
+        final String filePath = 'assets/i18n/en.json';
+        final String fileContent = '{"hello": "Hello"}';
+        final Map<String, dynamic> manifestContent = {
+          filePath: ['en.json']
+        };
 
-    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-        .setMockMessageHandler(
-      'flutter/assets',
-      (message) async {
-        // Correctly decode the message buffer to get the requested asset key
-        final String key = utf8.decode(message!.buffer.asUint8List());
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+            .setMockMessageHandler(
+          'flutter/assets',
+          (message) async {
+            // Correctly decode the message buffer to get the requested asset key
+            final String key = utf8.decode(message!.buffer.asUint8List());
 
-        if (key == 'AssetManifest.json') {
-          // Mock the asset manifest response
-          return ByteData.view(
-              Uint8List.fromList(utf8.encode(json.encode(manifestContent)))
-                  .buffer);
-        } else if (key == filePath) {
-          // Mock the file content response when the requested asset matches filePath
-          return ByteData.view(
-              Uint8List.fromList(utf8.encode(fileContent)).buffer);
-        }
-        return null;
-      },
-    );
+            if (key == 'AssetManifest.json') {
+              // Mock the asset manifest response
+              return ByteData.view(
+                  Uint8List.fromList(utf8.encode(json.encode(manifestContent)))
+                      .buffer);
+            } else if (key == filePath) {
+              // Mock the file content response when the requested asset matches filePath
+              return ByteData.view(
+                  Uint8List.fromList(utf8.encode(fileContent)).buffer);
+            }
+            return null;
+          },
+        );
 
-    String? content = await LocaleFileService.getLocaleContent(filePath);
+        String? content = await LocaleFileService.getLocaleContent(filePath);
 
-    // Assert the content is as expected
-    expect(content, isNotNull);
-    expect(content, isA<String>());
-    expect(json.decode(content!), equals({"hello": "Hello"}));
+        // Assert the content is as expected
+        expect(content, isNotNull);
+        expect(content, isA<String>());
+        expect(json.decode(content!), equals({"hello": "Hello"}));
 
-    // Reset message handler after the test
-    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-        .setMockMessageHandler('flutter/assets', null);
-  });
-});
-
+        // Reset message handler after the test
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+            .setMockMessageHandler('flutter/assets', null);
+      });
+    });
 
     // TODO cant test private methods
     // group('_getAllLocaleFiles', () {
