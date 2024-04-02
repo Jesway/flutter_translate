@@ -3,7 +3,7 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i8;
+import 'dart:async' as _i9;
 import 'dart:ui' as _i2;
 
 import 'package:flutter/foundation.dart' as _i4;
@@ -11,9 +11,9 @@ import 'package:flutter/widgets.dart' as _i3;
 import 'package:flutter_translate/flutter_translate.dart' as _i6;
 import 'package:flutter_translate/src/delegates/flutter_translate_delegate.dart'
     as _i5;
-import 'package:flutter_translate/src/widgets/localized_app.dart' as _i9;
+import 'package:flutter_translate/src/widgets/localized_app.dart' as _i7;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i7;
+import 'package:mockito/src/dummies.dart' as _i8;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -120,6 +120,36 @@ class _FakeBuildContext_6 extends _i1.SmartFake implements _i3.BuildContext {
         );
 }
 
+class _FakeLocalizedAppState_7 extends _i1.SmartFake
+    implements _i7.LocalizedAppState {
+  _FakeLocalizedAppState_7(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+
+  @override
+  String toString({_i3.DiagnosticLevel? minLevel = _i3.DiagnosticLevel.info}) =>
+      super.toString();
+}
+
+class _FakeInheritedElement_8 extends _i1.SmartFake
+    implements _i3.InheritedElement {
+  _FakeInheritedElement_8(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+
+  @override
+  String toString({_i3.DiagnosticLevel? minLevel = _i3.DiagnosticLevel.info}) =>
+      super.toString();
+}
+
 /// A class which mocks [FlutterTranslate].
 ///
 /// See the documentation for Mockito's code generation for more information.
@@ -154,7 +184,7 @@ class MockFlutterTranslate extends _i1.Mock implements _i6.FlutterTranslate {
           [key],
           {#args: args},
         ),
-        returnValue: _i7.dummyValue<String>(
+        returnValue: _i8.dummyValue<String>(
           this,
           Invocation.method(
             #translate,
@@ -179,7 +209,7 @@ class MockFlutterTranslate extends _i1.Mock implements _i6.FlutterTranslate {
           ],
           {#args: args},
         ),
-        returnValue: _i7.dummyValue<String>(
+        returnValue: _i8.dummyValue<String>(
           this,
           Invocation.method(
             #plural,
@@ -200,13 +230,13 @@ class MockFlutterTranslate extends _i1.Mock implements _i6.FlutterTranslate {
       ));
 
   @override
-  _i8.Future<dynamic> changeLocale(String? newLocale) => (super.noSuchMethod(
+  _i9.Future<dynamic> changeLocale(String? newLocale) => (super.noSuchMethod(
         Invocation.method(
           #changeLocale,
           [newLocale],
         ),
-        returnValue: _i8.Future<dynamic>.value(),
-      ) as _i8.Future<dynamic>);
+        returnValue: _i9.Future<dynamic>.value(),
+      ) as _i9.Future<dynamic>);
 }
 
 /// A class which mocks [BuildContext].
@@ -362,7 +392,7 @@ class MockBuildContext extends _i1.Mock implements _i3.BuildContext {
 /// A class which mocks [LocalizedAppState].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLocalizedAppState extends _i1.Mock implements _i9.LocalizedAppState {
+class MockLocalizedAppState extends _i1.Mock implements _i7.LocalizedAppState {
   MockLocalizedAppState() {
     _i1.throwOnMissingStub(this);
   }
@@ -522,7 +552,7 @@ class MockLocalizedAppState extends _i1.Mock implements _i9.LocalizedAppState {
           #toStringShort,
           [],
         ),
-        returnValue: _i7.dummyValue<String>(
+        returnValue: _i8.dummyValue<String>(
           this,
           Invocation.method(
             #toStringShort,
@@ -557,4 +587,188 @@ class MockLocalizedAppState extends _i1.Mock implements _i9.LocalizedAppState {
           ),
         ),
       ) as _i3.DiagnosticsNode);
+}
+
+/// A class which mocks [LocalizedAppInherited].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockLocalizedAppInherited extends _i1.Mock
+    implements _i7.LocalizedAppInherited {
+  MockLocalizedAppInherited() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i7.LocalizedAppState get data => (super.noSuchMethod(
+        Invocation.getter(#data),
+        returnValue: _FakeLocalizedAppState_7(
+          this,
+          Invocation.getter(#data),
+        ),
+      ) as _i7.LocalizedAppState);
+
+  @override
+  _i2.Locale get currentLocale => (super.noSuchMethod(
+        Invocation.getter(#currentLocale),
+        returnValue: _FakeLocale_0(
+          this,
+          Invocation.getter(#currentLocale),
+        ),
+      ) as _i2.Locale);
+
+  @override
+  _i3.Widget get child => (super.noSuchMethod(
+        Invocation.getter(#child),
+        returnValue: _FakeWidget_1(
+          this,
+          Invocation.getter(#child),
+        ),
+      ) as _i3.Widget);
+
+  @override
+  bool updateShouldNotify(_i3.InheritedWidget? oldWidget) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #updateShouldNotify,
+          [oldWidget],
+        ),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  _i3.InheritedElement createElement() => (super.noSuchMethod(
+        Invocation.method(
+          #createElement,
+          [],
+        ),
+        returnValue: _FakeInheritedElement_8(
+          this,
+          Invocation.method(
+            #createElement,
+            [],
+          ),
+        ),
+      ) as _i3.InheritedElement);
+
+  @override
+  String toStringShort() => (super.noSuchMethod(
+        Invocation.method(
+          #toStringShort,
+          [],
+        ),
+        returnValue: _i8.dummyValue<String>(
+          this,
+          Invocation.method(
+            #toStringShort,
+            [],
+          ),
+        ),
+      ) as String);
+
+  @override
+  void debugFillProperties(_i4.DiagnosticPropertiesBuilder? properties) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #debugFillProperties,
+          [properties],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  String toStringShallow({
+    String? joiner = r', ',
+    _i3.DiagnosticLevel? minLevel = _i3.DiagnosticLevel.debug,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #toStringShallow,
+          [],
+          {
+            #joiner: joiner,
+            #minLevel: minLevel,
+          },
+        ),
+        returnValue: _i8.dummyValue<String>(
+          this,
+          Invocation.method(
+            #toStringShallow,
+            [],
+            {
+              #joiner: joiner,
+              #minLevel: minLevel,
+            },
+          ),
+        ),
+      ) as String);
+
+  @override
+  String toStringDeep({
+    String? prefixLineOne = r'',
+    String? prefixOtherLines,
+    _i3.DiagnosticLevel? minLevel = _i3.DiagnosticLevel.debug,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #toStringDeep,
+          [],
+          {
+            #prefixLineOne: prefixLineOne,
+            #prefixOtherLines: prefixOtherLines,
+            #minLevel: minLevel,
+          },
+        ),
+        returnValue: _i8.dummyValue<String>(
+          this,
+          Invocation.method(
+            #toStringDeep,
+            [],
+            {
+              #prefixLineOne: prefixLineOne,
+              #prefixOtherLines: prefixOtherLines,
+              #minLevel: minLevel,
+            },
+          ),
+        ),
+      ) as String);
+
+  @override
+  _i3.DiagnosticsNode toDiagnosticsNode({
+    String? name,
+    _i4.DiagnosticsTreeStyle? style,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #toDiagnosticsNode,
+          [],
+          {
+            #name: name,
+            #style: style,
+          },
+        ),
+        returnValue: _FakeDiagnosticsNode_3(
+          this,
+          Invocation.method(
+            #toDiagnosticsNode,
+            [],
+            {
+              #name: name,
+              #style: style,
+            },
+          ),
+        ),
+      ) as _i3.DiagnosticsNode);
+
+  @override
+  List<_i3.DiagnosticsNode> debugDescribeChildren() => (super.noSuchMethod(
+        Invocation.method(
+          #debugDescribeChildren,
+          [],
+        ),
+        returnValue: <_i3.DiagnosticsNode>[],
+      ) as List<_i3.DiagnosticsNode>);
+
+  @override
+  String toString({_i3.DiagnosticLevel? minLevel = _i3.DiagnosticLevel.info}) =>
+      super.toString();
 }
