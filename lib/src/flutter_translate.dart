@@ -86,7 +86,7 @@ class FlutterTranslate {
   String plural(String key, num value, {Map<String, dynamic>? args}) =>
       _translationService.plural(key, value, args: args);
 
-  String getValueAtKeyPath(String keyPath) =>
+  dynamic getValueAtKeyPath(String keyPath) =>
       _translationService.getValueAtKeyPath(keyPath);
 
   Future changeLocale(String newLocale) =>
