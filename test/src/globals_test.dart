@@ -10,9 +10,8 @@ import 'package:mockito/annotations.dart';
 
 import 'globals_test.mocks.dart';
 
-@GenerateMocks([FlutterTranslate, BuildContext, LocalizedAppState])
+@GenerateMocks([FlutterTranslate, BuildContext, LocalizedAppState,LocalizedAppInherited])
 void main() {
-
   const String englishTranslation = '{"title": "Hello"}';
   const String spanishTranslation = '{"title": "Hola"}';
 
@@ -23,10 +22,12 @@ void main() {
         .setMockMessageHandler('flutter/assets', (message) async {
       final String key = utf8.decode(message!.buffer.asUint8List());
       if (key == 'AssetManifest.json') {
-        return ByteData.view(utf8.encode(json.encode({
-          'assets/i18n/en.json': ['en.json'],
-          'assets/i18n/es.json': ['es.json'],
-        })).buffer);
+        return ByteData.view(utf8
+            .encode(json.encode({
+              'assets/i18n/en.json': ['en.json'],
+              'assets/i18n/es.json': ['es.json'],
+            }))
+            .buffer);
       } else if (key == 'assets/i18n/en.json') {
         return ByteData.view(utf8.encode(englishTranslation).buffer);
       } else if (key == 'assets/i18n/es.json') {
@@ -43,10 +44,21 @@ void main() {
   });
 
   group('Global Functions', () {
-    late BuildContext context;
+    late MockBuildContext mockBuildContext;
+    late MockLocalizedAppInherited mockLocalizedAppInherited;
 
     setUp(() {
-      context = MockBuildContext();
+      mockBuildContext = MockBuildContext();
+      mockLocalizedAppInherited = MockLocalizedAppInherited();
+
+      when(mockBuildContext.mounted).thenReturn(true);
+
+      // Return the mocked LocalizedAppInherited when dependOnInheritedWidgetOfExactType is called
+      when(mockBuildContext.dependOnInheritedWidgetOfExactType<LocalizedAppInherited>())
+        .thenReturn(mockLocalizedAppInherited);
+
+      // Ensure the refresh method is available and can be called
+      when(mockLocalizedAppInherited.refresh()).thenReturn(null);
     });
 
     group('translate', () {
@@ -55,7 +67,7 @@ void main() {
       });
 
       test('translates a key in a different language', () async {
-        await changeLocale(context, 'es');
+        await changeLocale(mockBuildContext, 'es');
         expect(translate('title'), equals('Hola'));
       });
     });
