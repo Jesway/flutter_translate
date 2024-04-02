@@ -25,9 +25,12 @@ dependencies:
   path: '>=1.8.0 <2.0.0'
   collection: '>=1.17.0 <2.0.0'
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: '>=2.0.2 <4.0.0'
+  mockito: ^5.4.4
+  build_runner: ^2.4.9
 
 flutter:

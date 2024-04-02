@@ -1,0 +1,93 @@
+{
+  "windmillcode-open-related-files": {
+    "options": [
+      {
+        "name": "Flutter Test Cases",
+        "searchPaths": ["."],
+        "subStringRemovalArray": ["mocks","_test", ".dart"],
+        "setEditorLayout": {
+          "orientation": 1,
+
+          "groups": [
+            {
+              "groups": [{}, {}],
+              "size": 0.5
+            }
+          ]
+        },
+        "includeGlobs": [
+          [
+            ["**/FILE_NAME_BASIS_test.mocks.dart","**/FILE_NAME_BASIS_test.dart"],
+            ["**/FILE_NAME_BASIS.dart"]
+          ]
+        ]
+      }
+    ]
+  },
+  "windmillcode-open-related-files.defaultOption": {
+    "name": "Flutter Test Cases",
+    "searchPaths": [
+      "."
+    ],
+    "subStringRemovalArray": [
+      "mocks",
+      "_test",
+      ".dart"
+    ],
+    "setEditorLayout": {
+      "orientation": 1,
+      "groups": [
+        {
+          "groups": [
+            {},
+            {}
+          ],
+          "size": 0.5
+        }
+      ]
+    },
+    "includeGlobs": [
+      [
+        [
+          {
+            "_relativeFilePath": "",
+            "filePath": "**/FILE_NAME_BASIS_test.mocks.dart",
+            "section": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "createFileRelativeToTrustedFilePath": false
+          },
+          {
+            "_relativeFilePath": "",
+            "filePath": "**/FILE_NAME_BASIS_test.dart",
+            "section": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "createFileRelativeToTrustedFilePath": false
+          }
+        ],
+        [
+          {
+            "_relativeFilePath": "",
+            "filePath": "**/FILE_NAME_BASIS.dart",
+            "section": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "createFileRelativeToTrustedFilePath": false
+          }
+        ]
+      ]
+    ]
+  },
+  "windmillcode-open-related-files.autoOpen": false,
+  "windmillcode-open-related-files.resetLayout": true
+}
