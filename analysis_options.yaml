@@ -1,4 +1,9 @@
 include: package:flutter_lints/flutter.yaml
 
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "Windmillcode_app_tutorials/**"
+    
 linter:
   rules:
