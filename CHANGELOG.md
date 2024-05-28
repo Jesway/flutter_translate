@@ -122,3 +122,7 @@
 ## [4.0.4]
 
 - Bump intl version to support latest Flutter version
+
+## [4.1.0]
+
+- Upgraded packages and SDK version
