@@ -7,14 +7,6 @@ Locale? getCurrentLocale()
     return _localeFromString(Platform.localeName);
 }
 
-/// Returns preferred device locales
-List<Locale>? getPreferredLocales() 
-{
-    final deviceLocales = WidgetsBinding.instance.window.locales;
-
-    return deviceLocales;
-}
-
 Locale? _localeFromString(String code) 
 {
     var separator = code.contains('_') ? '_' : code.contains('-') ? '-' : null;
